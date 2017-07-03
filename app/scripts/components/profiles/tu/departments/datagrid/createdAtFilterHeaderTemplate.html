@@ -1,0 +1,9 @@
+<div class="ui-grid-filter-container" ng-repeat="colFilter in col.filters" ng-if="colFilter.visible">
+    <input type="text" class="ui-grid-filter-input date-picker"
+           ng-model="grid.appScope.filters.createdAt"
+           date-range-picker=""
+           options="{eventHandlers: {'apply.daterangepicker': grid.appScope.handleCreatedAtDateRange}, opens: 'left'}" />
+    <div class="ui-grid-filter-button" ng-click="grid.appScope.handleCreatedAtDateRange(); grid.appScope.filters.createdAt = {}">
+      	<i class="ui-grid-icon-cancel" ng-if="grid.appScope.filters.createdAt && grid.appScope.filters.createdAt.startDate">&nbsp;</i> 
+    </div>
+</div>

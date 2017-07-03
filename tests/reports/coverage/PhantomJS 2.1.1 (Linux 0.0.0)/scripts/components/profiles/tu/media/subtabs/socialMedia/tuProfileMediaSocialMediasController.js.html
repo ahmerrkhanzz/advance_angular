@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tu/media/subtabs/socialMedia/tuProfileMediaSocialMediasController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tu/media/subtabs/socialMedia/</a> tuProfileMediaSocialMediasController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/42</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.18% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.9% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/42</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function (angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers: {}});
+&nbsp;
+    App.controllers.TuMediaSocialMediasController = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        constants,
+        TuProfileFactory,
+        NotifierFactory,
+        TuMediaSocialMediasService,
+        TuMediaService
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+<span class="cstat-no" title="statement not covered" >        TuMediaSocialMediasService.coreId = 0;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.socialMediaItems = TuMediaSocialMediasService.socialMediaItems();</span>
+<span class="cstat-no" title="statement not covered" >        $scope.itemSocialMedia = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.displayLocationDeletePopup = true;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.type = $scope.socialMediaItems[0];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        TuMediaSocialMediasService.setType($scope.type);</span>
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuProfileFactory.getData();</span>
+        }, <span class="fstat-no" title="function not covered" >function (newValue) {</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaSocialMediasService.coreId = newValue.id;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.socialMediaItems = TuMediaSocialMediasService.processInput(newValue.socialMedia);</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaSocialMediasService.setSelectedSocialMedia(TuMediaSocialMediasService.flattenArray(newValue.socialMedia));</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaSocialMediasService.getSocialMediaItems();</span>
+        }, <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!angular.equals(oldValue, newValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.socialMediaItems = newValue;</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaSocialMediasService.getChanges();</span>
+        }, <span class="fstat-no" title="function not covered" >function (newValue) {</span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(newValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.socialMediaItems[$scope.type] = TuMediaSocialMediasService.flattenArray(newValue, true);</span>
+            }
+        });
+&nbsp;
+        /**
+         * Filter change.
+         *
+         * @param type
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.filter = <span class="fstat-no" title="function not covered" >function (type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return type;</span>
+        };
+&nbsp;
+        /**
+         * Select social media.
+         *
+         * @param {string} type
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.selectSocialMedia = <span class="fstat-no" title="function not covered" >function (type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.type = type;</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaSocialMediasService.setType(type);</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaSocialMediasService.setTriggerChange(Math.random()); </span>// reset right column changes
+<span class="cstat-no" title="statement not covered" >            if (!($scope.socialMediaItems[$scope.type].master || $scope.socialMediaItems[$scope.type].ug || $scope.socialMediaItems[$scope.type].pg)) {</span>
+<span class="cstat-no" title="statement not covered" >                TuMediaSocialMediasService.setHighlighted(true);</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.selectedItem = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaSocialMediasService.getSelectedSocialMedia();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.typeOverview = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaService.typeOverview();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.typeUndergraduate = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaService.typeUndergraduate();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.typePostgraduate = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaService.typePostgraduate();</span>
+        };
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('TuMediaSocialMediasController', [
+            '$scope',
+            'constants',
+            'TuProfileFactory',
+            'NotifierFactory',
+            'TuMediaSocialMediasService',
+            'TuMediaService',
+            App.controllers.TuMediaSocialMediasController
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../sorter.js"></script>
+</body>
+</html>

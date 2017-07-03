@@ -1,0 +1,55 @@
+<div ng-controller="TuMediaVideosController">
+    <h3 class="heading">Videos ({{videoItems.length}})</h3>
+    <div class="tab-body">
+        <div class="sort-filter" use-tu-subtypes>
+            <a class="btn btn-link btn-overview" ng-click="filter(typeOverview())" ng-class="type === typeOverview() ? 'active' : 'inactive'">
+                <i class="fa fa-book"></i>
+                <span>Overview ({{(videoItems | filter:{master:true}).length}})</span>
+            </a> |
+            <a class="btn btn-link btn-university" ng-click="filter(typeUndergraduate())" ng-class="type === typeUndergraduate() ? 'active' : 'inactive'">
+                <i class="fa fa-university"></i>
+                <span>Undergraduate ({{(videoItems | filter:{ug:true}).length}})</span>
+            </a> |
+            <a class="btn btn-link btn-graduation" ng-click="filter(typePostgraduate())" ng-class="type === typePostgraduate() ? 'active' : 'inactive'">
+                <i class="fa fa-graduation-cap"></i>
+                <span>Postgraduate ({{(videoItems | filter:{pg:true}).length}})</span>
+            </a>
+        </div>
+
+        <div class="gallery">
+            <div class="grid-view upload" ng-class="selectedItem().id === '' ? 'selected' : 'unselected'" ng-click="selectVideo()" ng-click="selectVideo()">
+                <div class="source-link">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </div>
+
+            <div ui-sortable="sortableOptions" ng-model="filteredVideoItems">
+                <div class="grid-view" ng-class="selectedItem().id === item.id ? 'selected' : 'unselected'" ng-click="selectVideo(item)" ng-repeat="item in filteredVideoItems">
+                    
+                    <div class="preview" ng-class="item.imageUrl ? '' : 'overlay' ">
+                        <img ng-src="{{item.imageUrl || '/images/media/youtube-thumbnail.jpg'}}"/>
+                    </div>
+                    
+                    <div class="info">
+                        <div class="title" item-order="{{item['orderType'][type]}}">
+                            {{item.name || 'Retrieving title...' }}
+                        </div>
+                        <div class="types" use-tu-subtypes>
+                            <i class="fa fa-book" ng-show="item.master"></i>
+                            <i class="fa fa-university" ng-show="item.ug"></i>
+                            <i class="fa fa-graduation-cap" ng-show="item.pg"></i>
+                        </div>
+                        <div class="actions">
+                            <a href="{{item.url}}" target="_blank" title="View {{item.name}}">
+                                <i class="fa fa-search"></i>
+                            </a>
+                            <a ng-click="deleteVideo(item)" title="Delete {{item.name}}">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

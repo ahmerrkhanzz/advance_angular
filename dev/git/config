@@ -1,0 +1,40 @@
+[alias]
+        st = status
+        co = checkout
+        br = branch
+        up = rebase
+        ci = commit
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+        ignorecase = true
+        editor = vim
+        eol = lf
+        autocrlf = input
+[remote "origin"]
+        url = https://qsnetwork.git.beanstalkapp.com/qs-hub.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+[branch "integration"]
+        remote = origin
+        merge = refs/heads/integration
+[credential]
+        helper = store
+[color]
+        ui = auto
+[color "status"]
+        added = green
+        changed = red bold
+        untracked = magenta bold
+[color "branch"]
+        remote = yellow
+[help]
+        autocorrect = 1
+[pack]
+        buildbitmaps = false
+[push]
+        default = simple

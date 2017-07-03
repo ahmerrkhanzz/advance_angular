@@ -1,0 +1,43 @@
+<div ng-controller="TuProfileDepartmentsController as DepartmentsController">
+    <div class="alert alert-info">
+        <p>
+            <i class="fa fa-info-circle"></i>
+            <span>Only the first top 50 departments will be published.</span>
+        </p>
+        <p>
+            <i class="fa fa-info-circle"></i>
+            <span>Departments can be published only for advanced profiles.</span>
+        </p>
+    </div>
+
+    <div class="tab-header">
+        <div class="btn-toggle">
+            <switch class="green"
+                ng-disabled="alphabeticalOrderingInProgress"
+                ng-model="institutionData.departmentsAlphabeticalOrder"
+                ng-change="!alphabeticalOrderingInProgress ? handleAlphabeticalOrderClick(institutionData.departmentsAlphabeticalOrder) : null"></switch>
+            <span class="switch-text"> Display in alphabetical order?</span>
+        </div>
+
+        <button class="btn btn-primary pull-right" type="button" 
+            ng-class="{'disabled': departmentsTabSubmitInProgress}"
+            ng-click="handleAddDepartmentClick()">
+            <i class="fa fa-plus"></i>
+            <span>Add Department</span>
+        </button>
+    </div>
+
+    <div class="tab-body">
+        <div wave-spinner class="wave-spinner" ng-show="isDatagridReloading || !isDatagridRendered"></div>
+
+        <div ng-if="!isDatagridReloading && gridOptions">
+            <ui-grid-info ng-if="!showDepartmentEditForm && !showDepartmentAddForm && !showClientUpgradeForm"></ui-grid-info>
+            <div class="grid"
+                ui-grid="gridOptions"
+                ui-grid-draggable-rows
+                ui-grid-selection
+                ui-grid-resize-columns
+                ui-grid-auto-resize></div>
+        </div>
+    </div>
+</div>

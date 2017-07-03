@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/shared/sharedProfileController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/shared/</a> sharedProfileController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.85% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.85% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/73</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers:{}});
+&nbsp;
+    App.controllers.sharedProfile = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        $location, 
+        $log, 
+        constants, 
+        SharedProfileService,
+        SharedProfileFactory,
+        InstitutionFactory
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.loadInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.generalHistoryDisabled = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.fetchingHistory = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showGeneralHistoryBlock = false;</span>
+<span class="cstat-no" title="statement not covered" >        SharedProfileFactory.setCampusFormVisibility(false);</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showCampusForm = SharedProfileFactory.isCampusFormVisible();</span>
+<span class="cstat-no" title="statement not covered" >        $scope.activeTab = SharedProfileFactory.getActiveTabs().general;</span>
+<span class="cstat-no" title="statement not covered" >        controller.historyLog = {</span>
+            totalReturned: 0,
+            total: 0
+        };
+&nbsp;
+        /**
+         * Request history log from service.
+         */
+<span class="cstat-no" title="statement not covered" >        controller.loadHistoryLog = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.fetchingHistory = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.generalHistoryDisabled = true;</span>
+<span class="cstat-no" title="statement not covered" >            if (!SharedProfileFactory.isLoadMoreInProgress()) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.fetchingHistory = true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            SharedProfileService.getGeneralHistory(SharedProfileFactory.getId(), true, SharedProfileFactory.getLogLimit()).then(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.generalHistoryDisabled = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.fetchingHistory = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.showGeneralHistoryBlock = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.generalHistoryLog = data.results;</span>
+<span class="cstat-no" title="statement not covered" >                controller.historyLog.total = data.totalMatching;</span>
+<span class="cstat-no" title="statement not covered" >                controller.historyLog.totalReturned = data.totalFiltered;</span>
+<span class="cstat-no" title="statement not covered" >                SharedProfileFactory.setLoadMoreInProgress(false);</span>
+            });
+        };
+&nbsp;
+        /**
+         * Handle history log load more click.
+         */
+<span class="cstat-no" title="statement not covered" >        controller.handleLoadMoreHistoryLog = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            SharedProfileFactory.setLogLimit(SharedProfileFactory.getLogLimit()+5);</span>
+<span class="cstat-no" title="statement not covered" >            SharedProfileFactory.setLoadMoreInProgress(true);</span>
+<span class="cstat-no" title="statement not covered" >            controller.loadHistoryLog();</span>
+        };
+&nbsp;
+        /**
+         * Get status of loading more history log .
+         *
+         * @returns {bool}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.fetchingMoreHistoryLog = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return SharedProfileFactory.isLoadMoreInProgress();</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when general history log is activated.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleHistoryLogClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.handleGeneralHistoryCloseClick();</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.showGeneralHistoryBlock) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.loadHistoryLog();</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isGeneralTabActive = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return SharedProfileFactory.isGeneralTabSelected();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isCampusesTabActive = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return SharedProfileFactory.isCampusesTabSelected();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isRightSidePanelActive = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // general tab is active
+<span class="cstat-no" title="statement not covered" >            if (SharedProfileFactory.isGeneralTabSelected() &amp;&amp; $scope.showGeneralHistoryBlock) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // campus tab is active
+<span class="cstat-no" title="statement not covered" >            if (SharedProfileFactory.isCampusesTabSelected() &amp;&amp; $scope.showCampusForm) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+        };
+&nbsp;
+        /**
+         * Actions to do when general history log is closed.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleGeneralHistoryCloseClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            SharedProfileFactory.setLogLimit(1);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.generalHistoryLog = {};</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showGeneralHistoryBlock = !$scope.showGeneralHistoryBlock;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.handleHistoryLogVisibility = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return SharedProfileFactory.getLogLimit() &lt; controller.historyLog.total;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initWatches = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // listen to active profile tab changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch('activeTab', <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!SharedProfileFactory.hasSelectedTab() || !angular.equals(newValue, oldValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                    SharedProfileFactory.setSelectedTabId(newValue);</span>
+                }
+            });
+&nbsp;
+            // watch for core ID changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(InstitutionFactory.getCoreId, <span class="fstat-no" title="function not covered" >function (coreId) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!coreId) {</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.loadInProgress = true;</span>
+                // load institution's shared profile by Core ID
+<span class="cstat-no" title="statement not covered" >                SharedProfileService.getSharedProfile(coreId).then(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.loadInProgress = false;</span>
+                    // set shared profile for system wide use
+<span class="cstat-no" title="statement not covered" >                    SharedProfileFactory.setData(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $scope.sharedProfile = data;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.showGeneralHistoryBlock = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.$broadcast(constants.events.institutionSharedProfileChanges);</span>
+                });
+            });
+&nbsp;
+            // watch for campus form visibility changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(SharedProfileFactory.isCampusFormVisible, <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (newValue !== oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.showCampusForm = newValue;</span>
+                }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initWatches();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init();</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('SharedProfileController', [
+            '$scope',
+            '$location',
+            '$log',
+            'constants',
+            'SharedProfileService',
+            'SharedProfileFactory',
+            'InstitutionFactory',
+            App.controllers.sharedProfile
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

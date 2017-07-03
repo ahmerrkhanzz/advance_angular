@@ -1,0 +1,72 @@
+<form name="forms.overviewAdvancedForm" enctype="multipart/form-data">
+    <div class="tab-header">
+        <div wave-spinner ng-show="historyDisabled"></div>
+        <h3 class="heading">Advanced Description *</h3>
+        <a class="btn btn-warning btn-history" ng-show="!historyDisabled" ng-click="TmProfileOverviewController.handleTmOverviewHistoryLogClick(true)">
+            <i class="fa fa-clock-o"></i>
+        </a>
+    </div>
+
+    <div class="tab-body">
+        <div class="summernote-container" ng-class="{'has-errors': TmProfileOverviewController.isOverviewInvalid()}">
+            <summernote
+                config="TmProfileOverviewController.textEditorAdvancedOptions"
+                ng-model="tmProfile.advancedOverview"
+                on-focus="TmProfileOverviewController.setOverviewInvalid('advancedTmOverview')"
+                on-change="TmProfileOverviewController.advancedOverviewWords = countWords(contents)"
+                on-init="TmProfileOverviewController.advancedOverviewWords = countWords(tmProfile.advancedOverview)"
+                count-word="TmProfileOverviewController.advancedOverviewWords">
+            </summernote>
+        </div>
+
+        <div class="editor-note form-group">
+            <span ng-class="{'text-red': TmProfileOverviewController.isAdvancedOverviewInvalid(TmProfileOverviewController.advancedOverviewWords)}">
+                <span class="bold">{{TmProfileOverviewController.advancedOverviewWords}}</span>
+                <span>words inserted</span>
+            </span>
+            <span class="pull-right">Maximum {{TmProfileOverviewController.advancedDescriptionWordLimit}} words</span>
+
+            <div
+                focus-delay="250"
+                custom-popover
+                popover-html="Add a general description about your business school"
+                popover-placement="left"
+                popover-trigger="manual"
+                popover-visibility="{{isAdvancedTmOverviewEmpty ? true : false}}">
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="separator"></div>
+
+<div  class="row">
+    <div class="col-lg-6 form-group">
+        <div>
+            <h3>University Website</h3>
+        </div>
+        <input type="text"
+           placeholder="http://"
+           ng-model="tmProfile.websiteUrl"
+           ng-keyup="TmProfileOverviewController.onKeyUp($event)"
+           class="form-control" />
+    </div>
+    <div class="col-lg-6 form-group">
+        <div class="display-inline-request-info margin-right-30">
+            <h3 class="inline">Request info - Email</h3>
+        </div>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email" ng-model="tmProfile.requestInfoEmail" class="form-control" >
+        </div>
+    </div>
+</div>
+
+<div class="tab-footer">
+    <a class="btn btn-primary pull-right"
+       ng-class="{'disabled': overviewAdvancedFormSubmitInProgress}"
+       ng-click="handleOverviewAdvancedDataSubmit()">
+       <i class="fa fa-check-circle"></i>
+       <span>Update</span>
+    </a>
+</div>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="qsHub">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS test</title>
+    <link data-require="jasmine" rel="stylesheet" href="../bower_components/jasmine-core/lib/jasmine-core/jasmine.css" />
+    <script data-require="jasmine" src="../bower_components/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script data-require="jasmine" src="../bower_components/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script data-require="jasmine@*" src="../bower_components/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script data-require="angular.js" src="../bower_components/angular/angular.min.js"></script>
+    <script data-require="angular-mocks" src="../bower_components/angular-mocks/angular-mocks.js"></script>
+    <script data-require="ui.router" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script data-require="ui.bootstrap" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- Event -->
+    <script data-require="ui.event" src="../bower_components/angular-ui-event/dist/event.min.js"></script>
+    <!-- UI-Map -->
+    <script data-require="ui.map" src="../bower_components/angular-ui-map/ui-map.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="../bower_components/angular-gravatar/build/angular-gravatar.min.js"></script>
+    <script src="../bower_components/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="../bower_components/ng-switchery/src/ng-switchery.js"></script>
+    <script src="../bower_components/angular-ui-switch/angular-ui-switch.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="../bower_components/chosen/chosen.jquery.js"></script>
+    <script src="../bower_components/angular-chosen-localytics/dist/angular-chosen.js"></script>
+    <script src="../bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="../bower_components/angularjs-toaster/toaster.min.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="../bower_components/angular-ui-select/dist/select.js"></script>
+    <script src="../bower_components/angular-dropzone/lib/angular-dropzone.js"></script>
+    <script src="../bower_components/summernote/dist/summernote.min.js"></script>
+    <script src="../bower_components/angular-summernote/dist/angular-summernote.min.js"></script>
+    <script src="../bower_components/angular-ui-sortable/sortable.min.js"></script>
+    <script src="../bower_components/ng-focus-if/focusIf.min.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/xdLocalStorage/dist/scripts/ng-xdLocalStorage.min.js"></script>
+    <!-- app -->
+    <script src="../app/scripts/app.js"></script>
+    <script src="../app/scripts/constants.js"></script>
+    <script src="../app/scripts/directives.js"></script>
+    <script src="../app/scripts/components/users/list/institutions/institutionsUsersListController.js"></script>
+    <script src="../app/scripts/components/users/list/institutions/institutionsUsersListService.js"></script>
+    <script src="../app/scripts/components/institutions/list/campusesListController.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDN-E7GkRH050mItjaG6s2XIsDmi1OUsYg">
+    </script>
+    <script>var uiMode = true;</script>
+    <!-- unit tests -->
+    <script src="directives/currentDate.test.js"></script>
+    <script src="directives/toggleClassOnClick.test.js"></script>
+    <script src="directives/displayFiltering.test.js"></script>
+    <script src="controllers/institutionsUsersList/handleDatagridRowClick.test.js"></script>
+    <script src="controllers/institutionsUsersList/handleResetClick.test.js"></script>
+    <script src="controllers/institutionsUsersList/handleDeactivateClick.test.js"></script>
+    <script src="services/institutionsList/objectForSubscriptions.test.js"></script>
+
+</head>
+
+<body>
+<div id="HTMLReporter" class="jasmine_reporter"></div>
+</body>
+
+</html>

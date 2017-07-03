@@ -1,0 +1,103 @@
+<div class="ibox" ng-class="getSelected() === 3 ? 'selected' : 'collapsed'" ng-controller="TuMediaSocialMediasSidebarController as TuMediaSocialMediasSidebarController">
+    <div class="ibox-title clickable" ng-click="setSelected(3)">
+        <h5>Social Media</h5>
+        <div class="ibox-tools">
+            <a>
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <p class="bold text-capitalize">{{type()}}</p>
+        
+        <div class="addForm">
+            <form class="form-horizontal" name="forms.formSocialMedia" id="form-social-media" novalidate>
+                <div class="alert alert-info">
+                    <p>
+                        <i class="fa fa-info-circle"></i>
+                        <span>Please add your</span>
+                        <span class="text-capitalize">{{type() === "other" ? "Website" : type()}}</span>
+                        <span>link, e.g.</span>
+                        <span class="text-nowrap">{{TuMediaSocialMediasSidebarController.selectedSocialMediaUrl}}</span>
+                    </p>
+                </div>
+
+                <div ng-repeat="selectedSocialMedia in selectedSocialMedia[type()]">
+                    <div ng-show="selectedSocialMedia.display">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox-inline i-checkbox">
+                                    <label>
+                                        <input i-checkbox type="checkbox" ng-change="checkboxChanged(selectedSocialMedia, $index, 'master')" ng-click="resetInvalidCheckbox($index)" name="overview" id="social-media-overview-{{$index}}" focus-if="getDisplayTypesValidation()" ng-blur="setDisplayTypesValidation(false)" focus-delay="250" ng-model="selectedSocialMedia.master" />
+                                        <span>Overview</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-inline i-checkbox">
+                                    <label>
+                                        <input i-checkbox type="checkbox" ng-change="checkboxChanged(selectedSocialMedia, $index, 'ug')" ng-click="resetInvalidCheckbox($index)"  name="undergraduate" id="social-media-undergraduate-{{$index}}" ng-model="selectedSocialMedia.ug" />
+                                        <span>Undergraduate</span>
+                                    </label>
+                                </div>
+
+                                <div class="checkbox-inline i-checkbox">
+                                    <label>
+                                        <input i-checkbox type="checkbox" ng-change="checkboxChanged(selectedSocialMedia, $index, 'pg')" ng-click="resetInvalidCheckbox($index)"  name="postgraduate" id="social-media-postgraduate-{{$index}}" ng-model="selectedSocialMedia.pg" />
+                                        <span>Postgraduate</span>
+                                    </label>
+                                </div>
+
+                                <div ng-class="invalidCheckboxes[$index] ? 'has-errors' : ''" >
+                                    <span 
+                                        custom-popover popover-html="Assign social media to at least one of the three profiles" 
+                                        popover-placement="left" 
+                                        popover-trigger="manual" 
+                                        popover-visibility="{{invalidCheckboxes[$index]}}"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-class="invalidFields[$index] ? 'has-errors' : ''">
+                            <label class="control-label col-sm-3 col-md-2">
+                                <span>URL *</span>
+                            </label>
+                            <div class="col-sm-9 col-md-10">
+                            <input class="form-control"
+                                   name="url{{$index}}"
+                                   type="url"
+                                   placeholder="http://"
+                                   focus-if="(isHighlighted && $index === 0) ? true : false"
+                                   focus-delay="250"
+                                   ng-pattern="TuMediaSocialMediasSidebarController.urlPattern"
+                                   ng-model="selectedSocialMedia.url"
+                                   ng-focus = "resetInvalidField($index)"
+                                   ng-keyup="TuMediaSocialMediasSidebarController.onKeyUp($event, type(), $index)"
+
+                                   custom-popover
+                                   popover-trigger = "manual"
+                                   popover-visibility = "{{invalidFields[$index]}}"
+                                   popover-html="Add a valid <span class='text-capitalize'>{{type() === 'other' ? 'Website' : type()}}</span> link"
+                                   popover-placement="left"/>
+                            </div>
+                        </div>
+                        <div class="separator dashed"></div>
+                    </div>
+                </div>
+
+                <div class="form-group m-b-none">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary pull-right" ng-click="saveSocialMediaForm()">
+                            <i class="fa fa-check-circle"></i>
+                            <span>{{isEditMode(type()) ? 'Update' : 'Save'}}</span>
+                        </button>
+                        <button class="btn btn-warning pull-right" ng-click="clearSocialMediaForm()">
+                            <i class="fa fa-ban"></i>
+                            <span>Clear</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

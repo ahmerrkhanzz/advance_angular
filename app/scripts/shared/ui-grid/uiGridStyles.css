@@ -1,0 +1,266 @@
+/* UI GRID STYLE */
+.grid,
+.grid.ui-grid .ui-grid-pager-panel {
+    content: "";
+    display: block;
+    clear: both;
+}
+.grid.ui-grid {
+  background: #FFFFFF;
+  border: 1px solid #E7EAEC;
+  height: auto !important;
+  padding: 0;
+}
+.grid.ui-grid .ui-grid-viewport {
+  height: auto !important;
+  min-height: 300px;
+  overflow-x: hidden !important;
+}
+
+.grid.ui-grid .ui-grid-footer-info,
+.grid.ui-grid .ui-grid-pager-panel {
+  height: auto;
+  padding: 10px 15px;
+}
+
+.grid.ui-grid .ui-grid-pager-panel {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.grid.ui-grid .ui-grid-pager-panel .ui-grid-pager-control {
+  margin-left: 0;
+}
+
+.grid .ui-grid-menu-button {
+  border: 1px solid #E7EAEC;
+  height: auto;
+  padding: 2px 0 2px 3px;
+  right: -1px;
+  top: -1px;
+}
+
+.grid .ui-grid-menu-button .ui-grid-icon-container {
+  margin: 0;
+  line-height: 0;
+}
+
+.grid .ui-grid-menu-button .ui-grid-icon-container .ui-grid-icon-menu:before {
+  margin: 0;
+  vertical-align: middle;
+  width: auto;
+}
+
+.grid .ui-grid-menu .ui-grid-menu-mid {
+  max-height: 280px;
+  overflow-x: hidden;
+}
+
+.grid .ui-grid-menu .ui-grid-menu-inner {
+  background: #FFFFFF;
+}
+
+.grid .ui-grid-menu .ui-grid-menu-item {
+  border: none;
+  line-height: 20px;
+  padding: 5px 10px;
+}
+
+.grid .ui-grid-menu .ui-grid-menu-item:hover, .grid .ui-grid-menu .ui-grid-menu-item:focus {
+  background: #f5f6f7;
+  box-shadow: none;
+}
+
+.grid .ui-grid-menu ul li > button {
+  border-bottom: 1px solid #E7EAEC;
+}
+
+.grid .ui-grid-menu ul li:last-child > button {
+  border-bottom: none;
+}
+
+.grid .ui-grid-header {
+  border-bottom: 2px solid #E7EAEC;
+}
+
+.grid .ui-grid-header .ui-grid-top-panel {
+  background: #f5f6f7;
+}
+
+.grid .ui-grid-header .ui-grid-header-cell {
+  border-right: 1px solid #E7EAEC;
+}
+
+.grid .ui-grid-header .ui-grid-header-cell:last-child {
+  border-right: none;
+  padding-right: 5px;
+}
+
+.grid .ui-grid-header .ui-grid-header-cell:last-child .ui-grid-column-resizer.right {
+  border-right: 1px solid #E7EAEC;
+  right: 4px;
+}
+
+.grid .ui-grid-viewport {
+  border-bottom: 1px solid #E7EAEC;
+}
+
+.grid .ui-grid-viewport .ui-grid-row {
+  height: 36px;
+}
+
+.grid .ui-grid-viewport .ui-grid-row:last-child .ui-grid-cell {
+  border-bottom: 1px solid #E7EAEC;
+}
+
+.grid .ui-grid-viewport .ui-grid-row:nth-child(even) .ui-grid-cell {
+  background: #FFFFFF;
+}
+
+.grid .ui-grid-viewport .ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background: #fbfbfc;
+}
+
+.grid .ui-grid-viewport .ui-grid-row:hover .ui-grid-cell {
+  background: #e6fbf7;
+}
+
+.grid .ui-grid-viewport .ui-grid-cell {
+  border-right: 1px solid #E7EAEC;
+  border-bottom: 1px solid #E7EAEC;
+  height: 36px;
+}
+
+.grid .ui-grid-cell-contents {
+  padding: 5px 10px;
+}
+
+.grid .ui-grid-column-menu-button {
+  right: 2px;
+}
+
+.grid .ui-grid-column-menu-button-last-col {
+  margin-right: 5px;
+}
+
+.grid .ui-select-match .btn {
+  margin: 0;
+}
+
+.grid .ui-select-match .btn .btn-default {
+  border: 1px solid #E7EAEC;
+}
+
+.grid input.ui-grid-filter-input {
+  border-radius: 3px;
+  border: 1px solid #E7EAEC;
+  line-height: 20px;
+  padding: 6px 12px;
+}
+
+.grid input.ui-grid-filter-input:focus {
+  border-color: #1DC5A3;
+}
+
+.grid .ui-grid-filter-container .ui-grid-filter-input + .ui-grid-filter-button {
+  right: 18px;
+}
+
+.grid .ui-grid-filter-container .ui-grid-filter-button,
+.grid .ui-grid-filter-container .ui-grid-filter-button-select {
+  height: 16px;
+  line-height: 0;
+  top: 13px;
+  right: 18px;
+  width: 16px;
+}
+
+.grid .ui-grid-filter-container .ui-grid-filter-button .ui-grid-icon-cancel,
+.grid .ui-grid-filter-container .ui-grid-filter-button-select .ui-grid-icon-cancel {
+  background: #FFFFFF;
+  border-radius: 100%;
+  color: #888888;
+  height: 16px;
+  width: 16px;
+  opacity: 1;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.grid .ui-grid-filter-container .ui-grid-filter-button .ui-grid-icon-cancel:before,
+.grid .ui-grid-filter-container .ui-grid-filter-button-select .ui-grid-icon-cancel:before {
+  height: 16px;
+  line-height: 14px;
+  margin: 0;
+  width: 16px;
+  vertical-align: top;
+}
+
+.grid .ui-grid-filter-container .ui-grid-filter-button .ui-grid-icon-cancel:not(*:root):before,
+.grid .ui-grid-filter-container .ui-grid-filter-button-select .ui-grid-icon-cancel:not(*:root):before {
+  line-height: 16px;
+}
+/* For fixing the position of data grid sorting dropdowns*/
+.ui-grid-column-menu {
+    top: 25px !important;
+}
+.ui-grid-filter-select .dropdown-menu
+{
+    min-width: inherit;
+}
+.ui-grid .ui-grid-viewport .ui-grid-row .ui-grid-cell.active,
+.ui-grid .ui-grid-viewport .ui-grid-row:hover .ui-grid-cell.active {
+    background: #1AB394;
+    color: #ffffff;
+}
+
+#departmentsTable .ui-grid-canvas, #departmentsTable .ui-grid-viewport {
+    position: initial;
+}
+
+.ui-grid .ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background: #f9f9f9;
+}
+
+.ui-grid .ui-grid-row:nth-child(even) .ui-grid-cell {
+    background: #ffffff;
+}
+
+.ui-grid .ui-grid-row .ui-grid-cell.pointer {
+    cursor: pointer;
+}
+
+.ui-grid .ui-grid-row .ui-grid-cell.pointer .no-select {
+    cursor: default;
+}
+
+.ui-grid-draggable-row-target {
+    opacity: 0.5 !important;
+}
+
+.ui-grid-draggable-row {
+    height: 30px;
+}
+
+.ui-grid-draggable-row-over {
+    position: relative;
+}
+
+.ui-grid-draggable-row-over:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-bottom: 3px dotted #AAA;
+}
+
+.ui-grid-draggable-row-over--above:before {
+    top: 0;
+}
+
+.ui-grid-draggable-row-over--below:before {
+    bottom: 0;
+}

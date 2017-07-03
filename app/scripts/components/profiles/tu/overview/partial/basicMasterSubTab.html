@@ -1,0 +1,120 @@
+<form name="forms.overviewBasicMasterForm" enctype="multipart/form-data">
+    <div class="tab-header">
+      <h3 class="heading">Basic Description *</h3>
+      <a class="btn btn-warning btn-history" ng-show="!historyDisabled" ng-click="handleTuOverviewHistoryLogClick('master')">
+          <i class="fa fa-clock-o"></i>
+      </a>
+      <div wave-spinner="" class="text-right" ng-show="historyDisabled"></div>
+    </div>
+
+    <div class="tab-body">
+        <div class="summernote-container" ng-class="{'has-errors': isBasicOverviewEmpty}">
+            <summernote
+                config="TuProfileOverviewController.textEditorBasicOptions"
+                ng-model="tuProfile.basicMasterOverview"
+                on-focus="TuProfileOverviewController.setOverviewInvalid('basicOverview')"
+                on-change="TuProfileOverviewController.basicMasterOverviewWords = countWords(contents)"
+                on-init="TuProfileOverviewController.basicMasterOverviewWords = countWords(tuProfile.basicMasterOverview)"
+                count-word="TuProfileOverviewController.basicMasterOverviewWords">
+            </summernote>
+        </div>
+
+      <div class="editor-note form-group">
+        <span ng-class="{'text-red': TuProfileOverviewController.isBasicOverviewInvalid(TuProfileOverviewController.basicMasterOverviewWords)}">
+          <span class="bold">{{TuProfileOverviewController.basicMasterOverviewWords}}</span>
+          <span>words inserted</span>
+        </span>
+        <span class="pull-right">Maximum {{TuProfileOverviewController.basicDescriptionWordLimit}} words</span>
+        <div
+            focus-delay="250"
+            custom-popover
+            popover-html="Add a general description about your university"
+            popover-placement="left"
+            popover-trigger="manual"
+            popover-visibility="{{isBasicOverviewEmpty ? true : false}}">
+        </div>
+      </div>
+
+      <div class="tab-footer">
+          <a class="btn btn-primary pull-right"
+            ng-class="{'disabled': overviewBasicMasterFormSubmitInProgress}"
+            ng-click="handleOverviewBasicMasterDataSubmit()">
+            <i class="fa fa-check-circle"></i>
+            <span>Update</span>
+          </a>
+      </div>
+
+    </div>    
+</form>
+
+<div upgrade-banner
+     info-block-class="isRightSidePanelActive() ? 'col-lg-9' : 'col-lg-10'"
+     buttons-block-class="isRightSidePanelActive() ? 'col-lg-3' : 'col-lg-2'"
+     basic-profile="true"
+     upgrade-email="{{upgradeEmailsTo}}"
+     upgrade-click="toggleUpgradeForm()"></div>
+
+<div class="separator"></div>
+
+<div class="locked">
+    <div  class="row">
+        <div class="col-lg-6 form-group">
+            <div>
+                <h3>University Website</h3>
+            </div>
+            <input type="text"
+                   disabled
+                   placeholder="http://"
+                   ng-model="tuProfile.masterWebsiteUrl"
+                   class="form-control" />
+        </div>
+        <div class="col-lg-6 form-group">
+            <div class="display-inline-request-info margin-right-30">
+                <h3 class="inline">Request info</h3>
+                <span class="small dfn text-left text-nowrap"> (please select one) </span>
+            </div>
+            <div class="display-inline-request-info request-info-title">
+                <div class="display-inline-request-info">
+                    <input i-checkbox
+                       disabled
+                       type="radio"
+                       value="email"
+                       ng-model="tuProfile.requestInfoTypeMaster"> Email
+                </div>
+                <span class="or-checkboxes-request-info">OR</span>
+                <div class="display-inline-request-info">
+                    <input i-checkbox
+                       disabled
+                       type="radio"
+                       value="url"
+                       ng-model="tuProfile.requestInfoTypeMaster"> URL
+                </div>
+            </div>
+            <div ng-show="tuProfile.requestInfoTypeMaster === 'url'" class="url-option">
+                <div class="form-group">
+                    <input type="text"
+                           disabled
+                           placeholder="Title"
+                           ng-model="tuProfile.masterRequestInfoUrlTitle"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="url"
+                           disabled
+                           placeholder="URL"
+                           ng-model="tuProfile.masterRequestInfoUrl"
+                           class="form-control">
+                </div>
+            </div>
+            <div ng-show="tuProfile.requestInfoTypeMaster === 'email'" class="email-option">
+                <div class="form-group">
+                    <input type="email"
+                           disabled
+                           placeholder="Email"
+                           ng-model="tuProfile.masterRequestInfoEmail"
+                           class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,3359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/institutions/list/institutionsListController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">scripts/components/institutions/list/</a> institutionsListController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.32% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/379</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.87% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/229</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.23% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/81</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.32% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/379</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular, moment) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers:{}});
+&nbsp;
+    App.controllers.institutionsList = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        $resource,
+        $stateParams,
+        constants,
+        InstitutionsListService,
+        SharedProfileFactory,
+        NotifierFactory,
+        InstitutionFactory,
+        InstitutionsListFactory,
+        orderBy,
+        LoginService,
+        uiGridConstants,
+        $timeout
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getCountries().then(<span class="fstat-no" title="function not covered" >function (list) {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.countriesList = list;</span>
+        });
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+<span class="cstat-no" title="statement not covered" >        controller.filters = {};</span>
+<span class="cstat-no" title="statement not covered" >        controller.urls = {</span>
+            'tu': constants.urls.tu + '/node/',
+            'tm': constants.urls.tm + '/node/'
+        };
+<span class="cstat-no" title="statement not covered" >        controller.newInstitution = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institution = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institutionBeforeChanges = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.columnsBeforeHide = [];</span>
+<span class="cstat-no" title="statement not covered" >        $scope.forms = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.filterActive = true;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.isDatagridReloading = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.isSelectReloading = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.basicDetailsSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.subscriptionProfilesSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.subscriptionStatisticsSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.drupalSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institutionGroupSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institutionsWithoutGroup = [];</span>
+<span class="cstat-no" title="statement not covered" >        $scope.isDatagridRendered = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.datePickerTu = {</span>
+            date : {
+                startDate: null,
+                endDate: null
+            },
+            options : {
+                ranges: {
+                    '6 months from today': [moment(), moment().add(6, 'months')],
+                    '12 months from today': [moment(), moment().add(12, 'months')]
+                },
+                eventHandlers: {
+                    'apply.daterangepicker': <span class="fstat-no" title="function not covered" >function (ev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.handleDateRangePickerApplyClick(ev, 'tu');</span>
+                    }
+                }
+            }
+        };
+&nbsp;
+        /**
+         * Initialize vars for selected item and type
+         */
+<span class="cstat-no" title="statement not covered" >        controller.initSelectedItem = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.selectedItem = {};</span>
+<span class="cstat-no" title="statement not covered" >            $scope.selectedItem.selectedOptionType = {</span>
+                'uniqueId': 1
+            };
+<span class="cstat-no" title="statement not covered" >            $scope.selectedItem.parentCoreId = null;</span>
+        };
+<span class="cstat-no" title="statement not covered" >        controller.initSelectedItem();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.datePickerTm = {</span>
+            date : {
+                startDate: null,
+                endDate: null
+            },
+            options : {
+                ranges: {
+                    '6 months from today': [moment(), moment().add(6, 'months')],
+                    '12 months from today': [moment(), moment().add(12, 'months')]
+                },
+                eventHandlers: {
+                    'apply.daterangepicker': <span class="fstat-no" title="function not covered" >function (ev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.handleDateRangePickerApplyClick(ev, 'tm');</span>
+                    }
+                }
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.activeTab = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.disabledInstitutionListTabs = {</span>
+            'basicDetails' : false,
+            'subscriptions': false,
+            'campuses': false,
+            'institutionGroups': false,
+            'drupal': false
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleDateRangePickerApplyClick = <span class="fstat-no" title="function not covered" >function (element, type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!element.model.startDate) {</span>
+<span class="cstat-no" title="statement not covered" >                element.model.startDate = moment();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!element.model.endDate) {</span>
+<span class="cstat-no" title="statement not covered" >                element.model.endDate = moment();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.institution.subscriptions[type].startDate = element.model.startDate.format('x');</span>
+<span class="cstat-no" title="statement not covered" >            $scope.institution.subscriptions[type].endDate = element.model.endDate.format('x');</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.similarNames = {</span>
+            'display': false,
+            'loading': false,
+            'results': []
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.showDepartments = {</span>
+            'display': false,
+            'loading': false,
+            'results': []
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        SharedProfileFactory.setInstitutionListShowCampusInfoBlock(false);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getTypes().then(<span class="fstat-no" title="function not covered" >function (list) {</span></span>
+<span class="cstat-no" title="statement not covered" >             controller.typesList = list;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getSubscriptions().then(<span class="fstat-no" title="function not covered" >function (subscriptions) {</span></span>
+<span class="cstat-no" title="statement not covered" >             controller.subscriptionsList = subscriptions;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getTuRegions().then(<span class="fstat-no" title="function not covered" >function (list) {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.tuRegionsList = list;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getTmRegions().then(<span class="fstat-no" title="function not covered" >function (list) {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.tmRegionsList = list;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        InstitutionsListService.getCountries().then(<span class="fstat-no" title="function not covered" >function (list) {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.countriesList = list;</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.disabledSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return (</span>
+                $scope.subscriptionProfilesSubmitInProgress ||
+                (
+                    $scope.institution.subscriptions &amp;&amp;
+                    $scope.institution.subscriptions.tm &amp;&amp;
+                    $scope.institution.subscriptions.tm.advanced &amp;&amp;
+                    (!$scope.institution.subscriptions.tm.startDate ||
+                    !$scope.institution.subscriptions.tm.endDate)
+                ) ||
+                (
+                    $scope.institution.subscriptions &amp;&amp;
+                    $scope.institution.subscriptions.tu &amp;&amp;
+                    $scope.institution.subscriptions.tu.advanced &amp;&amp;
+                    (!$scope.institution.subscriptions.tu.startDate ||
+                    !$scope.institution.subscriptions.tu.endDate)
+                )
+            );
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.reloadDatagrid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.getPage();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.populateSubscriptionsDateDatepickers = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.institution &amp;&amp; $scope.institution.subscriptions) {</span>
+<span class="cstat-no" title="statement not covered" >                if (</span>
+                    $scope.institution.subscriptions.ug &amp;&amp;
+                    $scope.institution.subscriptions.ug.startDate &amp;&amp;
+                    $scope.institution.subscriptions.ug.endDate
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerUg.date.startDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.ug.startDate
+                    );
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerUg.date.endDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.ug.endDate
+                    );
+                }
+<span class="cstat-no" title="statement not covered" >                if (</span>
+                    $scope.institution.subscriptions.pg &amp;&amp;
+                    $scope.institution.subscriptions.pg.startDate &amp;&amp;
+                    $scope.institution.subscriptions.pg.endDate
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerPg.date.startDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.pg.startDate
+                    );
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerPg.date.endDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.pg.endDate
+                    );
+                }
+<span class="cstat-no" title="statement not covered" >                if (</span>
+                    $scope.institution.subscriptions.tm &amp;&amp;
+                    $scope.institution.subscriptions.tm.startDate &amp;&amp;
+                    $scope.institution.subscriptions.tm.endDate
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerTm.date.startDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.tm.startDate
+                    );
+<span class="cstat-no" title="statement not covered" >                    $scope.datePickerTm.date.endDate = InstitutionsListService.formatSubscriptionDate(</span>
+                        $scope.institution.subscriptions.tm.endDate
+                    );
+                }
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.toggleColumns = <span class="fstat-no" title="function not covered" >function (hide, forceClose) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isUndefined(forceClose)) {</span>
+<span class="cstat-no" title="statement not covered" >                forceClose = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!$scope.gridOptions) {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (hide &amp;&amp; !forceClose) {</span>
+                // hide all columns except name
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.gridOptions.columnDefs, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    column.visible = column.field === 'name';</span>
+                });
+            } else {
+                // show columns visible before hide
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.columnsBeforeHide, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    column.visible = true;</span>
+                });
+<span class="cstat-no" title="statement not covered" >                $scope.columnsBeforeHide = [];</span>
+            }
+        };
+&nbsp;
+        /**
+         * Actions to do when dataGrid row is clicked.
+         *
+         * @param {object} institution
+         * @param {boolean} forceClose
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleDatagridRowClick = <span class="fstat-no" title="function not covered" >function (institution, forceClose) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isUndefined(forceClose)) {</span>
+<span class="cstat-no" title="statement not covered" >                forceClose = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (($scope.selectedInstitutionId !== institution.id) &amp;&amp; $scope.selectedInstitutionId) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.gridOptions.data, <span class="fstat-no" title="function not covered" >function (value, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (value.id === $scope.selectedInstitutionId) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.gridOptions.data[key] = angular.copy($scope.institutionBeforeChanges);</span>
+                    }
+                });
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.selectedInstitutionId = $scope.selectedInstitutionId === institution.id ? null : institution.id;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.gridOptions.enableGridMenu = $scope.selectedInstitutionId === null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.gridOptions.enableColumnResizing = $scope.selectedInstitutionId === null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.gridOptions.enablePaginationControls = $scope.selectedInstitutionId === null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.institution = institution;</span>
+            // on load, order by order value that comes from database
+<span class="cstat-no" title="statement not covered" >            $scope.institution.campus = orderBy($scope.institution.campus, 'order', false);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.institutionBeforeChanges = angular.copy(institution);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showInfoBlock = forceClose ? false : $scope.selectedInstitutionId === institution.id;</span>
+<span class="cstat-no" title="statement not covered" >            SharedProfileFactory.setInstitutionListShowCampusInfoBlock(false);</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.selectedInstitutionId) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.initSelectedItem();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.selectedItem.selectedOptionType.uniqueId = institution.typeId;</span>
+<span class="cstat-no" title="statement not covered" >                controller.allowedInstitutionTypes(true);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.subscriptions = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.campuses = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.institutionGroups = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.drupal = false;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                controller.allowedInstitutionTypes();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.subscriptions = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.campuses = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.institutionGroups = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledInstitutionListTabs.drupal = true;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if ($scope.selectedInstitutionId === institution.id &amp;&amp; !forceClose) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.gridOptions.columnDefs, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (angular.isDefined(column.visible) &amp;&amp; column.visible === true) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.columnsBeforeHide.push(column);</span>
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                $scope.filterActive = false;</span>
+<span class="cstat-no" title="statement not covered" >                controller.populateSubscriptionsDateDatepickers();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.array = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionsWithoutGroup = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (institution.groupMembers) {</span>
+                    // filter out current institution
+<span class="cstat-no" title="statement not covered" >                    institution.groupMembers = InstitutionsListService.excludeGroupMember(</span>
+                        institution.coreId,
+                        institution.groupMembers
+                    );
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionsWithoutGroup = institution.groupMembers;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionBeforeChanges.groupMembers = angular.copy(institution.groupMembers);</span>
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.toggleColumns(institution.id !== 'undefined' &amp;&amp; $scope.selectedInstitutionId === institution.id, forceClose);</span>
+        };
+&nbsp;
+        /**
+         * Reset user form.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleResetClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.institution = angular.copy($scope.institutionBeforeChanges);</span>
+        };
+&nbsp;
+        /**
+         * Allowed to login as institution?
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.allowLoginAs = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return LoginService.allowLoginAs($scope.institution);</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when login as button clicked.
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleLoginAsClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            LoginService.getTuProfilesRedirect({coreId: $scope.institution.coreId});</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when deactivation is triggered.
+         *
+         * @param {Object} institution
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleDeactivateClick = <span class="fstat-no" title="function not covered" >function (institution) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!institution || !institution.id || $scope.deactivateInProgress) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.deactivateInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.deactivate(institution.id).then($scope.deactivationCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleActivateClick = <span class="fstat-no" title="function not covered" >function (institution) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!institution.id || $scope.activateInProgress) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.activateInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.activate(institution.id).then($scope.activationCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.deactivationCallback = <span class="fstat-no" title="function not covered" >function (success)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            $scope.institution.active = success ? false : true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.userBeforeChanges = $scope.institution.active;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.deactivateInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            NotifierFactory.show(</span>
+                success ? 'success' : 'error',
+                success ? 'Deactivated successfully!' : 'Deactivation failed!',
+                'Deactivation'
+            );
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.activationCallback = <span class="fstat-no" title="function not covered" >function (success)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            $scope.institution.active = success ? true : false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.userBeforeChanges = $scope.institution.active;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.activateInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            NotifierFactory.show(</span>
+                success ? 'success' : 'error',
+                success ? 'Activated successfully!' : 'Activation failed!',
+                'Activation'
+            );
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.basicDetailsSubmitCallback = <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var message = 'Basic Details';</span>
+<span class="cstat-no" title="statement not covered" >            var success = false;</span>
+<span class="cstat-no" title="statement not covered" >            if (response) {</span>
+<span class="cstat-no" title="statement not covered" >                success = !response.error;</span>
+<span class="cstat-no" title="statement not covered" >                if (!success) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (response.hasOwnProperty('message') &amp;&amp; response.message.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        message = response.message;</span>
+                    }
+                } else {
+<span class="cstat-no" title="statement not covered" >                    if (response.hasOwnProperty('insertedId') &amp;&amp; response.insertedId.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.institution.id = response.insertedId;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.institution.coreId = response.insertedCoreId;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.institution.active = true;</span>
+<span class="cstat-no" title="statement not covered" >                        angular.copy($scope.institution, $scope.institutionBeforeChanges);</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.activeTab = 1;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.disabledInstitutionListTabs.subscriptions = false;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.disabledInstitutionListTabs.campuses = false;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.disabledInstitutionListTabs.institutionGroups = false;</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.disabledInstitutionListTabs.drupal = false;</span>
+<span class="cstat-no" title="statement not covered" >                        controller.newInstitution = true;</span>
+<span class="cstat-no" title="statement not covered" >                        controller.reloadDatagrid();</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.selectedInstitutionId = $scope.institution.id;</span>
+<span class="cstat-no" title="statement not covered" >                        message = 'Institution added successfully!';</span>
+                    }
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.basicDetailsSubmitInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            NotifierFactory.show(</span>
+                success ? 'success' : 'error',
+                success ? 'Saved successfully!' : 'Saving failed!',
+                message
+            );
+        };
+&nbsp;
+        /**
+         * Store basic details data.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleBasicDetailsSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.basicDetailsSubmitInProgress ||
+                !$scope.forms.basicDetailsForm ||
+                !$scope.forms.basicDetailsForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.basicDetailsSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.institution.id) {</span>
+<span class="cstat-no" title="statement not covered" >                InstitutionsListService.saveBasicDetails($scope.institution).then(</span>
+                    controller.basicDetailsSubmitCallback
+                );
+            } else {
+<span class="cstat-no" title="statement not covered" >                InstitutionsListService.insertBasicDetails($scope.institution).then(</span>
+                    controller.basicDetailsSubmitCallback
+                );
+            }
+        };
+&nbsp;
+        /**
+         * Store drupal related data.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleDrupalSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.drupalSubmitInProgress ||
+                !$scope.forms.drupalForm ||
+                !$scope.forms.drupalForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+            //$scope.drupalSubmitInProgress = true;
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.saveDrupal($scope.institution).then(<span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.drupalSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionBeforeChanges = angular.copy($scope.institution);</span>
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Saved successfully!' : 'Saving failed!',
+                    'Drupal'
+                );
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.disallowGroupsSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // submit process is on going
+<span class="cstat-no" title="statement not covered" >            if ($scope.institutionGroupSubmitInProgress) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // current group members list is not empty &amp; assigned members already in the list
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.institutionBeforeChanges.groupMembers &amp;&amp;
+                $scope.institution.groupMembers
+            ) {
+<span class="cstat-no" title="statement not covered" >                return angular.equals($scope.institutionBeforeChanges.groupMembers, $scope.institution.groupMembers);</span>
+            }
+            // current group members list is empty &amp; no members assigned
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                (
+                    !$scope.institutionBeforeChanges.groupMembers ||
+                    !$scope.institutionBeforeChanges.groupMembers.length
+                ) &amp;&amp;
+                (
+                    !$scope.institution.groupMembers ||
+                    !$scope.institution.groupMembers.length
+                )
+            ) {
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        };
+&nbsp;
+        /**
+         * Store basic Group Institutions.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleInstitutionGroupSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.institutionGroupSubmitInProgress ||
+                !$scope.forms.basicDetailsForm ||
+                !$scope.forms.basicDetailsForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.institutionGroupSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.saveInstitutionGroup($scope.institution).then(<span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionGroupSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                if (success) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionBeforeChanges.groupMembers = angular.copy($scope.institution.groupMembers);</span>
+                    // refresh table, it needs to update the new members as well
+<span class="cstat-no" title="statement not covered" >                    controller.reloadDatagrid();</span>
+                }
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Saved successfully!' : 'Saving failed!',
+                    'Group Institutions'
+                );
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.searchInstitutionsWithoutGroup = <span class="fstat-no" title="function not covered" >function (searchPhrase) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.isSelectReloading = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.searchInstitutionsWithoutGroup(</span>
+                $scope.institution.coreId, searchPhrase
+            ).then(<span class="fstat-no" title="function not covered" >function (results) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.isSelectReloading = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionsWithoutGroup = results;</span>
+            });
+        };
+&nbsp;
+        /**
+         * Store Subscriptions data.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleSubscriptionSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.subscriptionProfilesSubmitInProgress ||
+                !$scope.forms.subscriptionForm ||
+                !$scope.forms.subscriptionForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.subscriptionProfilesSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.saveSubscription($scope.institution).then(<span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.subscriptionProfilesSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionBeforeChanges = angular.copy($scope.institution);</span>
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Saved successfully!' : 'Saving failed!',
+                    'Subscriptions'
+                );
+<span class="cstat-no" title="statement not covered" >                $scope.institution.subscriptionsAsArray = [];</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institution.subscriptionsAsString = '';</span>
+<span class="cstat-no" title="statement not covered" >                if (success) {</span>
+                    // reset institution edit instance
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionBeforeChanges = angular.copy($scope.institution);</span>
+<span class="cstat-no" title="statement not covered" >                    InstitutionsListService.appendSubscriptionsData([$scope.institution]);</span>
+                    // check if current active institution is same as edited one
+<span class="cstat-no" title="statement not covered" >                    var currentCoreId = $scope.institution.coreId;</span>
+<span class="cstat-no" title="statement not covered" >                    if (currentCoreId) {</span>
+<span class="cstat-no" title="statement not covered" >                        var activeCoreId = InstitutionFactory.getCoreId();</span>
+<span class="cstat-no" title="statement not covered" >                        if (activeCoreId &amp;&amp; currentCoreId === activeCoreId) {</span>
+<span class="cstat-no" title="statement not covered" >                            InstitutionFactory.setSubscriptions(angular.copy($scope.institution.subscriptions));</span>
+                        }
+                    }
+                }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.updateCountryName = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.getCountryNameByCode($scope.institution.countryCode).then(<span class="fstat-no" title="function not covered" >function (countryName){</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.institution.countryName = countryName;</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.defaultPaginationOptions = {</span>
+            page: 1,
+            limit: 25
+        };
+<span class="cstat-no" title="statement not covered" >        controller.paginationOptions = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.getPage = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return InstitutionsListService.getAll(</span>
+                angular.merge({}, controller.paginationOptions, controller.defaultPaginationOptions)
+            ).then(<span class="fstat-no" title="function not covered" >function(response) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!$scope.gridOptions) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.gridOptions = {};</span>
+                }
+                // if new institution added, check if we shall add it in result set
+<span class="cstat-no" title="statement not covered" >                if (controller.newInstitution) {</span>
+<span class="cstat-no" title="statement not covered" >                    var found = false;</span>
+                    // search for institution in display results
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(response.results, <span class="fstat-no" title="function not covered" >function (institution) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (angular.equals(institution.id, $scope.institution.id)) {</span>
+<span class="cstat-no" title="statement not covered" >                            found = true;</span>
+                        }
+                    });
+                    // item was not found, add it into the result set
+<span class="cstat-no" title="statement not covered" >                    if (!found) {</span>
+                        // add new institution to top of the result set
+<span class="cstat-no" title="statement not covered" >                        response.results.unshift($scope.institution);</span>
+                        // if there are more results than a page can display, remove extra elements
+<span class="cstat-no" title="statement not covered" >                        while (response.results.length &gt; $scope.gridOptions.paginationPageSize) {</span>
+<span class="cstat-no" title="statement not covered" >                            response.results.pop();</span>
+                        }
+                        // update total items
+<span class="cstat-no" title="statement not covered" >                        response.totalMatching = response.results.length;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    controller.newInstitution = false;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.gridOptions.totalItems = response.totalMatching;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.gridOptions.data = response.results;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.gridOptions.minRowsToShow = response.totalFiltered.length &lt; 25 ? response.totalFiltered : 25;</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.handleGridFiltersChanges = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.paginationOptions = angular.copy(controller.defaultPaginationOptions);</span>
+<span class="cstat-no" title="statement not covered" >            var filterColumn, sortColumn;</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach ($scope.gridApi.grid.columns, <span class="fstat-no" title="function not covered" >function(column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (typeof column.filters !== 'undefined' &amp;&amp; column.filters[0].term !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                    filterColumn = column.filters[0].column ? column.filters[0].column : column.field;</span>
+<span class="cstat-no" title="statement not covered" >                    controller.paginationOptions['filter[' + filterColumn + ']'] = column.filters[0].term;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (typeof column.sort.direction !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                    sortColumn = column.sort.column ? column.sort.column : column.field;</span>
+<span class="cstat-no" title="statement not covered" >                    controller.paginationOptions['sorting[' + sortColumn + ']'] = column.sort.direction;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined($scope.filterTimeout)) {</span>
+<span class="cstat-no" title="statement not covered" >                $timeout.cancel($scope.filterTimeout);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.filterTimeout = $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.getPage();</span>
+            }, 500);
+        };
+&nbsp;
+        /**
+         * Allowed to view TU site
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.allowViewTuSite = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $scope.institutionBeforeChanges &amp;&amp;</span>
+                $scope.institutionBeforeChanges.subscriptions &amp;&amp;
+                $scope.institutionBeforeChanges.subscriptions.tu &amp;&amp;
+                $scope.institutionBeforeChanges.subscriptions.tu.subscribed;
+        };
+&nbsp;
+        /**
+         * Allowed to view TM site
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.allowViewTmSite = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $scope.institutionBeforeChanges &amp;&amp;</span>
+                $scope.institutionBeforeChanges.subscriptions &amp;&amp;
+                $scope.institutionBeforeChanges.subscriptions.tm &amp;&amp;
+                $scope.institutionBeforeChanges.subscriptions.tm.subscribed;
+        };
+&nbsp;
+        /**
+         * View TU Site enabled?
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.isViewTuSiteEnabled = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return angular.isDefined($scope.institutionBeforeChanges) &amp;&amp;</span>
+                $scope.institutionBeforeChanges &amp;&amp;
+                $scope.institutionBeforeChanges.enabled &amp;&amp;
+                (
+                    $scope.institutionBeforeChanges.enabled.ug ||
+                    $scope.institutionBeforeChanges.enabled.pg
+                ) &amp;&amp;
+                $scope.institutionBeforeChanges.hasOwnProperty('nids') &amp;&amp;
+                $scope.institutionBeforeChanges.nids !== null &amp;&amp;
+                $scope.institutionBeforeChanges.nids.hasOwnProperty('master') &amp;&amp;
+                $scope.institutionBeforeChanges.nids.master;
+        };
+&nbsp;
+        /**
+         * View TM Site enabled?
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.allowViewTmSiteButtonEnabled = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $scope.institutionBeforeChanges.enabled.tm;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initDataGrid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.isDatagridReloading = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.typesList = [];</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.getTypeFilterData(true).then(<span class="fstat-no" title="function not covered" >function(results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.typesList = results;</span>
+            });
+&nbsp;
+            // get core id from URL
+<span class="cstat-no" title="statement not covered" >            controller.activeInstitutionCoreId = $stateParams.coreId;</span>
+<span class="cstat-no" title="statement not covered" >            if (controller.activeInstitutionCoreId) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.activeInstitutionCoreId = '=' + controller.activeInstitutionCoreId;</span>
+                // update data fetch filters
+<span class="cstat-no" title="statement not covered" >                controller.paginationOptions['filter[coreIdAsString]'] = controller.activeInstitutionCoreId;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.countriesList = [];</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.getCountries().then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(results, <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    $scope.countriesList.push({</span>
+                        value: data.countryCode,
+                        label: data.name
+                    });
+                });
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            controller.getPage().then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.gridOptions = angular.extend({}, $scope.gridOptions, {</span>
+                    enableSorting: true,
+                    exporterMenuCsv: false,
+                    enableGridMenu: true,
+                    showGridFooter: false,
+                    selectedItems: $scope.selectedProgramId,
+                    enableFiltering: true,
+                    useExternalFiltering: true,
+                    enableColumnResize: true,
+                    enableFullRowSelection: true,
+                    enableRowSelection: true,
+                    multiSelect: false,
+                    enableRowHeaderSelection: false,
+                    paginationPageSizes: [25, 50, 100],
+                    paginationPageSize: 25,
+                    useExternalPagination: true,
+                    useExternalSorting: true,
+                    rowTemplate: 'scripts/components/institutions/list/datagrid/rowTemplate.html',
+                    columnDefs: [
+                        {
+                            displayName: 'Name',
+                            visible: true,
+                            field: 'name'
+                        },
+                        {
+                            displayName: 'Local Name',
+                            visible: false,
+                            field: 'localName'
+                        },
+                        {
+                            displayName: 'Core ID',
+                            visible: true,
+                            field: 'coreIdAsString',
+                            maxWidth: 120,
+                            filter: {
+                                term: controller.activeInstitutionCoreId // prepopulate filter field
+                            }
+                        },
+                        {
+                            displayName: 'Parent Institution Core ID',
+                            visible: false,
+                            field: 'parentCoreId',
+                            maxWidth: 120
+                        },
+                        {
+                            displayName: 'Parent Institution Name',
+                            visible: false,
+                            field: 'parentName',
+                            maxWidth: 300
+                        },
+                        {
+                            displayName: 'Type',
+                            visible: true,
+                            field: 'typeName',
+                            filter: {
+                                column: 'typeId',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: $scope.typesList
+                            }
+                        },
+                        {
+                            displayName: 'Country Name',
+                            visible: true,
+                            field: 'countryName',
+                            filter: {
+                                column: 'countryCode',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: $scope.countriesList
+                            }
+                        },
+                        {
+                            displayName: 'Filemaker ID',
+                            visible: false,
+                            field: 'filemakerId',
+                        },
+                        {
+                            displayName: 'Has No Departments',
+                            visible: false,
+                            field: 'hasNoDepartmentsText',
+                            filter: {
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: [
+                                    {value:true, label: 'Yes'},
+                                    {value:false, label: 'No'}
+                                ]
+                            }
+                        },
+                        {
+                            displayName: 'Active',
+                            visible: true,
+                            field: 'isActive',
+                            filter: {
+                                column: 'active',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: [
+                                    {value:true, label: 'Yes'},
+                                    {value:false, label: 'No'}
+                                ]
+                            },
+                            maxWidth: 80
+                        },
+                        {
+                            displayName: 'Subscriptions',
+                            visible: true,
+                            field: 'subscriptionsAsString',
+                            enableFiltering: false,
+                            enableSorting: false
+                        },
+                        {
+                            displayName: 'UG node ID',
+                            visible: false,
+                            field: 'nidUg'
+                        },
+                        {
+                            displayName: 'PG node ID',
+                            visible: false,
+                            field: 'nidPg'
+                        },
+                        {
+                            displayName: 'Overview node ID',
+                            visible: false,
+                            field: 'nidOverview'
+                        },
+                        {
+                            displayName: 'TM node ID',
+                            visible: false,
+                            field: 'nidTm'
+                        },
+                        {
+                            displayName: 'Has UG',
+                            visible: false,
+                            field: 'enabledUg',
+                            filter: {
+                                column: 'enabled.ug',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: [
+                                    {value:true, label: 'Yes'},
+                                    {value:false, label: 'No'}
+                                ]
+                            }
+                        },
+                        {
+                            displayName: 'Has PG',
+                            visible: false,
+                            field: 'enabledPg',
+                            filter: {
+                                column: 'enabled.pg',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: [
+                                    {value:true, label: 'Yes'},
+                                    {value:false, label: 'No'}
+                                ]
+                            }
+                        },
+                        {
+                            displayName: 'Has TM',
+                            visible: false,
+                            field: 'enabledTm',
+                            filter: {
+                                column: 'enabled.tm',
+                                type: uiGridConstants.filter.SELECT,
+                                selectOptions: [
+                                    {value:true, label: 'Yes'},
+                                    {value:false, label: 'No'}
+                                ]
+                            }
+                        }
+                    ],
+                    onRegisterApi : <span class="fstat-no" title="function not covered" >function (gridApi) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.gridApi = gridApi;</span>
+<span class="cstat-no" title="statement not covered" >                        gridApi.selection.on.rowSelectionChanged($scope, <span class="fstat-no" title="function not covered" >function (row) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            $scope.handleDatagridRowClick(row.entity);</span>
+                        });
+<span class="cstat-no" title="statement not covered" >                        gridApi.core.on.rowsRendered($scope, <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                            $scope.isDatagridRendered = true;</span>
+                        });
+<span class="cstat-no" title="statement not covered" >                        gridApi.pagination.on.paginationChanged($scope, <span class="fstat-no" title="function not covered" >function (newPage, limit) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            controller.defaultPaginationOptions.page = newPage;</span>
+<span class="cstat-no" title="statement not covered" >                            controller.defaultPaginationOptions.limit = limit;</span>
+<span class="cstat-no" title="statement not covered" >                            controller.getPage();</span>
+                        });
+                        // actions to do on filters changes
+<span class="cstat-no" title="statement not covered" >                        $scope.gridApi.core.on.filterChanged($scope, controller.handleGridFiltersChanges);</span>
+                        // actions to do on sort order changes
+<span class="cstat-no" title="statement not covered" >                        $scope.gridApi.core.on.sortChanged($scope, controller.handleGridFiltersChanges);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        if (</span>
+                            controller.activeInstitutionCoreId &amp;&amp;
+                            $scope.gridOptions.data &amp;&amp;
+                            $scope.gridOptions.data.length === 1
+                        ) {
+                            // activate dit mode
+<span class="cstat-no" title="statement not covered" >                            $scope.handleDatagridRowClick($scope.gridOptions.data[0]);</span>
+                        }
+                    }
+                });
+            });
+        };
+&nbsp;
+        /**
+         * Disable institution types
+         *
+         * @param reset
+         */
+<span class="cstat-no" title="statement not covered" >        controller.allowedInstitutionTypes = <span class="fstat-no" title="function not covered" >function (reset) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isUndefined(reset)) {</span>
+<span class="cstat-no" title="statement not covered" >                reset = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            angular.forEach(controller.typesList, <span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ((item.uniqueId !== constants.typeId.clientDepartmentId &amp;&amp;</span>
+                    item.uniqueId !== constants.typeId.topLevelInstitutionId) &amp;&amp;
+                    !reset
+                ) {
+<span class="cstat-no" title="statement not covered" >                    item.disabled = true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    item.disabled = false;</span>
+                }
+            });
+        };
+&nbsp;
+        /**
+         * Add institution click action.
+         */
+<span class="cstat-no" title="statement not covered" >        controller.handleAddInstitutionClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initSelectedItem();</span>
+<span class="cstat-no" title="statement not covered" >            controller.similarNames.display = false;</span>
+<span class="cstat-no" title="statement not covered" >            controller.showDepartments.display = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.forms.basicDetailsForm.$setPristine();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.forms.basicDetailsForm.$setUntouched();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.activeTab = 0;</span>
+<span class="cstat-no" title="statement not covered" >            var institution = {};</span>
+<span class="cstat-no" title="statement not covered" >            institution.id = null;</span>
+<span class="cstat-no" title="statement not covered" >            controller.similarNames.display = false;</span>
+<span class="cstat-no" title="statement not covered" >            controller.similarNames.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >            controller.similarNames.results = [];</span>
+<span class="cstat-no" title="statement not covered" >            $scope.handleDatagridRowClick(institution);</span>
+        };
+&nbsp;
+        /**
+         * Close sidebar
+         */
+<span class="cstat-no" title="statement not covered" >        controller.handleEditCloseClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var institution = {};</span>
+<span class="cstat-no" title="statement not covered" >            institution.id = $scope.selectedInstitutionId;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.handleDatagridRowClick(institution, true);</span>
+        };
+&nbsp;
+        /**
+         * @param {Object} selectedType
+         */
+<span class="cstat-no" title="statement not covered" >        controller.setSelectedOptionType = <span class="fstat-no" title="function not covered" >function (selectedType) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(selectedType) &amp;&amp; selectedType.hasOwnProperty('uniqueId')) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institution.typeId = selectedType.uniqueId;</span>
+            }
+        };
+&nbsp;
+        /**
+         * Search for similar institution names
+         *
+         * @param {Object} institution
+         */
+<span class="cstat-no" title="statement not covered" >        controller.findSimilar = <span class="fstat-no" title="function not covered" >function (institution) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (institution.id === null &amp;&amp; angular.isDefined(institution.name) &amp;&amp; institution.name.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.similarNames.display = true;</span>
+<span class="cstat-no" title="statement not covered" >                controller.similarNames.loading = true;</span>
+<span class="cstat-no" title="statement not covered" >                InstitutionsListService.searchInstitutions(institution.name).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    controller.similarNames.results = results;</span>
+<span class="cstat-no" title="statement not covered" >                    controller.similarNames.loading = false;</span>
+                });
+            } else {
+<span class="cstat-no" title="statement not covered" >                controller.similarNames.display = false;</span>
+<span class="cstat-no" title="statement not covered" >                controller.similarNames.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >                controller.similarNames.results = [];</span>
+            }
+        };
+&nbsp;
+        /**
+         * Remove [coreId] from a string.
+         *
+         * @param institutionName
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.stripInstitutionId = <span class="fstat-no" title="function not covered" >function (institutionName) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return institutionName.replace(/\[[0-9]+]/g, '');</span>
+        };
+&nbsp;
+        /**
+         * Search for institutions (for client department parent institution)
+         *
+         * @param {Object} searchResult
+         */
+<span class="cstat-no" title="statement not covered" >        controller.handleSearchInstitutionClick = <span class="fstat-no" title="function not covered" >function (selectedSearchResult) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.institution.parentName = controller.stripInstitutionId(selectedSearchResult.name);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.institution.parentCoreId = selectedSearchResult.coreId;</span>
+<span class="cstat-no" title="statement not covered" >            controller.showDepartments.display = false;</span>
+<span class="cstat-no" title="statement not covered" >            controller.showDepartments.results = [];</span>
+<span class="cstat-no" title="statement not covered" >            return true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initialiseBelongsTo = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // get belongs to list
+<span class="cstat-no" title="statement not covered" >            controller.belongsToList = InstitutionsListService.getBelongsToList();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.isClientDepartment = <span class="fstat-no" title="function not covered" >function (institutionTypeId) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return InstitutionsListService.isClientDepartment(institutionTypeId);</span>
+        };
+&nbsp;
+        /**
+         * Action to do on search for institution.
+         *
+         * @param {String} searchPhrase
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.searchInstitutions = <span class="fstat-no" title="function not covered" >function (searchPhrase) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.searchInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.searchTopLevelInstitutions(searchPhrase).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.parentInstitutionSearchResults = results;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.searchInProgress = false;</span>
+            });
+        };
+&nbsp;
+        /**
+         * Action to do on search for institution.
+         *
+         * @param {String} searchPhrase
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.searchTopLevelInstitutions = <span class="fstat-no" title="function not covered" >function (searchPhrase) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.searchInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.searchTopLevelInstitutions(searchPhrase).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.parentInstitutionSearchResults = results;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.searchInProgress = false;</span>
+            });
+        };
+&nbsp;
+        /**
+         * Show all departments button click (add institution, client department)
+         */
+<span class="cstat-no" title="statement not covered" >        controller.showDepartments = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.showDepartments.loading = true;</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionsListService.getDepartments($scope.institution.parentCoreId).then(<span class="fstat-no" title="function not covered" >function (results) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.showDepartments.results = results;</span>
+<span class="cstat-no" title="statement not covered" >                controller.showDepartments.loading = false;</span>
+<span class="cstat-no" title="statement not covered" >                controller.showDepartments.display = true;</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.handleDepartmentsListCloseClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.showDepartments.display = false;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initWatches = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // listen to active profile tab changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch('activeTab', <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!InstitutionsListFactory.hasSelectedTab() || !angular.equals(newValue, oldValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                    InstitutionsListFactory.setSelectedTabId(newValue);</span>
+                }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initDataGrid();</span>
+<span class="cstat-no" title="statement not covered" >            controller.initWatches();</span>
+<span class="cstat-no" title="statement not covered" >            controller.initialiseBelongsTo();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init();</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('InstitutionsListController', [
+            '$scope',
+            '$resource',
+            '$stateParams',
+            'constants',
+            'InstitutionsListService',
+            'SharedProfileFactory',
+            'NotifierFactory',
+            'InstitutionFactory',
+            'InstitutionsListFactory',
+            'orderByFilter',
+            'LoginService',
+            'uiGridConstants',
+            '$timeout',
+            App.controllers.institutionsList
+        ]);
+&nbsp;
+}(window.angular, window.moment));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

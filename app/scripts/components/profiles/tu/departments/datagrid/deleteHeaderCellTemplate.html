@@ -1,0 +1,7 @@
+<button type="button"
+        ng-disabled="grid.appScope.isDeleteButtonDisabled()"
+        class="btn btn-danger btn-sm"
+        ng-class="{'disabled': grid.appScope.isDeleteButtonDisabled()}"
+        ng-click="grid.appScope.handleDeleteClick()">
+    <span class="glyphicon glyphicon-trash"></span><!--  {{col.displayName}} -->
+</button>

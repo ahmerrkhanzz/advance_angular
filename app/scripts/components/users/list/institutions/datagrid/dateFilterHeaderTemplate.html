@@ -1,0 +1,14 @@
+<div class="ui-grid-filter-container" ng-repeat="colFilter in col.filters" ng-if="colFilter.visible">
+    <input type="text" class="ui-grid-filter-input date-picker"
+           ng-model="grid.appScope.filters.lastLoginAtRange"
+           date-range-picker=""
+           options="{eventHandlers: {'apply.daterangepicker': grid.appScope.handleLastLoginAtDateRange}, opens: 'left'}" />
+
+    <div role="button" class="ui-grid-filter-button-select"
+         ng-click="removeFilter(colFilter, $index)"
+         ng-if="!colFilter.disableCancelFilterButton"
+         ng-disabled="colFilter.term === undefined || colFilter.term === null || colFilter.term === ''"
+         ng-show="colFilter.term !== undefined && colFilter.term != null">
+        <i class="ui-grid-icon-cancel" ui-grid-one-bind-aria-label="aria.removeFilter">&nbsp;</i>
+    </div>
+</div>

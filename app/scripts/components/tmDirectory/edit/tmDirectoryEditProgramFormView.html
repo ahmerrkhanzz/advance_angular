@@ -1,0 +1,68 @@
+<div class="ibox" ng-controller="TmProfileProgramFormController as TmProfileProgramFormController">
+    <div class="ibox-title">
+        <h5>{{ TmDirectoryController.getFormTitle() }}</h5>
+        <div class="ibox-tools">
+            <a class="close-link" ng-click="TmDirectoryController.closeEditForm()">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div>
+            <form class="form-horizontal" name="forms.editProgramForm" novalidate autocomplete="off">
+                <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileEditProgramFormDetailsView.html'"></div>
+                <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileEditProgramFormStatisticsView.html'"></div>
+                <div ng-show="!TmDirectoryController.isProgramAdvanced" ng-include src="'/scripts/components/profiles/tm/programs/tmProfileEditProgramFormCampusView.html'"></div>
+
+                <div class="separator dashed"></div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <switch value="yes"
+                            class="green"
+                            ng-model="TmDirectoryController.sendEmailToClient"
+                            ng-disabled="TmDirectoryController.approved"></switch>
+                            <span>Include program requester in status update email</span>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-class="{'modal-overlay': TmProfileProgramFormController.editInProgress}">
+                    <div class="pull-right btn-float-fix" ng-if="!TmDirectoryController.pendingDeletion">
+                        <a class="btn btn-primary btn-float-fix"
+                           ng-click="TmDirectoryController.handleProgramApproveClick(TmProfileProgramFormController, false)">
+                            <i class="fa fa-check-circle"></i>
+                            <span>{{TmDirectoryController.approveButtonTitle}}</span>
+                        </a>
+                        <a class="btn btn-default btn-float-fix"
+                           ng-click="TmDirectoryController.handleProgramApproveClick(TmProfileProgramFormController, true)">
+                            <i class="fa fa-check-circle"></i>
+                            <span>{{TmDirectoryController.approveButtonTitle}} & Publish</span>
+                        </a>
+                    </div>
+
+                    <div class="pull-right btn-float-fix" ng-if="TmDirectoryController.pendingDeletion">
+                        <a class="btn btn-default btn-float-fix"
+                           ng-class="{'disabled': TmDirectoryController.isProgramAdvanced}"
+                           ng-click="TmDirectoryController.handleCancelDeletionClick()">
+                            <i class="fa fa-check-circle"></i>
+                            <span>Cancel Deletion</span>
+                        </a>
+                        <a class="btn btn-danger btn-float-fix"
+                           ng-class="{'disabled': TmDirectoryController.isProgramAdvanced}"
+                           ng-click="TmDirectoryController.handleDeleteAndPublishClick()">
+                            <i class="fa fa-check-circle"></i>
+                            <span>Delete & Publish</span>
+                        </a>
+                    </div>
+
+                    <a class="btn btn-default pull-right m-r-xs btn-float-fix" ng-click="TmDirectoryController.closeEditForm()">
+                        <i class="fa fa-ban"></i>
+                        <span>Cancel</span>
+                    </a>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

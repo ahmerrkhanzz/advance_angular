@@ -1,0 +1,60 @@
+<div class="ibox">
+    <div class="ibox-title m-t-xl">
+        <h5>History Log <small>showing last {{TmProfileController.overviewLog.totalFiltered}} records of {{TmProfileController.overviewLog.totalMatching}}</small></h5>
+        <div class="ibox-tools">
+            <a class="close-link" ng-click="TmProfileController.closeHistoryLogs()">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div wave-spinner ng-show="TmProfileController.fetchingHistoryLogsInProgress"></div>
+
+        <p class="text-muted text-center" ng-show="!TmProfileController.fetchingHistoryLogsInProgress && !TmProfileController.overviewLog.total">
+            History log is empty
+        </p>
+
+        <div ng-show="!TmProfileController.fetchingHistoryLogsInProgress" ng-repeat="log in TmProfileController.overviewLog.results">
+            <ul class="list-unstyled list-history break-word">
+                <li ng-if="log.modifiedAt">
+                    <span class="bold">Modified on:</span>
+                    <span>{{log.modifiedAt| date:'medium'}}</span>
+                </li>
+                <li ng-if="log.modifiedByFullName">
+                    <span class="bold">Submitted by:</span>
+                    <span>{{log.modifiedByFullName}}</span>
+                </li>
+                <li ng-show="!log.advanced">
+                    <span class="bold">Basic Description:</span>
+                    <span>{{log.basicOverview | htmlToPlaintext}}</span>
+                </li>
+                <li ng-show="log.advanced">
+                    <span class="bold">Advanced Description:</span>
+                    <span>{{log.advancedOverview | htmlToPlaintext}}</span>
+                </li>
+                <li ng-show="log.advanced">
+                    <span class="bold">University Website:</span>
+                    <a ng-show="log.websiteUrl" href="{{log.websiteUrl}}" target="_blank">{{log.websiteUrl}}</a>
+                </li>
+                <li ng-show="log.advanced">
+                    <span class="bold">Request info - Email:</span>
+                    <span>{{log.requestInfoEmail}}</span>
+                </li>
+            </ul>
+
+            <div class="separator dashed"></div>
+
+        </div>
+
+        <div class="row" ng-show="TmProfileController.isMoreLogsAvailable()">
+            <div wave-spinner ng-show="TmProfileController.isLoadMoreHistoryLogsInProgress"></div>
+            <div class=" col-lg-8 col-lg-offset-2">
+                <a class="btn btn-primary btn-block" ng-click="TmProfileController.handleLoadMoreHistoryLogs()" ng-disabled="TmProfileController.isLoadMoreHistoryLogsInProgress">
+                   Load more
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

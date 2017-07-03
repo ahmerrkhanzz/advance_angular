@@ -1,0 +1,141 @@
+<div ng-controller="SharedProfileGeneralController as SharedProfileGeneralController">
+    <div class="general-tab">
+        <form class="form-horizontal" name="forms.generalForm" novalidate="">
+
+            <a class="btn btn-warning btn-history" ng-class="{'disabled':generalHistoryDisabled}" ng-click="handleHistoryLogClick()">
+                <i class="fa fa-clock-o"></i>
+            </a>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-2">
+                    {{SharedProfileGeneralController.logoDropzoneInstance.files[0].status === 'success' ? 'Preview Logo' : 'Upload Logo'}}
+                </label>
+                <div class="col-sm-4 col-md-10">
+                    <div class="upload">
+                        <div class="dropzone"
+                             name="forms.logosForm"
+                             enctype="multipart/form-data"
+                             ng-dropzone
+                             dropzone="SharedProfileGeneralController.logoDropzoneInstance"
+                             dropzone-config="SharedProfileGeneralController.logoConfig.dropzone"
+                             event-handlers="SharedProfileGeneralController.logoConfig.eventHandlers"
+                             novalidate >
+                            <div class="fallback">
+                                <input name="file" type="file" />
+                            </div>
+                            <div class="dz-message" ng-show="uploadEnabled">
+                                <i class="fa fa-upload"></i>
+                            </div>
+                            <div class="dropzone-previews"></div>
+                        </div>
+                    </div>
+                    <div class="note">
+                        <div class="note-header">
+                            <span class="bold">Note:</span>
+                        </div>
+                        <div class="note-body">
+                            <p>
+                                <span class="bold">File types:</span>
+                                <small>.jpeg &nbsp; .jpg</small>
+                            </p>
+                            <p>
+                                <span class="bold">Image dimensions:</span>
+                                <small>200px x 200px</small>
+                            </p>
+                            <p>
+                                <span class="bold">Maximum size:</span>
+                                <small>400 KB</small>
+                            </p>
+                        </div>
+                        <div class="note-footer" ng-show="displayRemoveLink">
+                            <p>
+                                <span> Press "Update" to apply changes.</span>
+                                <span class="or bold">OR</span>
+                            </p>
+                            <a class="btn btn-warning btn-sm" ng-click="removeUploaderImage()">
+                                <i class="fa fa-times"></i>
+                                <span>Click here to remove uploaded logo.</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-2">Current Logo</label>
+                <div class="col-sm-4 col-md-10">
+                    <div class="preview-group">
+                        <div class="logo-preview">
+                            <div class="logo-img">
+                                <span
+                                    class="info"
+                                    uib-tooltip='Used in profile pages'
+                                    tooltip-placement="top">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <img class="large-logo img-responsive" alt="Large Logo" ng-src="{{profile.largeLogoPath ? profile.largeLogoPath : '/images/profile/logo-large.jpg'}}" ng-class="{'shadow-1px': !profile.largeLogoPath}" />
+                            </div>
+                        </div>
+                        <div class="logo-preview">
+                            <div class="logo-img">
+                                <span
+                                    class="info"
+                                    uib-tooltip='Used in ranking widget, search results page, featured profile widget'
+                                    tooltip-placement="top">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <img class="medium-logo img-responsive" alt="Medium Logo" ng-src="{{profile.mediumLogoPath ? profile.mediumLogoPath : '/images/profile/logo-medium.jpg'}}" ng-class="{'shadow-1px': !profile.mediumLogoPath}" />
+                            </div>
+                        </div>
+                        <div class="logo-preview">
+                            <div class="logo-img">
+                                <span
+                                    class="info"
+                                    uib-tooltip='Used in ranking tables'
+                                    tooltip-placement="top">
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <img class="small-logo img-responsive" alt="Small Logo" ng-src="{{profile.smallLogoPath ? profile.smallLogoPath : '/images/profile/logo-small.jpg'}}" ng-class="{'shadow-1px': !profile.smallLogoPath}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-2">
+                    <span>Institution Profile Name Display</span>
+                    <i class="fa fa-info-circle"
+                        uib-tooltip='This will change the display on your institution profile only. For other changes contact tusupport@qs.com (TopUniversities) or tmsupport@qs.com (TopMBA)'
+                        tooltip-placement="top"></i>
+                </label>
+                <div class="col-sm-9 col-md-10">
+                    <input type="text" class="form-control" ng-model="profile.fullName" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-md-2">Foundation Year</label>
+                <div class="col-sm-4 col-md-2">
+                    <input type="text" class="form-control" touch-spin="" spin-options="foundationYearSpinOptions" ng-model="profile.foundationYear" />
+                </div>
+            </div>
+
+            <div wave-spinner ng-show="generalSubmitDisabled && displaySpinner"></div>
+
+            <div class="clearfix">
+                <a class="btn btn-primary pull-right" ng-class="{'disabled':generalSubmitDisabled}" ng-click="handleGeneralSubmit()">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    <span>Update</span>
+                </a>
+                <a class="btn btn-danger pull-right" ng-class="{'disabled':SharedProfileGeneralController.isRemoveLogosDisabled()}" ng-click="handleClearLogosClick()">
+                    <i class="fa fa-times"></i>
+                    <span>Remove logos</span>
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+    <p><pre ng-show="SharedProfileGeneralController.devMode">{{profile|json}}</pre></p>
+</div>

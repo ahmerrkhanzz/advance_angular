@@ -1,0 +1,107 @@
+<div class="wrapper wrapper-content animated fadeInRight page-institutions-users-list" ng-controller="InstitutionsUsersListCloneController as UsersList">
+    <div class="alert alert-info">
+        <p>
+            <i class="fa fa-info-circle"></i>
+            <span>QS Staff have access to this section only</span>
+            <span ng-if="!UsersList.hasWriteAccess">. You don't have permissions to make changes.</span>
+        </p>
+    </div>
+    <p>
+        <button type="button" class="btn btn-primary"
+                ng-click="UsersList.handleAddInstitutionsUserClick()"
+                ng-disabled="!UsersList.hasWriteAccess">
+            <i class="fa fa-user-plus"></i>
+            Add User
+        </button>
+    </p>
+    <div class="row">
+        <div id="schoolUsersTable" ng-class="showInfoBlock ? 'col-sm-3 hide-ng-table-pager' : 'col-sm-12'">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content table-responsive">
+                    <div wave-spinner class="wave-spinner" ng-show="UsersList.isDatagridReloading || !UsersList.isDatagridRendered"></div>
+
+                    <div class="full-width scroll-horizontal hide-vertical-overflow" mouse-scroll-horizontal>
+                        <div ng-if="UsersList.showDatagrid" ng-class="{'modal-overlay-35': UsersList.isDatagridReloading}">
+                            <ui-grid-info ng-if="!showInfoBlock"></ui-grid-info>
+                            <div class="grid"
+                                 ui-grid="UsersList.grid.options"
+                                 ui-grid-pagination
+                                 ui-grid-selection
+                                 ui-grid-resize-columns
+                                 ui-grid-auto-resize></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div fixed-element-while-scrolling="#schoolUsersTable" ng-show="showInfoBlock" class="col-sm-9 scroll-floating-element">
+            <div class="ibox block-user">
+                <div class="ibox-content">
+                    <div class="ibox-tools">
+                        <a class="close-link" ng-click="UsersList.handleEditCloseClick()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+
+                            <div class="row m-b-lg" ng-show="user.id">
+                                <div class="col-lg-4 text-center">
+                                    <div class="m-b-sm">
+                                        <img alt="image" class="img-circle" gravatar-src="user.email" gravatar-size="100">
+                                    </div>
+                                    <div class="m-b-sm">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h2>
+                                        {{user.fullname}}
+                                    </h2>
+                                    <a href="mailto:{{user.email}}" class="btn btn-primary btn-sm" ng-class="{disabled: !UsersList.hasWriteAccess}">
+                                        <i class="fa fa-envelope"></i> Send Email
+                                    </a>
+                                    <a class="btn btn-warning btn-sm"
+                                       ng-show="!user.active"
+                                       ng-click="handleActivateClick(user)"
+                                       ng-class="{'disabled':activateInProgress || !UsersList.hasWriteAccess}">
+                                        <i class="fa fa-undo"></i> Activate
+                                    </a>
+                                    <a class="btn btn-danger btn-sm"
+                                       ng-show="user.active"
+                                       ng-click="handleDeactivateClick(user)"
+                                       ng-class="{'disabled':deactivateInProgress || !UsersList.hasWriteAccess}">
+                                        <i class="fa fa-ban"></i> Deactivate
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="client-detail">
+                                <div class="full-height-scroll">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <uib-tabset active="activeTab">
+                                                    <uib-tab heading="Personal details" disable="disabledInstitutionsUserListSubTabs['personalDetails']">
+                                                        <div ng-include src="'/scripts/components/users/list/institutions/personal-details/institutionsUsersListPersonalDetailsView.html'"></div>
+                                                    </uib-tab>
+                                                    <uib-tab heading="Permissions" disable="disabledInstitutionsUserListSubTabs['permissions']">
+                                                        <div ng-include src="'/scripts/components/users/list/institutions/permissions/institutionsUsersListPermissionsView.html'"></div>
+                                                    </uib-tab>
+                                                    <uib-tab heading="Institutions" disable="disabledInstitutionsUserListSubTabs['institutions']">
+                                                        <div ng-include src="'/scripts/components/users/list/institutions/institutions/institutionsUsersListInstitutionsView.html'"></div>
+                                                    </uib-tab>
+                                                </uib-tabset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pre ng-show="UsersList.devMode">{{user|json}}</pre>
+</div>

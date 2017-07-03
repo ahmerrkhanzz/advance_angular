@@ -1,0 +1,92 @@
+<div class="panel-body">
+    <div class="row">
+        <form name="forms.drupalForm" class="clearfix" novalidate>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label>Overview node ID</label>
+                    <input type="text" class="form-control" ng-model="institution.nids.master" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label>UG node ID</label>
+                    <input type="text" class="form-control" ng-model="institution.nids.ug" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label>PG node ID</label>
+                    <input type="text" class="form-control" ng-model="institution.nids.pg" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label>TM node ID</label>
+                    <input type="text" class="form-control" ng-model="institution.nids.tm" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group" ng-class="{'has-errors': InstitutionsController.isInvalidTuRegion}" ng-if="!InstitutionsController.isAdvancedProgram">
+                    <label>TU Region *</label>
+                    <ui-select
+                        name="tuRegion"
+                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"
+                        ng-model="institution.drupalTuRegionId"
+                        ng-required="true"
+                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"
+                        on-select="InstitutionsController.setIsInvalidTuRegion(false)"
+                        ng-required="true"
+                        theme="bootstrap"
+                        custom-popover
+                        popover-html="Select an option"
+                        popover-placement="left"
+                        popover-trigger="manual"
+                        popover-visibility="{{InstitutionsController.isInvalidTuRegion}}"
+                        >
+                        <ui-select-match placeholder="Select an option">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices
+                            position="down"
+                            ui-disable-choice="option.disabled"
+                            repeat="option.tid as option in InstitutionsController.tuRegionsList">
+                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        <ui-select-no-choice>
+                            Not found
+                        </ui-select-no-choice>
+                    </ui-select>
+                </div>
+
+                <div class="form-group" ng-class="{'has-errors': InstitutionsController.isInvalidTmRegion}">
+                    <label>TM Region *</label>
+                    <ui-select
+                        name="tmRegion"
+                        ng-model="institution.drupalTmRegionId"
+                        ng-required="true"
+                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"
+                        on-select="InstitutionsController.setIsInvalidTmRegion(false)"
+                        ng-required="true"
+                        theme="bootstrap"
+                        custom-popover
+                        popover-html="Select an option"
+                        popover-placement="left"
+                        popover-trigger="manual"
+                        popover-visibility="{{InstitutionsController.isInvalidTmRegion}}"
+                        >
+                        <ui-select-match placeholder="Select an option">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices
+                            position="down"
+                            ui-disable-choice="option.disabled"
+                            repeat="option.tid as option in InstitutionsController.tmRegionsList">
+                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        <ui-select-no-choice>
+                            Not found
+                        </ui-select-no-choice>
+                    </ui-select>
+                </div>
+
+                <button class="btn btn-primary btn-sm btn-block"
+                   ng-disabled="drupalSubmitInProgress || InstitutionsController.isSimpleDepartment(institution.typeId)"
+                   ng-click="handleDrupalSubmit()">Update</button>
+
+            </div>
+
+        </form>
+    </div>
+</div>

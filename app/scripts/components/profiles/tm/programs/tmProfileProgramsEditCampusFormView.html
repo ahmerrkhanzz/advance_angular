@@ -1,0 +1,147 @@
+<ng-form name="TmProfileProgramFormController.forms.editCampusForm" novalidate autocomplete="off">
+  <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidCampusName()}">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Campus Name *</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text"
+            name="name"
+            class="form-control"
+            ng-required="true"
+            ng-model="TmProfileProgramFormController.oldCampus.name"
+            ng-focus="TmProfileProgramFormController.setValid('name', false, true)"
+            custom-popover
+            popover-html="Add a campus name"
+            popover-placement="left"
+            popover-trigger="manual"
+            popover-visibility="{{!TmProfileProgramFormController.isValidCampusName()}}">
+      </div>
+  </div>
+  <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidCampusCountry()}">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Country *</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <ui-select
+           name="country"
+           ng-model="TmProfileProgramFormController.oldCampus.country"
+           focus-delay="250"
+           custom-popover
+           popover-html="Select an option"
+           popover-placement="left"
+           popover-trigger="manual"
+           popover-visibility="{{!TmProfileProgramFormController.isValidCampusCountry()}}"
+           theme="bootstrap">
+            <ui-select-match placeholder="Select an option"><span>{{$select.selected.name}}</span></ui-select-match>
+            <ui-select-choices
+                position="down"
+                repeat="option.countryCode as option in TmProfileProgramFormController.countryList | filter: $select.search">
+                <div class="test" ng-bind-html="option.name | highlight: $select.search"></div>
+            </ui-select-choices>
+            <ui-select-no-choice>
+                Not found
+            </ui-select-no-choice>
+         </ui-select>
+      </div>
+  </div>
+  <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidCampusAddressLine1()}">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Address *</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text"
+            name="addressLine1"
+            class="form-control"
+            ng-required="true"
+            ng-model="TmProfileProgramFormController.oldCampus.addressLine1"
+            custom-popover popover-html="Add an address"
+            popover-placement="left"
+            popover-trigger="manual"
+            popover-visibility="{{!TmProfileProgramFormController.isValidCampusAddressLine1()}}">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-5 col-md-4">&nbsp;</label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text" class="form-control" ng-model="TmProfileProgramFormController.oldCampus.addressLine2">
+      </div>
+  </div>
+  <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidCampusCity()}">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Town / City *</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text"
+            class="form-control"
+            name="city"
+            ng-required="true"
+            ng-model="TmProfileProgramFormController.oldCampus.city"
+            custom-popover popover-html="Add a town/city"
+            popover-placement="left"
+            popover-trigger="manual"
+            popover-visibility="{{!TmProfileProgramFormController.isValidCampusCity()}}">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>State / Province</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text" class="form-control" ng-model="TmProfileProgramFormController.oldCampus.state">
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Postcode</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <input type="text" class="form-control" ng-model="TmProfileProgramFormController.oldCampus.postcode">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="campusLatitude" class="control-label col-sm-3 col-md-2"><span>Latitude</span></label>
+    <div class="col-sm-3 col-md-4">
+      <input id="campusLatitude" type="text" class="form-control" ng-model="TmProfileProgramFormController.oldCampus.latitude" ng-readonly="TmProfileProgramFormController.oldCampus.autoGenerate">
+    </div>
+    <label for="campusLongitude" class="control-label col-sm-3 col-md-2"><span>Longitude</span></label>
+      <div class="col-sm-3 col-md-4">
+        <input id="campusLongitude" type="text" class="form-control" ng-model="TmProfileProgramFormController.oldCampus.longitude" ng-readonly="TmProfileProgramFormController.oldCampus.autoGenerate">
+      </div>
+  </div>
+  <div class="form-group">
+    <label class="full-width" class="control-label col-sm-5 col-md-4" >Auto Generate</label>
+    <div class="col-sm-7 col-md-8">
+      <switch ng-model="TmProfileProgramFormController.oldCampus.autoGenerate" class="green" ></switch>
+      <span>Use the address to auto generate latitude & longitude values.</span>
+    </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Program Primary Campus</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <switch class="green" ng-model="TmProfileProgramFormController.oldCampus.primary"></switch>
+      </div>
+  </div>
+  <div class="form-group">
+      <label class="control-label col-sm-5 col-md-4">
+        <span>Display In Frontend</span>
+      </label>
+      <div class="col-sm-7 col-md-8">
+          <switch class="green" ng-model="TmProfileProgramFormController.oldCampus.displayInFrontEnd"></switch>
+      </div>
+  </div>
+  <div class="form-group" ng-class="{'locked': TmProfileProgramFormController.campusSubmitInProgress}">
+      <div class="col-sm-12">
+          <a class="btn btn-primary pull-right" ng-click="TmProfileProgramFormController.handleUpdateCampus()">
+            <i class="fa fa-check-circle"></i>
+            <span>Update</span>
+          </a>
+          <a class="btn btn-default pull-right" ng-click="TmProfileProgramFormController.handleCancelCampusClick()">
+            <i class="fa fa-ban"></i>
+            <span>Cancel</span>
+          </a>
+      </div>
+  </div>
+  <div class="separator dashed"></div>
+</ng-form>

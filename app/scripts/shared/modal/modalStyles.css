@@ -1,0 +1,70 @@
+/* MODAL POP UP GLOBAL CSS STYLE */
+.modal.fade {
+  -webkit-transition: opacity .50s linear;
+  -o-transition: opacity .50s linear;
+  transition: opacity 0.50s linear;
+}
+
+.modal .modal-dialog {
+  text-align: center;
+  top: 20%;
+  width: 470px;
+}
+
+.modal .modal-dialog.modal-md {
+  width: 550px;
+}
+
+.modal .modal-header,
+.modal .modal-footer {
+  border: medium none;
+}
+
+.modal .modal-content {
+  padding: 20px 0;
+}
+
+.modal .modal-content a:hover, .modal .modal-content a:focus {
+  outline: none;
+}
+
+.modal h3 {
+  margin: 0;
+}
+
+.modal p {
+  margin-bottom: 5px;
+  line-height: 20px;
+}
+
+.modal .btn:focus,
+.modal .close:focus {
+  outline: none;
+}
+
+.modal .modal-footer {
+  border: medium none;
+  text-align: center;
+}
+
+.modal .modal-footer .btn {
+  min-width: 80px;
+}
+
+/* LIGHTBOX POPUP MODAL CSS STYLE */
+.modal.lightbox-modal .modal-dialog {
+  top: 0;
+}
+
+.modal.lightbox-modal .modal-content {
+  padding: 0;
+}
+
+.modal.lightbox-modal .lightbox-nav .btn-group .btn {
+  border-radius: 3px !important;
+  padding: 2px 7px;
+}
+
+.modal.lightbox-modal .lightbox-nav .btn-group .btn + .btn {
+  margin-left: 5px;
+}

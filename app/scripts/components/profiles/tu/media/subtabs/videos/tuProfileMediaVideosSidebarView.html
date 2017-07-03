@@ -1,0 +1,96 @@
+<div class="ibox" ng-class="getSelected() === 2 ? 'selected' : 'collapsed'" ng-controller="TuMediaVideosSidebarController as TuMediaVideosSidebarController">
+    <div class="ibox-title clickable" ng-click="setSelected(2)">
+        <h5>Videos ({{getVideoItems().length}})</h5>
+        <div class="ibox-tools">
+            <a>
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="addForm">
+            <form id="form-video" class="form-horizontal" name="forms.formVideo" novalidate>
+                <div class="alert alert-info">
+                    <p>
+                        <i class="fa fa-info-circle"></i>
+                        <span>Please add a YouTube link. Shortened video links with .be extension are not allowed.</span><br />
+                        <span>Video title & description will be retrieved from YouTube.</span><br />
+                        <span>Drag and drop videos from left to right to change the order.</span>
+                    </p>
+                </div>
+                <div ng-class="getHasErrors()? 'has-errors' : ''">
+                    <div class="form-group">
+                        <div class="col-sm-12" use-tu-subtypes>
+                            <div class="checkbox-inline i-checkbox">
+                                <label for="overview">
+                                    <input i-checkbox type="checkbox" name="overview" id="overview" focus-if="getDisplayTypesValidation()" focus-delay="250" ng-model="selectedVideo.master" ng-change="selectedVideo.master? setDisplayTypesValidation(false) : ''"/>
+                                    <span>Overview</span>
+                                </label>
+                            </div>
+
+                            <div class="checkbox-inline i-checkbox">
+                                <label for="undergraduate">
+                                    <input i-checkbox type="checkbox" name="undergraduate" id="undergraduate" ng-model="selectedVideo.ug" ng-change="selectedVideo.ug? setDisplayTypesValidation(false) : ''" />
+                                    <span>Undergraduate</span>
+                                </label>
+                            </div>
+                            
+                            <div class="checkbox-inline i-checkbox">
+                                <label for="postgraduate">
+                                    <input i-checkbox type="checkbox" name="postgraduate" id="postgraduate" ng-model="selectedVideo.pg" ng-change="selectedVideo.pg? setDisplayTypesValidation(false) : ''"/>
+                                    <span>Postgraduate</span>
+                                </label>
+                            </div>
+
+                            <div ng-class="getDisplayTypesValidation()? 'has-errors' : ''" >
+                                <span 
+                                    custom-popover popover-html="Assign video to at least one of the three profiles"
+                                    popover-placement="left"
+                                    popover-trigger="manual"
+                                    popover-visibility="{{getDisplayTypesValidation() ? true : false}}"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-errors': getHasErrors()}">
+                        <label class="control-label col-sm-3 col-md-2">
+                            <span>URL *</span>
+                        </label>
+                        <div class="col-sm-9 col-md-10">
+                            <input class="form-control"
+                                   name="url"
+                                   type="url"
+                                   placeholder="http://"
+                                   ng-required="required"
+                                   focus-if="isHighlighted"
+                                   focus-delay="250"
+                                   ng-model="selectedVideo.url"
+                                   ng-pattern="youtubeUrlPattern"
+                                   ng-keyup="TuMediaVideosSidebarController.onKeyUp($event)"
+                                   ng-focus="setHasErrors(false)"
+
+                                   custom-popover
+                                   popover-html="Add a valid YouTube link"
+                                   popover-placement="left"
+                                   popover-trigger="manual"
+                                   popover-visibility="{{getHasErrors() ? true : false}}"/>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group m-b-none">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary pull-right" ng-click="saveVideoForm(selectedVideo)">
+                                <i class="fa fa-check-circle"></i>
+                                <span>{{isEditMode() ? 'Update' : 'Save'}}</span>
+                            </button>
+                             <button class="btn btn-warning pull-right" ng-click="clearVideoForm(selectedVideo)">
+                                <i class="fa fa-ban"></i>
+                                <span>Clear</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1502 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/users/list/qs/qsUsersListController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">scripts/components/users/list/qs/</a> qsUsersListController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/215</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.55% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/129</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.17% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/215</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers:{}});
+&nbsp;
+    /**
+     *
+     * @param $scope
+     * @param $resource
+     * @param NgTableParams
+     * @param constants
+     * @param QsUsersService
+     * @param UsersListService
+     * @param NotifierFactory factory for notifications
+     */
+    App.controllers.qsUsersList = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope, $resource, NgTableParams, constants, QsUsersService, UsersListService, NotifierFactory
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.user = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.userBeforeChanges = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.forms = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.filterActive = true;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.isDatagridReloading = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showQsSections = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showClientSections = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.activeQsUserListSubTabs = 0;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.disabledQsUserListSubTabs = {</span>
+            'personalDetails' : false,
+            'permissions' : true
+        };
+<span class="cstat-no" title="statement not covered" >        controller.filters = {</span>
+            lastLoginAtRange: {
+                startDate: null,
+                endDate: null
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        $scope.newUser = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.columns = [</span>
+            {
+                title: 'Email',
+                sortable: 'email',
+                filter: {email: 'text'},
+                show: true,
+                field: 'email'
+            },
+            {
+                title: 'Fullname',
+                sortable: 'fullname',
+                filter: {fullname: 'text'},
+                show: true,
+                field: 'fullname'
+            },
+            {
+                title: 'Contact Types',
+                filter: {'contactTypes.handle': 'chosenSelect'},
+                filterData: <span class="fstat-no" title="function not covered" >function ($scope, $column) {</span>
+<span class="cstat-no" title="statement not covered" >                    return QsUsersService.getContactTypesFilter().then(<span class="fstat-no" title="function not covered" >function (options) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $column.$column.data = options;</span>
+                    });
+                },
+                show: true,
+                field: 'contactTypesAsString'
+            },
+            {
+                title: 'Last Login',
+                sortable: 'lastLoginAt',
+                filter: {lastLoginAtRange: 'date-range-picker'},
+                show: true,
+                field: 'lastLoginAt'
+            }
+        ];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleDatagridRowClick = <span class="fstat-no" title="function not covered" >function (user, forceClose) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isUndefined(forceClose)) {</span>
+<span class="cstat-no" title="statement not covered" >                forceClose = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (($scope.selectedUserId !== user.id) &amp;&amp; $scope.selectedUserId) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.tableParams.data, <span class="fstat-no" title="function not covered" >function (value, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (value.id === $scope.selectedUserId) {</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.tableParams.data[key] = angular.copy($scope.userBeforeChanges);</span>
+                    }
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.selectedUserId = ($scope.selectedUserId === user.id) ? null : user.id;</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.selectedUserId) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledQsUserListSubTabs.permissions = false;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.activeQsUserListSubTabs = 0;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.disabledQsUserListSubTabs.permissions = true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.user = user;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.userBeforeChanges = angular.copy(user);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showInfoBlock = forceClose ? false : $scope.selectedUserId === user.id;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if ($scope.selectedUserId === user.id &amp;&amp; !forceClose) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!$scope.columnsBeforeEdit) {</span>
+                    // make copy of columns visibility
+<span class="cstat-no" title="statement not covered" >                    $scope.columnsBeforeEdit = angular.copy($scope.columns);</span>
+                    // hide all columns except "name"
+<span class="cstat-no" title="statement not covered" >                    angular.forEach($scope.columns, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        column.show = column.field === 'email';</span>
+                    });
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.filterActive = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.user = UsersListService.updateRolesWithAll($scope.user, controller.rolesList);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.user = UsersListService.updateSectionsAndPages($scope.user, controller.rolesList);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined($scope.columnsBeforeEdit)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.columns = angular.copy($scope.columnsBeforeEdit);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.columnsBeforeEdit = null;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.filterActive = true;</span>
+            }
+        };
+&nbsp;
+        /**
+         * Reset user form.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleResetClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.user = angular.copy($scope.userBeforeChanges);</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when deactivation is triggered.
+         *
+         * @param {Object} user
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleDeactivateClick = <span class="fstat-no" title="function not covered" >function (user) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!user.id || $scope.deactivateInProgress) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.deactivateInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            QsUsersService.deactivate(user.id).then($scope.deactivationCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleActivateClick = <span class="fstat-no" title="function not covered" >function (user) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!user.id || $scope.activateInProgress) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.activateInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            QsUsersService.activate(user.id).then($scope.activationCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.deactivationCallback = <span class="fstat-no" title="function not covered" >function (success)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            $scope.user.active = success ? false : true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.userBeforeChanges = $scope.user.active;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.deactivateInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            NotifierFactory.show(</span>
+                success ? 'success' : 'error',
+                success ? 'Deactivated successfully!' : 'Deactivation failed!',
+                'Deactivation'
+            );
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.activationCallback = <span class="fstat-no" title="function not covered" >function (success)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            $scope.user.active = success ? true : false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.userBeforeChanges = $scope.user.active;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.activateInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            NotifierFactory.show(</span>
+                success ? 'success' : 'error',
+                success ? 'Activated successfully!' : 'Activation failed!',
+                'Activation'
+            );
+        };
+&nbsp;
+        /**
+         * Store user data.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handlePersonalDetailsSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.personalDetailsSubmitInProgress ||
+                !$scope.forms.personalDetailsForm ||
+                !$scope.forms.personalDetailsForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.personalDetailsSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            QsUsersService.savePersonalDetails($scope.user).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                var message = 'Personal Details';</span>
+<span class="cstat-no" title="statement not covered" >                var success = false;</span>
+<span class="cstat-no" title="statement not covered" >                if (response) {</span>
+<span class="cstat-no" title="statement not covered" >                    success = !response.error;</span>
+<span class="cstat-no" title="statement not covered" >                    if (!success) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (response.hasOwnProperty('message') &amp;&amp; response.message.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            message = response.message;</span>
+                        }
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        $scope.user.fullname = QsUsersService.getFullName($scope.user);</span>
+<span class="cstat-no" title="statement not covered" >                        if (response.hasOwnProperty('insertedId') &amp;&amp; response.insertedId.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.user.id = response.insertedId;</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.user.active = true;</span>
+<span class="cstat-no" title="statement not covered" >                            angular.copy($scope.user, $scope.userBeforeChanges);</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.disabledQsUserListSubTabs.permissions = false;</span>
+                            // switch tab after user add
+<span class="cstat-no" title="statement not covered" >                            $scope.activeQsUserListSubTabs = 1;</span>
+<span class="cstat-no" title="statement not covered" >                            angular.copy($scope.user, $scope.newUser);</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.tableParams.reload();</span>
+<span class="cstat-no" title="statement not covered" >                            $scope.selectedUserId = $scope.user.id;</span>
+                        }
+                    }
+<span class="cstat-no" title="statement not covered" >                    if (success &amp;&amp; $scope.user.contactTypes) {</span>
+<span class="cstat-no" title="statement not covered" >                        QsUsersService.getContactTypes().then(<span class="fstat-no" title="function not covered" >function (contactTypesList) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (!contactTypesList) {</span>
+<span class="cstat-no" title="statement not covered" >                                return false;</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            var contactTypeNames = [],</span>
+                                contactTypeName = null;
+<span class="cstat-no" title="statement not covered" >                            angular.forEach($scope.user.contactTypes, <span class="fstat-no" title="function not covered" >function (contactTypeData, handle) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                if (!contactTypeData.assigned) {</span>
+<span class="cstat-no" title="statement not covered" >                                    return false;</span>
+                                }
+<span class="cstat-no" title="statement not covered" >                                contactTypeName = UsersListService.getContactTypeNameByHandle(</span>
+                                    handle, contactTypesList
+                                );
+<span class="cstat-no" title="statement not covered" >                                contactTypeNames.push(contactTypeName);</span>
+                            });
+<span class="cstat-no" title="statement not covered" >                            $scope.user.contactTypesAsString = contactTypeNames.join(', ');</span>
+                        });
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.userBeforeChanges = angular.copy($scope.user);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.personalDetailsSubmitInProgress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Saved successfully!' : 'Saving failed!',
+                    message
+                );
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handlePermissionsSubmit = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.permissionsSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            QsUsersService.savePermissions($scope.user).then(<span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.permissionsSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.userBeforeChanges = angular.copy($scope.user);</span>
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Saved successfully!' : 'Saving failed!',
+                    'Permissions'
+                );
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handlePrimaryContactTypeClick = <span class="fstat-no" title="function not covered" >function (handle) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.user.contactTypes[handle].assigned = true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleAssignedContactTypeClick = <span class="fstat-no" title="function not covered" >function (handle) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.user.contactTypes[handle].assigned === false) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.user.contactTypes[handle].primary = false;</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleRoleClick = <span class="fstat-no" title="function not covered" >function (clickedRole) {</span></span>
+            // do nothing if user has custom role
+<span class="cstat-no" title="statement not covered" >            if ($scope.user.roles.custom || typeof clickedRole === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.user.accessTo = {};</span>
+<span class="cstat-no" title="statement not covered" >            var clickedRoleAssigned = $scope.user.roles[clickedRole.roleHandle],</span>
+                parentRoleClicked = clickedRole.all,
+                globalAdminRoleClicked = clickedRole.roleHandle === 'global_admin.global_admin',
+                childrenRolesHandles = UsersListService.getChildrenRoles(clickedRole.groupHandle, controller.rolesList),
+                parentRoleHandle= null;
+&nbsp;
+            // check if it's global admin
+<span class="cstat-no" title="statement not covered" >            if (globalAdminRoleClicked &amp;&amp; clickedRoleAssigned) {</span>
+                // walk threw all system roles
+<span class="cstat-no" title="statement not covered" >                angular.forEach(controller.rolesList, <span class="fstat-no" title="function not covered" >function (role) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (role.roleHandle === 'custom') {</span>
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    }
+                    // assign all role sections to a user
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(role.sections, <span class="fstat-no" title="function not covered" >function (section) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $scope.user.accessTo[section] = true;</span>
+                    });
+                });
+            } else {
+<span class="cstat-no" title="statement not covered" >                if (!globalAdminRoleClicked) {</span>
+                    // if role is assigned
+<span class="cstat-no" title="statement not covered" >                    if (clickedRoleAssigned) {</span>
+                        // if its parent role
+<span class="cstat-no" title="statement not covered" >                        if (parentRoleClicked) {</span>
+                            // assign children roles to a user
+<span class="cstat-no" title="statement not covered" >                            childrenRolesHandles = UsersListService.getChildrenRoles(clickedRole.groupHandle, controller.rolesList);</span>
+<span class="cstat-no" title="statement not covered" >                            if (childrenRolesHandles) {</span>
+<span class="cstat-no" title="statement not covered" >                                angular.forEach(childrenRolesHandles, <span class="fstat-no" title="function not covered" >function (childrenRoleHandle) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    $scope.user.roles[childrenRoleHandle] = true;</span>
+                                });
+                            }
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            if (childrenRolesHandles) {</span>
+                                // Select parent if all children were selected
+<span class="cstat-no" title="statement not covered" >                                var allDepartments = true;</span>
+<span class="cstat-no" title="statement not covered" >                                angular.forEach(childrenRolesHandles, <span class="fstat-no" title="function not covered" >function (childrenRoleHandle) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    if ($scope.user.roles[childrenRoleHandle] === false ||</span>
+                                        $scope.user.roles[childrenRoleHandle] === undefined
+                                    ) {
+<span class="cstat-no" title="statement not covered" >                                        allDepartments = false;</span>
+<span class="cstat-no" title="statement not covered" >                                        return;</span>
+                                    }
+                                });
+<span class="cstat-no" title="statement not covered" >                                if (allDepartments) {</span>
+<span class="cstat-no" title="statement not covered" >                                    parentRoleHandle = UsersListService.getParentRoleHandle(clickedRole.groupHandle, controller.rolesList);</span>
+<span class="cstat-no" title="statement not covered" >                                    if (parentRoleHandle) {</span>
+<span class="cstat-no" title="statement not covered" >                                        $scope.user.roles[parentRoleHandle] = true;</span>
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        if (!parentRoleClicked) {</span>
+                            // Uncheck parent if it was selected when unselecting one children
+<span class="cstat-no" title="statement not covered" >                            parentRoleHandle = UsersListService.getParentRoleHandle(clickedRole.groupHandle, controller.rolesList);</span>
+<span class="cstat-no" title="statement not covered" >                            if (parentRoleHandle) {</span>
+<span class="cstat-no" title="statement not covered" >                                $scope.user.roles[parentRoleHandle] = false;</span>
+                            }
+                        } else {
+                            // check if all children where selected to select the parent
+<span class="cstat-no" title="statement not covered" >                            if (childrenRolesHandles) {</span>
+<span class="cstat-no" title="statement not covered" >                                angular.forEach(childrenRolesHandles, <span class="fstat-no" title="function not covered" >function (childrenRoleHandle) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    $scope.user.roles[childrenRoleHandle] = false;</span>
+                                });
+                            }
+                        }
+                    }
+                }
+                // Update sections and pages based on the new roles
+<span class="cstat-no" title="statement not covered" >                $scope.user = UsersListService.updateSectionsAndPages($scope.user, controller.rolesList);</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.toggleQsSections = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.showQsSections = !$scope.showQsSections;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.toggleClientSections = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.showClientSections = !$scope.showClientSections;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.activateCustomRole = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!angular.isDefined($scope.user.roles)) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.user.roles = {};</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.user.roles.custom = true;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.clearFilters = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.tableParams.filter(angular.copy(controller.filters));</span>
+<span class="cstat-no" title="statement not covered" >            $scope.tableParams.sorting({});</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.hasFilters = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.tableParams.hasFilter() &amp;&amp;
+                !angular.equals($scope.tableParams.filter(), controller.filters)
+            ) {
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (Object.keys($scope.tableParams.sorting()).length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.loadData = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            QsUsersService.getContactTypes().then(<span class="fstat-no" title="function not covered" >function(contactTypes) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.contactTypes = contactTypes;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            QsUsersService.getRoles().then(<span class="fstat-no" title="function not covered" >function(rolesList) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.rolesList = rolesList;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            QsUsersService.getSections().then(<span class="fstat-no" title="function not covered" >function(sectionsList) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.qsSectionsList = sectionsList;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            QsUsersService.getSections(true).then(<span class="fstat-no" title="function not covered" >function(sectionsList) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.clientSectionsList = sectionsList;</span>
+            });
+        };
+&nbsp;
+        /**
+         * Actions to do when column is clicked under visible columns dropdown.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleColumnClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var columnsVisibility = {};</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach($scope.columns, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                columnsVisibility[column.field] = column.show;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            QsUsersService.storeColumnsVisibility(columnsVisibility);</span>
+        };
+&nbsp;
+        /**
+         * Apply datagrid columns visibility from browser cache.
+         */
+<span class="cstat-no" title="statement not covered" >        controller.loadDatagridColumnsVisibility = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var columnsVisibility = QsUsersService.getColumnsVisibility();</span>
+<span class="cstat-no" title="statement not covered" >            if (columnsVisibility) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach($scope.columns, <span class="fstat-no" title="function not covered" >function (column) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (columnsVisibility[column.field] !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                        column.show = columnsVisibility[column.field] ? true : false;</span>
+                    }
+                });
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initDataGrid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.tableParams = new NgTableParams({</span>
+                page: 1, // show first page
+                count: 10, // count per page
+                filter: angular.copy(controller.filters)
+            }, {
+                debugMode: constants.dev,
+                getData: <span class="fstat-no" title="function not covered" >function(params) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.isDatagridReloading = true;</span>
+<span class="cstat-no" title="statement not covered" >                    return QsUsersService.getAllUsers(params).then(<span class="fstat-no" title="function not covered" >function(response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        $scope.isDatagridReloading = false;</span>
+<span class="cstat-no" title="statement not covered" >                        if ($scope.newUser.hasOwnProperty('id')) {</span>
+<span class="cstat-no" title="statement not covered" >                            response.unshift($scope.newUser);</span>
+<span class="cstat-no" title="statement not covered" >                            while (response.length &gt; $scope.tableParams.count()) {</span>
+<span class="cstat-no" title="statement not covered" >                                response.pop();</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            $scope.newUser = {};</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        return response;</span>
+                    });
+                }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.handleAddQsUserClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var user = {};</span>
+<span class="cstat-no" title="statement not covered" >            user.id = null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.activeQsUserListSubTabs = 0;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.handleDatagridRowClick(user);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.handleEditCloseClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var user = {};</span>
+<span class="cstat-no" title="statement not covered" >            user.id = $scope.selectedUserId;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.handleDatagridRowClick(user, true);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.loadData();</span>
+<span class="cstat-no" title="statement not covered" >            controller.initDataGrid();</span>
+<span class="cstat-no" title="statement not covered" >            controller.loadDatagridColumnsVisibility();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init();</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('QsUsersListController', [
+            '$scope',
+            '$resource',
+            'NgTableParams',
+            'constants',
+            'QsUsersListService',
+            'UsersListService',
+            'NotifierFactory',
+            App.controllers.qsUsersList
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

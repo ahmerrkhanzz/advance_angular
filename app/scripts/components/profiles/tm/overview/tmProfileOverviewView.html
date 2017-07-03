@@ -1,0 +1,26 @@
+<div ng-controller="TmProfileOverviewController as TmProfileOverviewController">
+    <div class="tabs-container">
+        <uib-tabset active="activeOverviewSubTab">
+            <uib-tab heading="Overview">
+                <div class="panel-body">
+                    <div ng-if="tmIsAdvanced" ng-include src="'/scripts/components/profiles/tm/overview/overview/tmProfileOverviewAdvancedOverviewView.html'"></div>
+                    <div ng-if="!tmIsAdvanced" ng-include src="'/scripts/components/profiles/tm/overview/overview/tmProfileOverviewBasicOverviewView.html'"></div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="FAQ">
+                <div class="panel-body">
+                    <div ng-if="!tmIsAdvanced"
+                         upgrade-banner
+                         info-block-class="isRightSidePanelActive() ? 'col-lg-9' : 'col-lg-10'"
+                         buttons-block-class="isRightSidePanelActive() ? 'col-lg-3' : 'col-lg-2'"
+                         basic-profile="true"
+                         upgrade-email="{{upgradeEmailsTo}}"
+                         upgrade-click="TmProfileController.toggleUpgradeForm()"></div>
+
+                    <div ng-class="{'modal-overlay-35': !tmIsAdvanced}"
+                         ng-include src="'/scripts/components/profiles/tm/overview/faq/tmProfileOverviewFaqView.html'"></div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

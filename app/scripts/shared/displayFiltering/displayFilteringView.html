@@ -1,0 +1,20 @@
+<div class="ibox-tools dropdown" uib-dropdown>
+    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" href="#" uib-dropdown-toggle="" ng-show="active">
+        <i class="fa fa-wrench"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-filter" uib-dropdown-menu>
+        <li class="hidden-column" ng-repeat="column in columns">
+            <label><input type="checkbox" ng-model-options="{getterSetter: true}" ng-model="column.show" ng-click="callback()" />{{column.title}}</label>
+        </li>
+        <li class="display-filtering-buttons" ng-if="columns.length > 0">
+            <div class="row">
+                <div class="col-lg-4">
+                    <a class="btn btn-sm btn-primary" ng-click="displayFilteringSelectAll()">Select All</a>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2">
+                    <a class="btn btn-sm btn-danger" ng-click="closeDisplayFiltering($event)">Close</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

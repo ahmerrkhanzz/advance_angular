@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Linux 0.0.0)" package="unit" timestamp="2017-01-10T11:22:38" id="0" hostname="ahmer-lenovo-g50-70" tests="103" errors="0" failures="0" time="0.965">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.selectedUserId should be same as passed user ID" time="0.073" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.user should be same as passed object" time="0.011" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.showInfoBlock should be true" time="0.011" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.userBeforeChanges should be defined in scope" time="0.01" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.userBeforeChanges should be empty object" time="0.008" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.userBeforeChanges should be independent from passed object" time="0.009" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.user should be defined in scope" time="0.016" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.user should be empty object" time="0.011" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When empty object is provided as argument $scope.user should be independent from passed object" time="0.008" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.selectedUserId should be same as passed user ID" time="0.008" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.user should be same as passed object" time="0.008" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.showInfoBlock should be true" time="0.006" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.userBeforeChanges should be defined in scope" time="0.007" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.userBeforeChanges should be same as passed object" time="0.022" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.userBeforeChanges should be dependent from passed object" time="0.008" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.user should be defined in scope" time="0.01" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.user should be same as passed object" time="0.007" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument $scope.user should be independent from passed object" time="0.007" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument second time $scope.selectedUserId should be null" time="0.007" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDatagridRowClick action When non empty object is provided as argument second time $scope.showInfoBlock should be false" time="0.009" classname="unit.handleDatagridRowClick action"/>
+  <testcase name="handleDeactivateClick action When invalid arguments are passed should return false when nothing is provided as argument" time="0.007" classname="unit.handleDeactivateClick action"/>
+  <testcase name="handleDeactivateClick action When deactivation is already in progress should return false" time="0.007" classname="unit.handleDeactivateClick action"/>
+  <testcase name="handleResetClick action When user object is not modified $scope.user should be same as $scope.userBeforeChanges" time="0.008" classname="unit.handleResetClick action"/>
+  <testcase name="handleResetClick action When user object is modified $scope.user should be same as $scope.userBeforeChanges" time="0.021" classname="unit.handleResetClick action"/>
+  <testcase name="Users factory has a dummy spec to test 2 + 2" time="0" classname="unit.Users factory"/>
+  <testcase name="currentDate directive Should insert correct current year" time="0.017" classname="unit.currentDate directive"/>
+  <testcase name="currentDate directive Should insert correct current year, month &amp; day" time="0.01" classname="unit.currentDate directive"/>
+  <testcase name="displayFiltering directive When &quot;columns&quot; attribute is not provided $scope.columns should have data passed from &quot;columns&quot; attribute" time="0.05" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When &quot;columns&quot; attribute is not provided $scope.active should have data passed from &quot;active&quot; attribute" time="0.012" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When &quot;columns&quot; attribute is not provided should display &quot;dropdown-toggle&quot; element" time="0.01" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When &quot;columns&quot; attribute is not provided should have &quot;dropdown-menu&quot; element" time="0.01" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When &quot;columns&quot; attribute is not provided should not have dropdown elements" time="0.011" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided $scope.columns should have data passed from &quot;columns&quot; attribute" time="0.02" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided $scope.active should have data passed from &quot;active&quot; attribute" time="0.018" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided should display &quot;dropdown-toggle&quot; element" time="0.018" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided should have &quot;dropdown-menu&quot; element" time="0.013" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided should have 4 dropdown elements populated with $scope.columns data" time="0.036" classname="unit.displayFiltering directive"/>
+  <testcase name="displayFiltering directive When correct attributes are provided When element is disabled in parent scope should not display &quot;dropdown-toggle&quot; element" time="0.016" classname="unit.displayFiltering directive"/>
+  <testcase name="toggleClassOnClick directive Should not assign class on initialize" time="0.009" classname="unit.toggleClassOnClick directive"/>
+  <testcase name="toggleClassOnClick directive Should assign class on click" time="0.009" classname="unit.toggleClassOnClick directive"/>
+  <testcase name="toggleClassOnClick directive Should remove assign class on secondary click" time="0.009" classname="unit.toggleClassOnClick directive"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When no parameters provided should return false" time="0.005" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When no data object parameter provided should return false" time="0.005" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When data object do not match should return false" time="0.006" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When data object match and not has departmentAddFormVisible should return false" time="0.005" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When data object values are null should return false" time="0.006" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentAddFormVisible TuProfileFactory When data object match and has departmentAddFormVisible should return true" time="0.005" classname="unit.isDepartmentAddFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When no parameters provided should return false" time="0.005" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When no data object parameter provided should return false" time="0.005" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When data object do not match should return false" time="0.007" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When data object match and not has departmentEditFormVisible should return false" time="0.008" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When data object values are null should return false" time="0.006" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isDepartmentEditFormVisible TuProfileFactory When data object match and has departmentEditFormVisible should return true" time="0.005" classname="unit.isDepartmentEditFormVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When no parameters provided should return false" time="0.005" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When no data object parameter provided should return false" time="0.006" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When data object do not match should return false" time="0.005" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When data object match and not has historyLogVisible should return false" time="0.005" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When data object values are null should return false" time="0.006" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isHistoryLogVisible TuProfileFactory When data object match and has historyLogVisible should return true" time="0.006" classname="unit.isHistoryLogVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When no parameters provided should return false" time="0.006" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When no data object parameter provided should return false" time="0.005" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When data object do not match should return false" time="0.005" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When data object match and not has programAddFormVisible should return false" time="0.005" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When data object values are null should return false" time="0.029" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramAddFormVisible TuProfileFactory When data object match and has programAddFormVisible should return true" time="0.006" classname="unit.isProgramAddFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When no parameters provided should return false" time="0.005" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When no data object parameter provided should return false" time="0.006" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When data object do not match should return false" time="0.007" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When data object match and not has programEditFormVisible should return false" time="0.006" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When data object values are null should return null" time="0.005" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isProgramEditFormVisible TuProfileFactory When data object match and has programEditFormVisible should return true" time="0.006" classname="unit.isProgramEditFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When no parameters provided should return false" time="0.006" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When no data object parameter provided should return false" time="0.005" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When data object do not match should return false" time="0.006" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When data object match and not has upgradeFormVisible should return false" time="0.012" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When data object values not match should return false" time="0.005" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="isUpgradeFormVisible TuProfileFactory When data object match and has upgradeFormVisible should return true" time="0.006" classname="unit.isUpgradeFormVisible TuProfileFactory"/>
+  <testcase name="filterObjectForSubscriptions service When no parameters provided should return undefined" time="0.007" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="filterObjectForSubscriptions service When no data object parameter provided should return filters object" time="0.005" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="filterObjectForSubscriptions service When data object does not match filters should return filters object" time="0.005" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="filterObjectForSubscriptions service When data object match filters should return filtered data object" time="0.005" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="filterObjectForSubscriptions service When multidimensional data object match all filters should return filtered data object" time="0.007" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="filterObjectForSubscriptions service When multidimensional data object match partial filters should return filtered data object" time="0.005" classname="unit.filterObjectForSubscriptions service"/>
+  <testcase name="allowLoginAs service When no parameters provided should return false" time="0.005" classname="unit.allowLoginAs service"/>
+  <testcase name="allowLoginAs service When empty data object provided should return false" time="0.005" classname="unit.allowLoginAs service"/>
+  <testcase name="allowLoginAs service When data object property &quot;active&quot; is not boolean true  should return false" time="0.005" classname="unit.allowLoginAs service"/>
+  <testcase name="allowLoginAs service When data object property &quot;active&quot; is boolean true but missing &quot;typeId&quot; should return false" time="0.008" classname="unit.allowLoginAs service"/>
+  <testcase name="allowLoginAs service When data object property &quot;active&quot; is boolean true and &quot;typeId&quot; is basic department should return false" time="0.005" classname="unit.allowLoginAs service"/>
+  <testcase name="allowLoginAs service When data object property &quot;active&quot; is boolean true and &quot;typeId&quot; is client department should return true" time="0.004" classname="unit.allowLoginAs service"/>
+  <testcase name="set method When no parameters provided should return false" time="0.004" classname="unit.set method"/>
+  <testcase name="set method When all parameters provided should set value" time="0.004" classname="unit.set method"/>
+  <testcase name="set method When setting value for defined multidimensional parameter should set value" time="0.004" classname="unit.set method"/>
+  <testcase name="set method When setting value for undefined multidimensional parameter should not set value" time="0.005" classname="unit.set method"/>
+  <testcase name="updateRolesWithAll service When role list is not defined should leave user roles as they were before" time="0.007" classname="unit.updateRolesWithAll service"/>
+  <testcase name="updateRolesWithAll service When role ALL is assigned but not all the children are assigned should update roles so all the children are assigned" time="0.005" classname="unit.updateRolesWithAll service"/>
+  <testcase name="updateSectionsAndPages service When role list is not defined should leave section and pages as they were before" time="0.03" classname="unit.updateSectionsAndPages service"/>
+  <testcase name="updateSectionsAndPages service When a role is assigned should update accessTo with the correct pages" time="0.006" classname="unit.updateSectionsAndPages service"/>
+  <testcase name="updateSectionsAndPages service When a role is unassigned should update accessTo with the correct pages" time="0.006" classname="unit.updateSectionsAndPages service"/>
+  <testcase name="prependHttp method When no parameters provided should return undefined" time="0.007" classname="unit.prependHttp method"/>
+  <testcase name="prependHttp method When empty object provided should return input" time="0.006" classname="unit.prependHttp method"/>
+  <testcase name="prependHttp method When URL without http is provided should prepend http://" time="0.006" classname="unit.prependHttp method"/>
+  <testcase name="prependHttp method When URL with http is provided should not prepend http://" time="0.005" classname="unit.prependHttp method"/>
+  <testcase name="prependHttp method When URL with https is provided should not prepend http://" time="0.005" classname="unit.prependHttp method"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

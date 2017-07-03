@@ -1,0 +1,97 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h5>Program Details</h5>
+        <div id="program-details" class="ibox-tools" expand="TmProfileProgramFormController.showDetails()">
+            <a ng-click="showHide()" class="collapse-link">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <ng-form name="TmProfileProgramFormController.forms.addProgramDetailsForm" novalidate autocomplete="off">
+            <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidName()}">
+                 <label class="control-label col-sm-5 col-md-4">
+                  <span>Program Name *</span>
+                </label>
+                <div class="col-sm-7 col-md-8">
+                    <input type="text"
+                      name="name"
+                      placeholder="e.g. ESSEC Mannheim Executive MBA"
+                      ng-model="TmProfileProgramFormController.newProgram.name"
+                      class="form-control"
+                      ng-required="true"
+                      ng-class="isInvalidName ? 'border-red' : ''"
+                      ng-focus="TmProfileProgramFormController.setValid('name')"
+                      focus-delay="250"
+                      custom-popover popover-html="Add a program title"
+                      popover-placement="left"
+                      popover-trigger="manual"
+                      popover-visibility="{{!TmProfileProgramFormController.isValidName()}}">
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-errors': !TmProfileProgramFormController.isValidType()}">
+                <label class="control-label col-sm-5 col-md-4">
+                  <span>Program Type *</span>
+                </label>
+                <div class="col-sm-7 col-md-8">
+                    <ui-select
+                        name="type"
+                        ng-model="TmProfileProgramFormController.newProgram.type"
+                        theme="bootstrap"
+                        focus-delay="250"
+                        ng-required="true"
+                        custom-popover popover-html="Select an option"
+                        popover-placement="left"
+                        popover-trigger="manual"
+                        popover-visibility="{{!TmProfileProgramFormController.isValidType()}}"
+                        on-select="TmProfileProgramFormController.setValid('type')">
+                        <ui-select-match placeholder="Select an option"><span>{{$select.selected.label}}</span></ui-select-match>
+                        <ui-select-choices
+                          position="down"
+                          repeat="option.value as option in TmProfileProgramFormController.typesList | filter: $select.search">
+                          <div class="test" ng-bind-html="option.label | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        <ui-select-no-choice>
+                            Not found
+                        </ui-select-no-choice>
+                    </ui-select>
+                </div>
+            </div>
+            <div class="form-group row" ng-class="{'has-errors': !TmProfileProgramFormController.isValidDescription()}">
+                <label class="control-label col-sm-5 col-md-4">
+                  <span>Program Description *</span>
+                  <small class="pull-left">Max {{TmProfileProgramFormController.programDescriptionWordLimit}} words</small>
+                </label>
+                <div class="col-sm-7 col-md-8">
+                  <textarea class="form-control no-resize" rows="7" cols="50"
+                        name="description"
+                        ng-required="true"
+                        placeholder="e.g. The program X provides a unique opportunity to study and live in…"
+                        ng-model="TmProfileProgramFormController.newProgram.description"
+                        ng-focus="TmProfileProgramFormController.setValid('description')"
+                        custom-popover popover-html="Add a program description"
+                        popover-placement="left"
+                        popover-trigger="manual"
+                        popover-visibility="{{!TmProfileProgramFormController.isValidDescription()}}">
+                    </textarea>
+                    <p class="text-right" ng-show="newProgram.description.length >= programDescriptionWordLimit">
+                        <span class="text-danger">Reached maximum words limit</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="TmProfileProgramFormController.isSchoolUser">
+                <label class="control-label col-sm-5 col-md-4">
+                  <span>Comments</span>
+                </label>
+                <div class="col-sm-7 col-md-8">
+                  <textarea class="form-control no-resize" rows="4" cols="50"
+                    name="comments"
+                    placeholder="Please add comments supporting your request"
+                    ng-model="TmProfileProgramFormController.newProgram.comments">
+                  </textarea>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>

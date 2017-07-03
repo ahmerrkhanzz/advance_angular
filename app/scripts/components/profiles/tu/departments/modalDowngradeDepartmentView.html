@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3>{{modalOptions.headerText}}</h3>
+</div>
+<div class="modal-body">
+    <p ng-show="!modalOptions.subscriptions">
+        Client department has no active subscription. Press Downgrade Now to downgrade to simple department.
+    </p>
+    <div ng-show="modalOptions.subscriptions">
+        <p>This client department currently has an active subscription. The subscription will need to be turned off in order to downgrade and delete the profile. If you wish to downgrade the client department and delete the profile in Drupal (front end) please select accordingly and press update to continue.</p>
+        <hr>
+        <p>Enabled:
+            <code ng-if="modalOptions.department.enabled.pg">PG</code>
+            <code ng-if="modalOptions.department.enabled.ug">UG</code>
+            <code ng-if="modalOptions.department.enabled.tm">MBA</code>
+        </p>
+        <p ng-if="modalOptions.department.subscriptions.tu.advanced">
+            Advanced TU : <strong>From {{modalOptions.department.subscriptions.tu.startDate | date:'short'}}</strong> to <strong>{{modalOptions.department.subscriptions.tu.endDate | date:'short'}}</strong>
+        </p>
+        <p ng-if="modalOptions.department.subscriptions.tm.advanced">
+            Advanced TM : <strong>From {{modalOptions.department.subscriptions.tm.startDate | date:'short'}}</strong> to <strong>{{modalOptions.department.subscriptions.tm.endDate| date:'short'}}</strong>
+        </p>
+        <switch ng-model="modalOptions.downgradeAndDelete" class="green"></switch>
+        Downgrade the client department and delete the profile in Drupal (front end)
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="modalOptions.close()">
+        {{modalOptions.closeButtonText}}
+    </button>
+    <button class="btn btn-primary" ng-click="modalOptions.completeDowngradeClick(modalOptions.downgradeAndDelete)">
+        {{modalOptions.subscriptions ? (modalOptions.downgradeAndDelete ? 'Downgrade & Delete' : 'Downgrade in Backend') : 'Downgrade Now'}}
+    </button>
+</div>

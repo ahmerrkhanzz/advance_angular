@@ -1,0 +1,1547 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tm/media/subtabs/socialMedia/tmProfileMediaSocialMediasService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tm/media/subtabs/socialMedia/</a> tmProfileMediaSocialMediasService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.54% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/197</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.7% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/74</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.72% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/58</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.54% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/197</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, { services: {} });
+&nbsp;
+    App.services.TmMediaSocialMediasService = <span class="fstat-no" title="function not covered" >function($resource, $q, $log, constants, TmMediaService) {</span>
+<span class="cstat-no" title="statement not covered" >        var service = {};</span>
+<span class="cstat-no" title="statement not covered" >        var imageUrl = '/images/media/media-social-media.png';</span>
+<span class="cstat-no" title="statement not covered" >        var defaultName = '';</span>
+<span class="cstat-no" title="statement not covered" >        var socialMediaItems = [</span>
+            'facebook',
+            'youtube',
+            'linkedin',
+            'twitter',
+            'other'
+        ];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.getSocialMediaModel = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(constants.api.institutions.url + '/v1/tm-profile/:id/social-media/:socialMediaId', null, {</span>
+                update: { method: 'PATCH' }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.getInstitutionModel = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(constants.api.institutions.url + '/v1/tm-profile/:id', null, {</span>
+                update: { method: 'PATCH' }
+            });
+        };
+&nbsp;
+        /**
+         * Save SocialMedia
+         *
+         * @param institutionId
+         * @param socialMedia
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.saveSocialMedia = <span class="fstat-no" title="function not covered" >function(institutionId, socialMedia) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var socialMediaModel = service.getSocialMediaModel();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return socialMediaModel.update({ id: institutionId, socialMediaId: service.getType() },</span>
+                socialMedia
+            ).$promise.then(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    $log.log('success, got data: ', data);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }, <span class="fstat-no" title="function not covered" >function(error) {</span>
+                //@todo log error
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    $log.log('request failed' + error);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            });
+        };
+&nbsp;
+        /**
+         * Set selected socialMedia.
+         *
+         * @param {Object} item
+         */
+<span class="cstat-no" title="statement not covered" >        service.setSelectedSocialMedia = <span class="fstat-no" title="function not covered" >function(item) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.selectedSocialMedia = item;</span>
+        };
+&nbsp;
+        /**
+         * Get selected socialMedia
+         *
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getSelectedSocialMedia = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.selectedSocialMedia;</span>
+        };
+&nbsp;
+        /**
+         * Trigger change.
+         *
+         * @param triggerChange
+         */
+<span class="cstat-no" title="statement not covered" >        service.setTriggerChange = <span class="fstat-no" title="function not covered" >function(triggerChange) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.triggerChange = triggerChange;</span>
+        };
+&nbsp;
+        /**
+         * Get trigger change value
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getTriggerChange = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.triggerChange;</span>
+        };
+&nbsp;
+        /**
+         * Get socialMedia items.
+         *
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getSocialMediaItems = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.socialMediaItems;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.setSocialMediaItems = <span class="fstat-no" title="function not covered" >function(items) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.socialMediaItems = items;</span>
+        };
+&nbsp;
+        /**
+         * Get socialMedia item.
+         */
+<span class="cstat-no" title="statement not covered" >        service.getItemSocialMedia = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return {</span>
+                'id': '',
+                'name': defaultName,
+                'description': '',
+                'master': true,
+                'url': '',
+                'imageUrl': imageUrl
+            };
+        };
+&nbsp;
+        /**
+         * get selected social media url.
+         *
+         * @param {String} type
+         * @returns {String}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getSelectedSocialMediaUrl = <span class="fstat-no" title="function not covered" >function(type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            switch (type) {</span>
+                case 'facebook':
+<span class="cstat-no" title="statement not covered" >                    return 'https://www.facebook.com/universityrankings';</span>
+                case 'youtube':
+<span class="cstat-no" title="statement not covered" >                    return 'https://www.youtube.com/topuniversities';</span>
+                case 'linkedin':
+<span class="cstat-no" title="statement not covered" >                    return 'https://www.linkedin.com/company/qs';</span>
+                case 'twitter':
+<span class="cstat-no" title="statement not covered" >                    return 'https://twitter.com/worlduniranking';</span>
+                default:
+<span class="cstat-no" title="statement not covered" >                    return 'http://www.yourwebsite.com';</span>
+            }
+        };
+&nbsp;
+        /**
+         * Reset socialMedia item.
+         *
+         * @returns {Object}
+         * @param item
+         */
+<span class="cstat-no" title="statement not covered" >        service.resetItem = <span class="fstat-no" title="function not covered" >function(item) {</span></span>
+<span class="cstat-no" title="statement not covered" >            item.master = true;</span>
+<span class="cstat-no" title="statement not covered" >            item.url = '';</span>
+<span class="cstat-no" title="statement not covered" >            item.name = defaultName;</span>
+<span class="cstat-no" title="statement not covered" >            item.imageUrl = imageUrl;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return item;</span>
+        };
+&nbsp;
+        /**
+         * Format socialMedias.
+         *
+         * @param socialMedias
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.formatSocialMedias = <span class="fstat-no" title="function not covered" >function(socialMedias) {</span></span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(socialMedias, <span class="fstat-no" title="function not covered" >function(value, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                socialMedias[key] = service.formatSocialMedia(value);</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return socialMedias;</span>
+        };
+&nbsp;
+        /**
+         * Validate Social Media data
+         *
+         * @param {Object} socialMediaItem
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.socialMediaValidation = <span class="fstat-no" title="function not covered" >function(socialMediaItem) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var invalidItems = [];</span>
+<span class="cstat-no" title="statement not covered" >            var checkboxesChecked = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(socialMediaItem, <span class="fstat-no" title="function not covered" >function(item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (item.master) {</span>
+<span class="cstat-no" title="statement not covered" >                    checkboxesChecked++;</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            angular.forEach(socialMediaItem, <span class="fstat-no" title="function not covered" >function(item, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ((item.url !== "") &amp;&amp; !(item.master)) {</span>
+<span class="cstat-no" title="statement not covered" >                    socialMediaItem[key].url = "";</span>
+                } else <span class="cstat-no" title="statement not covered" >if ((item.url !== "") &amp;&amp; !(item.master)) {</span>
+<span class="cstat-no" title="statement not covered" >                    invalidItems.push({</span>
+                        invalid: true,
+                        index: key
+                    });
+                } else <span class="cstat-no" title="statement not covered" >if (((item.url === "") || (item.url === undefined)) &amp;&amp; (item.master)) {</span>
+<span class="cstat-no" title="statement not covered" >                    invalidItems.push({</span>
+                        invalidUrl: true,
+                        index: key
+                    });
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            if (invalidItems.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                return invalidItems;</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.socialMediaFormValidation = <span class="fstat-no" title="function not covered" >function(socialMediaItem) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var invalidItems = [];</span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(socialMediaItem)) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(socialMediaItem.$error.url, <span class="fstat-no" title="function not covered" >function(error) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var key = error.$name.charAt(error.$name.length - 1);</span>
+<span class="cstat-no" title="statement not covered" >                    invalidItems.push({</span>
+                        invalidUrl: true,
+                        index: key
+                    });
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return invalidItems;</span>
+        };
+&nbsp;
+        /**
+         * Format to match db data.
+         *
+         * @param {Object} socialMediaItem
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.formatSocialMedia = <span class="fstat-no" title="function not covered" >function(socialMediaItem) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var output = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(socialMediaItem, <span class="fstat-no" title="function not covered" >function(item, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if ((item.master) &amp;&amp; item.url !== "") { // item is set to profile, we'll save it</span>
+<span class="cstat-no" title="statement not covered" >                    var tmpOutput = {};</span>
+<span class="cstat-no" title="statement not covered" >                    tmpOutput.url = item.url;</span>
+<span class="cstat-no" title="statement not covered" >                    tmpOutput.assignedTo = [];</span>
+<span class="cstat-no" title="statement not covered" >                    if (item.master) {</span>
+<span class="cstat-no" title="statement not covered" >                        tmpOutput.assignedTo.push('master');</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    output.push(tmpOutput);</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return output;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.setChanges = <span class="fstat-no" title="function not covered" >function(changes) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.changes = changes;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.getChanges = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.changes;</span>
+        };
+&nbsp;
+        /**
+         * Sets has errors flag.
+         *
+         * @param {boolean} hasErrors
+         */
+<span class="cstat-no" title="statement not covered" >        service.setHasErrors = <span class="fstat-no" title="function not covered" >function(hasErrors) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.hasErrors = hasErrors;</span>
+        };
+&nbsp;
+        /**
+         * Gets has errors flag.
+         *
+         * @returns {boolean|*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getHasErrors = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.hasErrors;</span>
+        };
+&nbsp;
+        /**
+         * Sets is highlighted.
+         *
+         * @param {boolean} isHighlighted
+         */
+<span class="cstat-no" title="statement not covered" >        service.setHighlighted = <span class="fstat-no" title="function not covered" >function(isHighlighted) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.isHighlighted = isHighlighted;</span>
+        };
+&nbsp;
+        /**
+         * Gets is Highlighted.
+         *
+         * @returns {boolean|*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getHighlighted = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.isHighlighted;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.coreId = <span class="fstat-no" title="function not covered" >function(coreId) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.coreId = coreId;</span>
+        };
+&nbsp;
+        /**
+         * Set type.
+         *
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.setType = <span class="fstat-no" title="function not covered" >function(type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            this.type = type;</span>
+        };
+&nbsp;
+        /**
+         * Get type.
+         *
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getType = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return this.type;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.socialMediaItems = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return socialMediaItems;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.getSocialMediaObject = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var socialMedia = {};</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(socialMediaItems, <span class="fstat-no" title="function not covered" >function(mediaType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                socialMedia[mediaType] = {};</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(TmMediaService.getTypes(), <span class="fstat-no" title="function not covered" >function(profileType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    socialMedia[mediaType][profileType] = false;</span>
+                });
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return socialMedia;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.assignData = <span class="fstat-no" title="function not covered" >function(inputData, socialMedia) {</span></span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(inputData, <span class="fstat-no" title="function not covered" >function(mediaType, mediaTypeValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(mediaType, <span class="fstat-no" title="function not covered" >function(objectData) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (angular.isDefined(objectData.assignedTo)) {</span>
+<span class="cstat-no" title="statement not covered" >                        angular.forEach(objectData.assignedTo, <span class="fstat-no" title="function not covered" >function(assignedType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            socialMedia[mediaTypeValue][assignedType] = true;</span>
+                        });
+                    }
+                });
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return socialMedia;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.processInput = <span class="fstat-no" title="function not covered" >function(inputData) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var socialMedia = service.getSocialMediaObject();</span>
+<span class="cstat-no" title="statement not covered" >            socialMedia = service.assignData(inputData, socialMedia);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return socialMedia;</span>
+        };
+&nbsp;
+        /**
+         * Flattens inputData for left column
+         *
+         * @param {Object} inputData
+         * @param {boolean} forType
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.flattenArray = <span class="fstat-no" title="function not covered" >function(inputData, forType) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isUndefined(forType)) {</span>
+<span class="cstat-no" title="statement not covered" >                forType = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var typeMaster = TmMediaService.typeOverview();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (forType) {</span>
+<span class="cstat-no" title="statement not covered" >                var outputData = {};</span>
+<span class="cstat-no" title="statement not covered" >                outputData[typeMaster] = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                angular.forEach(inputData, <span class="fstat-no" title="function not covered" >function(inputDataValue, inputDataKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (angular.isDefined(inputDataValue.assignedTo)) {</span>
+<span class="cstat-no" title="statement not covered" >                        angular.forEach(inputData[inputDataKey].assignedTo, <span class="fstat-no" title="function not covered" >function(assignedType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (assignedType === typeMaster) {</span>
+<span class="cstat-no" title="statement not covered" >                                outputData[typeMaster] = true;</span>
+                            }
+                        });
+                    }
+                });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                inputData = outputData;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                angular.forEach(socialMediaItems, <span class="fstat-no" title="function not covered" >function(mediaType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (angular.isDefined(inputData) &amp;&amp; angular.isDefined(inputData[mediaType])) {</span>
+<span class="cstat-no" title="statement not covered" >                        angular.forEach(inputData[mediaType], <span class="fstat-no" title="function not covered" >function(objectData, dataKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][dataKey][typeMaster] = true;</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][dataKey].display = true;</span>
+<span class="cstat-no" title="statement not covered" >                            if (angular.isDefined(inputData[mediaType][dataKey].assignedTo)) {</span>
+<span class="cstat-no" title="statement not covered" >                                angular.forEach(inputData[mediaType][dataKey].assignedTo, <span class="fstat-no" title="function not covered" >function(assignedType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                    if (assignedType === typeMaster) {</span>
+<span class="cstat-no" title="statement not covered" >                                        inputData[mediaType][dataKey][typeMaster] = true;</span>
+                                    }
+                                });
+<span class="cstat-no" title="statement not covered" >                                delete(inputData[mediaType][dataKey].assignedTo);</span>
+                            }
+                        });
+<span class="cstat-no" title="statement not covered" >                        if (inputData[mediaType].length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][0] = service.getEmpty(true, true);</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][1] = service.getEmpty(false, false);</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][2] = service.getEmpty(false, false);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (inputData[mediaType].length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][1] = service.getEmpty(false, true);</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][2] = service.getEmpty(false, false);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        if (inputData[mediaType].length === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                            inputData[mediaType][2] = service.getEmpty(false, true);</span>
+                        }
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        if (angular.isUndefined(inputData) || angular.isArray(inputData)) {</span>
+<span class="cstat-no" title="statement not covered" >                            inputData = {};</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        inputData[mediaType] = [];</span>
+<span class="cstat-no" title="statement not covered" >                        inputData[mediaType].push(service.getEmpty(true, true));</span>
+<span class="cstat-no" title="statement not covered" >                        inputData[mediaType].push(service.getEmpty(false, false));</span>
+<span class="cstat-no" title="statement not covered" >                        inputData[mediaType].push(service.getEmpty(false, false));</span>
+                    }
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return inputData;</span>
+        };
+&nbsp;
+        /**
+         *
+         * @param {boolean} initialValue
+         * @param {boolean} displayValue
+         * @returns {{url: string, display: boolean, master: boolean, ug: boolean, pg: boolean}}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getEmpty = <span class="fstat-no" title="function not covered" >function(initialValue, displayValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return {</span>
+                'url': '',
+                'display': displayValue,
+                'master': initialValue
+            };
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.resetDataForType = <span class="fstat-no" title="function not covered" >function(data, type) {</span></span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(data, <span class="fstat-no" title="function not covered" >function(dataValue, dataKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (dataKey === type) {</span>
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(data[dataKey], <span class="fstat-no" title="function not covered" >function(dataSubValue, dataSubKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        data[dataKey][dataSubKey].master = false;</span>
+<span class="cstat-no" title="statement not covered" >                        data[dataKey][dataSubKey].url = '';</span>
+                    });
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return data;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.assignNewData = <span class="fstat-no" title="function not covered" >function(values, type, currentlySelected) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var outputValues = angular.copy(values);</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(values, <span class="fstat-no" title="function not covered" >function(objectData, valueKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined(objectData.assignedTo)) {</span>
+<span class="cstat-no" title="statement not covered" >                    outputValues[valueKey][TmMediaService.typeOverview()] = false;</span>
+<span class="cstat-no" title="statement not covered" >                    outputValues[valueKey][TmMediaService.typeUndergraduate()] = false;</span>
+<span class="cstat-no" title="statement not covered" >                    outputValues[valueKey][TmMediaService.typePostgraduate()] = false;</span>
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(objectData.assignedTo, <span class="fstat-no" title="function not covered" >function(assignedType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        outputValues[valueKey][assignedType] = true;</span>
+                    });
+<span class="cstat-no" title="statement not covered" >                    delete(outputValues[valueKey].assignedTo);</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            if (outputValues.length === 1) {</span>
+<span class="cstat-no" title="statement not covered" >                outputValues[1] = service.getEmpty(false, true);</span>
+<span class="cstat-no" title="statement not covered" >                outputValues[2] = service.getEmpty(false, false);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (outputValues.length === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                outputValues[2] = service.getEmpty(false, true);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var copySelected = angular.copy(currentlySelected);</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(copySelected, <span class="fstat-no" title="function not covered" >function(mediaType, mediaTypeKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (mediaTypeKey === type) {</span>
+<span class="cstat-no" title="statement not covered" >                    copySelected[mediaTypeKey] = outputValues;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return copySelected;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.applyUpdate = <span class="fstat-no" title="function not covered" >function(type, values) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var currentlySelected = service.getSelectedSocialMedia();</span>
+<span class="cstat-no" title="statement not covered" >            var assignedData = service.assignNewData(values, type, currentlySelected);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return assignedData;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .service('TmMediaSocialMediasService', [
+            '$resource',
+            '$q',
+            '$log',
+            'constants',
+            'TmMediaService',
+            App.services.TmMediaSocialMediasService
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../sorter.js"></script>
+</body>
+</html>

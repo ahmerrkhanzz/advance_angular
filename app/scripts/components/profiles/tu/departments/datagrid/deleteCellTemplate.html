@@ -1,0 +1,21 @@
+<div class="ui-grid-cell-contents no-select text-center" ng-click="$event.stopPropagation()">
+    <div class="inline" ng-if="row.entity.typeId === 3">
+        <span custom-popover
+              popover-html="{{grid.appScope.cutomCheckboxMessage()}}"
+              popover-placement="right"
+              popover-container="body"
+              popover-trigger="hover">
+            <input
+                disabled="disabled"
+                ng-model="grid.appScope.departmentsToDelete[row.entity.id]"
+                i-checkbox
+                type="checkbox">
+        </span>
+    </div>
+    <div class="inline" ng-if="row.entity.typeId !== 3">
+        <input
+            ng-model="grid.appScope.departmentsToDelete[row.entity.id]"
+            i-checkbox
+            type="checkbox">
+    </div>
+</div>

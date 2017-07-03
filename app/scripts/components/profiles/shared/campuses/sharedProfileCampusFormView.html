@@ -1,0 +1,193 @@
+<div class="ibox" ng-controller="SharedProfileCampusFormController as SharedProfileCampusFormController">
+    <div class="">
+    <div class="ibox-title m-t-xl">
+        <h5>{{editMode ? 'Edit' : 'Add'}} Campus</h5>
+        <div class="ibox-tools">
+            <a class="close-link" ng-click="handleCancelClick()">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div wave-spinner ng-show="isFetchInProgress()"></div>
+
+        <form class="form-horizontal add-campus" name="forms.campusForm" ng-class="{submitted:submitted}" novalidate autocomplete="off">
+
+            <div class="form-group" ng-class="{'has-errors': !SharedProfileCampusFormController.isValidName()}">
+                <label class="control-label col-sm-5 col-md-4">Campus Name *</label>
+                <div class="col-sm-7 col-md-8">
+                    <input type="text" class="form-control" name="name"
+                           ng-model="campus.name"
+                           ng-required="true"
+                           ng-focus="SharedProfileCampusFormController.setValid('name')"
+                           focus-delay="250"
+
+                           custom-popover
+                           popover-html="Add a campus name"
+                           popover-placement="left"
+                           popover-trigger="manual"
+                           popover-visibility="{{!SharedProfileCampusFormController.isValidName()}}"/>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-errors': !SharedProfileCampusFormController.isValidCountry()}">
+                <label class="control-label col-sm-5 col-md-4">Country *</label>
+                <div class="col-sm-7 col-md-8">
+                    <ui-select
+                        name="country"
+                        ng-model="campus.country"
+                        ng-required="true"
+                        theme="bootstrap"
+                        on-select="SharedProfileCampusFormController.setValid('country')"
+                        focus-delay="250"
+                        custom-popover
+                        popover-html="Select an option"
+                        popover-placement="left"
+                        popover-trigger="manual"
+                        popover-visibility="{{!SharedProfileCampusFormController.isValidCountry()}}"
+                        >
+                        <ui-select-match placeholder="Select an Option">{{$select.selected.name}}</ui-select-match>
+                        <ui-select-choices 
+                            refresh-delay="1000"
+                            repeat="option.countryCode as option in countriesList | filter:$select.search">
+                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                        <ui-select-no-choice>
+                            Not found
+                        </ui-select-no-choice>
+                    </ui-select>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-errors': !SharedProfileCampusFormController.isValidAddress()}">
+                <label class="control-label col-sm-5 col-md-4">Address *</label>
+                <div class="col-sm-7 col-md-8">
+                    <input type="text" class="form-control" name="addressLine1"
+                           ng-model="campus.addressLine1"
+                           ng-required="true"
+                           ng-focus="SharedProfileCampusFormController.setValid('addressLine1')"
+                           focus-delay="250"
+
+                           custom-popover
+                           popover-html="Add an address"
+                           popover-placement="left"
+                           popover-trigger="manual"
+                           popover-visibility="{{!SharedProfileCampusFormController.isValidAddress()}}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">&nbsp;</label>
+                <div class="col-sm-7 col-md-8">
+                    <input type="text" class="form-control" ng-model="campus.addressLine2">
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{'has-errors': !SharedProfileCampusFormController.isValidCity()}">
+                <label class="control-label col-sm-5 col-md-4">Town / City *</label>
+                <div class="col-sm-7 col-md-8">
+                    <input type="text" class="form-control" name="city"
+                           ng-model="campus.city"
+                           ng-required="true"
+                           focus-delay="250"
+
+                           custom-popover
+                           popover-html="Add a town/city"
+                           popover-placement="left"
+                           popover-trigger="manual"
+                           popover-visibility="{{!SharedProfileCampusFormController.isValidCity()}}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4" for="campusState">State / Province</label>
+                <div class="col-sm-7 col-md-8">
+                    <input id="campusState" type="text" class="form-control" ng-model="campus.state">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4" for="campusPostCode">Postcode</label>
+                <div class="col-sm-7 col-md-8">
+                    <input id="campusPostCode" type="text" class="form-control" ng-model="campus.postcode">
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-5" for="campusLatitude">Latitude</label>
+                        <div class="col-sm-7">
+                            <input id="campusLatitude" type="text" class="form-control" ng-model="campus.latitude" ng-readonly="campus.autoGenerate">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-5" for="campusLongitude">Longitude</label>
+                        <div class="col-sm-7">
+                            <input id="campusLongitude" type="text" class="form-control" ng-model="campus.longitude" ng-readonly="campus.autoGenerate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="separator dashed text-center">
+                <span class="text">or</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Auto Generate</label>
+                <div class="col-sm-7 col-md-8">
+                    <div class="btn-toggle">
+                        <switch ng-model="campus.autoGenerate" class="green"></switch>
+                        <span class="switch-text">Use address to auto generate latitude and longitude.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4"></label>
+                <div class="col-sm-7 col-md-8">
+                    <button type="button" class="btn btn-default btn-xs pull-right"
+                        ng-click="SharedProfileCampusFormController.refreshMap()"
+                        ng-disabled="refreshMapInProgress || !campus.autoGenerate">
+                        <i class="fa fa-refresh"></i>
+                        <span>Refresh Map</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Display In Frontend</label>
+                <div class="col-sm-7 col-md-8">
+                    <div class="btn-toggle">
+                        <switch ng-model="campus.displayInFrontEnd" ng-change="SharedProfileCampusFormController.displayOnFrontEndClick()" class="green"></switch>
+                        <span class="switch-text">If selected, campus will be sent to profile. (Latitude and longitude is required)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Primary Campus</label>
+                <div class="col-sm-7 col-md-8">
+                    <div class="btn-toggle">
+                        <switch id="campusPrimary" ng-model="campus.primary" class="green"></switch>
+                        <span class="switch-text">Please only check if it's the main campus</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="white-space"></div>
+
+            <div class="form-group" ng-include="'/scripts/components/profiles/shared/campuses/sharedProfileCampusFormButtonsView.html'"></div>
+        </form>
+    </div>
+
+    <pre ng-if="SharedProfileCampusFormController.devMode">{{campus|json}}</pre>
+</div>

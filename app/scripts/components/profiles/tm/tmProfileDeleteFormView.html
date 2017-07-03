@@ -1,0 +1,63 @@
+<div class="ibox-title m-t-xl">
+    <h5>Request to Delete Basic Program</h5>
+    <div class="ibox-tools">
+        <a class="close-link" ng-click="TmProfileController.handleCloseDeleteForm()">
+            <i class="fa fa-times"></i>
+        </a>
+    </div>
+</div>
+<div class="ibox">
+    <div class="ibox-content">
+        <form class="form-horizontal preview" name="forms.upgradeProfile" novalidate>
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">To</label>
+                <div class="col-sm-7 col-md-8">
+                    <span class="text-label">{{upgradeEmailsTo}}</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Subject</label>
+                <div class="col-sm-7 col-md-8">
+                    <span class="text-label">I would like program <strong>{{deleteRequest.program.name}}</strong> to be deleted</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Name</label>
+                <div class="col-sm-7 col-md-8">
+                    <span class="text-label">{{deleteRequest.name}}</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Email</label>
+                <div class="col-sm-7 col-md-8">
+                    <span class="text-label">{{deleteRequest.email}}</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-sm-5 col-md-4">Comments</label>
+                <div class="col-sm-7 col-md-8">
+                    <div class="textarea"><textarea class="form-control no-resize" rows="7" cols="50" placeholder="Please add comments supporting your request" ng-model="deleteRequest.comments"></textarea></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary pull-right"
+                       ng-class="{'disabled': TmProfileController.deleteRequestInProgress}"
+                       ng-click="TmProfileController.handleSendDeleteRequestClick()">
+                       <i class="fa fa-check-circle"></i>
+                       <span>Send</span>
+                    </a>
+                    <a class="btn btn-default pull-right" ng-click="TmProfileController.handleCloseDeleteForm()">
+                        <i class="fa fa-ban"></i>
+                        <span>Close</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

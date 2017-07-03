@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tu/media/subtabs/videos/tuProfileMediaVideosSidebarController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tu/media/subtabs/videos/</a> tuProfileMediaVideosSidebarController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.05% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/99</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/56</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.7% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.05% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/99</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function (angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers: {}});
+&nbsp;
+    App.controllers.TuMediaVideosSidebarController = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        $resource,
+        $location,
+        $timeout,
+        constants,
+        NotifierFactory,
+        TuProfileFactory,
+        TuMediaVideosService,
+        TuMediaService,
+        WebSocketsService,
+        UrlService
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this,</span>
+        alreadyInitialised = false;
+<span class="cstat-no" title="statement not covered" >        $scope.hasErrors = true;</span>
+<span class="cstat-no" title="statement not covered" >        TuMediaVideosService.displayTypesValid = false;</span>
+<span class="cstat-no" title="statement not covered" >        TuMediaVideosService.setHasErrors(false);</span>
+<span class="cstat-no" title="statement not covered" >        $scope.youtubeUrlPattern = TuMediaVideosService.getYoutubeUrlPattern();</span>
+&nbsp;
+        /**
+         * Save form.
+         *
+         * @param item
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.saveVideoForm = <span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!angular.isDefined(item.url) || !(angular.isDefined(item.url) &amp;&amp; item.url.length &gt; 0)) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.setHasErrors(true);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!TuMediaService.isValidType(item)) {</span>
+<span class="cstat-no" title="statement not covered" >                TuMediaVideosService.displayTypesValid = true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (TuMediaVideosService.displayTypesValid || $scope.getHasErrors()) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                !$scope.forms.formVideo ||
+                !$scope.forms.formVideo.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                TuMediaVideosService.setHasErrors(true);</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var videoItem = angular.copy(item);</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.displayTypesValid = false;</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.setHasErrors(false);</span>
+<span class="cstat-no" title="statement not covered" >            var actionName = 'Added';</span>
+<span class="cstat-no" title="statement not covered" >            if (videoItem.id.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                actionName = 'Updated';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if ($scope.submitInProgress || !$scope.forms.formVideo || !$scope.forms.formVideo.$valid</span>
+            ) {
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    'error',
+                    'Error: Please fill in all required fields',
+                    actionName + ' Video'
+                );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.submitInProgress = true;</span>
+&nbsp;
+            // start listening (open a room) to youtube video details changes
+<span class="cstat-no" title="statement not covered" >            var youtubeId = UrlService.extractYoutubeIdFromUrl(item.url);</span>
+<span class="cstat-no" title="statement not covered" >            WebSocketsService.subscribe(youtubeId, 'VideoDetails' + youtubeId, <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                item.name = response &amp;&amp; response.name || null;</span>
+<span class="cstat-no" title="statement not covered" >                item.imageUrl = response &amp;&amp; response.imageUrl || null;</span>
+                // mark as selected on the left side
+<span class="cstat-no" title="statement not covered" >                $scope.selectedVideo = angular.copy(TuMediaVideosService.getSelectedVideo());</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.saveVideo(TuMediaVideosService.coreId, videoItem)</span>
+                .then(<span class="fstat-no" title="function not covered" >function (success) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.submitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                    NotifierFactory.show(</span>
+                        success ? 'success' : 'error',
+                        success ? 'Successfully!' : 'Failure!',
+                        'Video ' + actionName
+                    );
+<span class="cstat-no" title="statement not covered" >                    if (success) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (videoItem.id.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            item.id = success;</span>
+                            // add to the list
+<span class="cstat-no" title="statement not covered" >                            TuMediaVideosService.getVideoItems().unshift(item);</span>
+                            // mark as selected list
+<span class="cstat-no" title="statement not covered" >                            TuMediaVideosService.setSelectedVideo(item);</span>
+                            // mark as selected on the left side
+<span class="cstat-no" title="statement not covered" >                            $scope.selectedVideo = angular.copy(TuMediaVideosService.getSelectedVideo());</span>
+                        }
+                        // mark as selected list
+<span class="cstat-no" title="statement not covered" >                        TuMediaVideosService.setSelectedVideo(item);</span>
+<span class="cstat-no" title="statement not covered" >                        TuMediaVideosService.setHasErrors(false);</span>
+                    }
+                    /**
+                     * Tell other controllers to apply filter on changes
+                     */
+<span class="cstat-no" title="statement not covered" >                    TuMediaVideosService.setTriggerChange(Math.random());</span>
+                });
+        };
+&nbsp;
+        /**
+         * Clear item.
+         *
+         * @param item
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.clearVideoForm = <span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (angular.isDefined(item)) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.itemVideo = item;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.itemVideo = TuMediaVideosService.getItemVideo();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.itemVideo = TuMediaVideosService.resetItem($scope.itemVideo);</span>
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.setSelectedVideo($scope.itemVideo);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.setDisplayTypesValidation(false);</span>
+<span class="cstat-no" title="statement not covered" >            $scope.setHasErrors(false);</span>
+        };
+&nbsp;
+        /**
+         * Get selected item.
+         *
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.getSelectedVideo = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaVideosService.getSelectedVideo();</span>
+        };
+&nbsp;
+        /**
+         * Is edit mode?
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.isEditMode = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $scope.selectedVideo &amp;&amp; $scope.selectedVideo.id ? true : false;</span>
+        };
+&nbsp;
+        /**
+         * Get video items.
+         *
+         * @returns {*}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.getVideoItems = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaVideosService.getVideoItems();</span>
+        };
+&nbsp;
+        /**
+         * Get has errors flag.
+         *
+         * @returns {boolean|*}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.getHasErrors = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaVideosService.getHasErrors();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.setHasErrors = <span class="fstat-no" title="function not covered" >function (value) {</span></span>
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.setHasErrors(value);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.type = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaVideosService.getType();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.setDisplayTypesValidation = <span class="fstat-no" title="function not covered" >function (value) {</span></span>
+<span class="cstat-no" title="statement not covered" >            TuMediaVideosService.displayTypesValid = value;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.getDisplayTypesValidation = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuMediaVideosService.displayTypesValid;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initWatches = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return TuMediaVideosService.getSelectedVideo();</span>
+            }, <span class="fstat-no" title="function not covered" >function (selectedVideo) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.selectedVideo = selectedVideo;</span>
+            });
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return TuMediaVideosService.getHasErrors();</span>
+            }, <span class="fstat-no" title="function not covered" >function (newValue, oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!angular.equals(oldValue, newValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.hasErrors = newValue;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return TuMediaVideosService.getHighlighted();</span>
+            }, <span class="fstat-no" title="function not covered" >function (newValue) {</span>
+<span class="cstat-no" title="statement not covered" >                if (newValue) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.isHighlighted = newValue;</span>
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        TuMediaVideosService.setHighlighted(false);</span>
+<span class="cstat-no" title="statement not covered" >                        $scope.isHighlighted = false;</span>
+                    },200);
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                return TuProfileFactory.getSelectedMediaTabId();</span>
+            }, <span class="fstat-no" title="function not covered" >function (tabId) {</span>
+<span class="cstat-no" title="statement not covered" >                if (tabId === 2) {</span>
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                        TuMediaVideosService.setHighlighted(true);</span>
+                    },200);
+                } else {
+<span class="cstat-no" title="statement not covered" >                    delete TuMediaVideosService.displayTypesValid;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.setHasErrors(false);</span>
+                }
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initWatches();</span>
+        };
+&nbsp;
+        // listen to departments tab visibility changes
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(TuProfileFactory.isMediaTabSelected, <span class="fstat-no" title="function not covered" >function (isActive, wasActive) {</span></span>
+            // if not already initialized and tab is active
+<span class="cstat-no" title="statement not covered" >            if (!alreadyInitialised &amp;&amp; isActive &amp;&amp; !wasActive) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.init();</span>
+<span class="cstat-no" title="statement not covered" >                alreadyInitialised = true;</span>
+            }
+        });
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('TuMediaVideosSidebarController', [
+            '$scope',
+            '$resource',
+            '$location',
+            '$timeout',
+            'constants',
+            'NotifierFactory',
+            'TuProfileFactory',
+            'TuMediaVideosService',
+            'TuMediaService',
+            'WebSocketsService',
+            'UrlService',
+            App.controllers.TuMediaVideosSidebarController
+        ]);
+&nbsp;
+}(window.angular));</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../sorter.js"></script>
+</body>
+</html>

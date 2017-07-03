@@ -1,0 +1,50 @@
+<div class="ibox publish-logs" ng-controller="TmProfilePublishLogsController as PublishLogsController">
+    <div class="ibox-title m-t-xl">
+        <h5>Publish Logs</h5>
+    </div>
+
+    <div class="ibox-content">
+        <div wave-spinner ng-show="fetchingPublishLog()"></div>
+        <div ng-show="!fetchingPublishLog()" ng-repeat="logs in publishLogs">
+            <div ng-repeat="logsPerDay in logs">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span>{{logsPerDay.date | date:'mediumDate'}}</span>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li ng-repeat="log in logsPerDay.logs">
+                                <span class="status">
+                                    <span class="icon text-success" ng-if="log.status === 'success'">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <span class="icon text-danger" ng-if="log.status === 'failure'">
+                                        <i class="fa fa-exclamation"></i>
+                                    </span>
+                                    <span class="icon text-info" ng-if="log.status === 'progress'">
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                    </span>
+                                    <span class="icon text-warning" ng-if="log.status === 'pending'">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                </span>
+                                
+                                <span>{{log.status === 'failure' ? 'Failed' : 'Published'}}:</span>
+                                <span class="bold">{{log.createdByFullName}}</span>
+                                <span class="time">{{log.createdAt | date:'shortTime'}}</span>
+                                
+                                <span class="program">
+                                    <span class="icon round bg-primary" ng-if="log.type === 'tm'">
+                                        <i class="fa fa-book"></i>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="!publishLogs.results.length">No publish history</div>
+    </div>
+</div>

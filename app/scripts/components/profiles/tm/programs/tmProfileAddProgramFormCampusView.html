@@ -1,0 +1,88 @@
+<div class="ibox">
+    <div class="ibox-title">
+        <h5>Campuses</h5>
+        <div id="program-campuses" class="ibox-tools" expand="TmProfileProgramFormController.showCampus()">
+            <a ng-click="showHide()" class="collapse-link">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="ibox-content pace-inactive p-b-none">
+        <p ng-class="{'text-danger': !TmProfileProgramFormController.isValidCampusAssigned()}">
+            <i class="fa fa-info-circle"></i>
+            <span>Add at least one campus to this program. Editing a Campus does not require Admin permissions and will also edit the Institution campus.</span>
+        </p>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <p ng-show="TmProfileProgramFormController.programCampuses.length">
+                    <strong>Campuses currently added to the program:</strong>
+                </p>
+                <ul class="list-unstyled list-campus">
+                    <li class="clearfix"
+                        ng-repeat="campus in TmProfileProgramFormController.programCampuses"
+                        ng-class="{'locked': TmProfileProgramFormController.isReadOnly}">
+                        <span>
+                            {{campus.name}}
+                            <i class="fa fa-star"
+                               uib-tooltip='Program primary campus'
+                               tooltip-placement="top"
+                               ng-show="campus.id === TmProfileProgramFormController.program.primaryCampusId">
+                            </i>
+                        </span>
+                        <a class="btn btn-sm btn-outline btn-default pull-right"
+                            ng-click="TmProfileProgramFormController.editCampus($index)">
+                            <span>Edit</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-12">
+                <ui-select
+                    name="campus"
+                    multiple
+                    close-on-select="false"
+                    ng-required="true"
+                    ng-model="TmProfileProgramFormController.newProgram.campus"
+                    theme="bootstrap"
+                    search-enabled="true"
+                    >
+                    <ui-select-match placeholder="Select an Option">{{$item.label}}</ui-select-match>
+                    <ui-select-choices 
+                        refresh-delay="1000"
+                        repeat="option.value as option in TmProfileProgramFormController.campusesList | filter:$select.search">
+                        <div ng-bind-html="option.label | highlight: $select.search"></div>
+                    </ui-select-choices>
+                    <ui-select-no-choice>
+                        Not found
+                    </ui-select-no-choice>
+                </ui-select>
+            </div>
+        </div>
+
+        <div class="separator dashed text-center">
+            <span class="text">OR</span>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <a class="btn btn-default btn-block"
+                    ng-class="{'locked': TmProfileProgramFormController.campusSubmitInProgress}"
+                    ng-click="TmProfileProgramFormController.handleAddCampusClick()">
+                    <i class="fa fa-plus"></i>
+                    <span>Create new campus</span>
+                </a>
+            </div>
+        </div>
+
+        <div ng-show="TmProfileProgramFormController.isCampusFormVisible()">
+            <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileProgramsAddCampusFormView.html'"></div>
+        </div>
+
+        <div ng-show="TmProfileProgramFormController.isEditCampusFormVisible()">
+            <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileProgramsEditCampusFormView.html'"></div>
+        </div>
+    </div>
+</div>

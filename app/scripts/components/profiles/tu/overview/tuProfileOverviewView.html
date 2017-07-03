@@ -1,0 +1,24 @@
+<div ng-controller="TuProfileOverviewController as TuProfileOverviewController">
+    <div class="tabs-container">
+        <uib-tabset active="activeOverviewSubTab">
+            <uib-tab heading="Overview">
+                <div class="panel-body">
+                    <div ng-if="tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/advancedMasterSubTab.html'"></div>
+                    <div ng-if="!tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/basicMasterSubTab.html'"></div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Undergraduate">
+                <div class="panel-body">
+                    <div ng-if="tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/advancedUgSubTab.html'"></div>
+                    <div ng-if="!tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/basicUgSubTab.html'"></div>
+                </div>
+            </uib-tab>
+            <uib-tab heading="Postgraduate">
+                <div class="panel-body">
+                    <div ng-if="tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/advancedPgSubTab.html'"></div>
+                    <div ng-if="!tuIsAdvanced" ng-include src="'/scripts/components/profiles/tu/overview/partial/basicPgSubTab.html'"></div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

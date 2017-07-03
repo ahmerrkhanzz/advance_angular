@@ -1,0 +1,83 @@
+<div class="wrapper wrapper-content animated fadeInRight page-profiles-tu" ng-controller="TuProfileController as TopUniversitiesController">
+    <div class="row">
+        <div ng-class="isRightSidePanelActive() ? 'col-sm-8' : 'col-sm-12'">
+            <div class="tabs-container" ng-class="{'modal-overlay': loadInProgress()}">
+                <uib-tabset active="activeTab">
+                    <uib-tab heading="Overview">
+                        <div class="panel-body overview">
+                            <div ng-include src="'/scripts/components/profiles/tu/overview/tuProfileOverviewView.html'"></div>
+                        </div>
+                    </uib-tab>
+
+                    <uib-tab heading="Departments" ng-if="showDepartmentsTab()">
+                          <div class="panel-body departments">
+                              <div ng-include src="'/scripts/components/profiles/tu/departments/tuProfileDepartmentsView.html'"></div>
+                          </div>
+                    </uib-tab>
+
+                    <uib-tab heading="Subjects">
+                        <div class="panel-body subjects">
+                            <div ng-include src="'/scripts/components/profiles/tu/subjects/tuProfileSubjectsView.html'"></div>
+                        </div>
+                    </uib-tab>
+
+                    <uib-tab heading="Programs">
+                        <div class="panel-body programs">
+                            <div ng-include src="'/scripts/components/profiles/tu/programs/tuProfileProgramsView.html'"></div>
+                        </div>
+                    </uib-tab>
+
+                     <uib-tab heading="Media">
+                         <div class="panel-body media">
+                             <div ng-include src="'/scripts/components/profiles/tu/media/tuProfileMediaView.html'" id="mediaTab"></div>
+                         </div>
+                     </uib-tab>
+
+                   <uib-tab heading="Publish">
+                       <div class="panel-body publish">
+                           <div ng-include src="'/scripts/components/profiles/tu/publish/tuProfilePublishView.html'"></div>
+                       </div>
+                   </uib-tab>
+
+                </uib-tabset>
+            </div>
+        </div>
+
+        <div ng-show="showUpgradeForm" class="col-sm-4">
+            <div ng-include src="'/scripts/components/profiles/tu/tuProfileUpgradeFormView.html'"></div>
+        </div>
+
+        <div ng-show="showHistory" class="col-sm-4">
+            <div ng-include src="'/scripts/components/profiles/tu/overview/tuProfileOverviewHistoryView.html'"></div>
+        </div>
+        <div ng-show="showDepartmentEditForm || showDepartmentAddForm || showClientUpgradeForm" id="departmentBlockPanel"
+             fixed-element-while-scrolling="#departmentsTable"
+             class="col-sm-4"
+             ng-controller="TuProfileDepartmentForm as DepartmentFormController">
+            <div class="department-form" ng-show="showDepartmentEditForm" ng-include src="'/scripts/components/profiles/tu/departments/tuProfileEditDepartmentFormView.html'"></div>
+            <div class="department-form" ng-show="showDepartmentAddForm" ng-include src="'/scripts/components/profiles/tu/departments/tuProfileAddDepartmentFormView.html'"></div>
+            <div class="department-form" ng-show="showClientUpgradeForm" ng-include src="'/scripts/components/profiles/tu/departments/tuProfileUpgradeClientDepartmentFormView.html'"></div>
+        </div>
+
+        <div ng-if="isSubjectsTabActive()" class="col-sm-4">
+            <div ng-include src="'/scripts/components/profiles/tu/subjects/tuProfileSubjectsListsView.html'"></div>
+        </div>
+
+        <div ng-show="showProgramEditForm || showProgramAddForm" id="programBlockPanel"
+             fixed-element-while-scrolling="#programsTable"
+             class="col-sm-4"
+             ng-controller="TuProfileProgramForm as ProgramFormController">
+            <div ng-show="showProgramAddForm" ng-include src="'/scripts/components/profiles/tu/programs/tuProfileAddProgramFormView.html'"></div>
+            <div ng-show="showProgramEditForm" ng-include src="'/scripts/components/profiles/tu/programs/tuProfileEditProgramFormView.html'"></div>
+        </div>
+
+        <div ng-show="isMediaTabActive()" class="col-sm-4" ng-class="tuIsAdvanced ? '': 'modal-overlay-35'" fixed-element-while-scrolling="#mediaTab">
+            <div id="mediaSidebar" ng-include src="'/scripts/components/profiles/tu/media/tuProfileMediaLinkManagerView.html'"></div>
+        </div>
+
+        <div ng-show="isPublishTabActive()" class="col-sm-4">
+            <div ng-include src="'/scripts/components/profiles/tu/publish/tuProfileResubscribeView.html'"></div>
+            <div ng-include src="'/scripts/components/profiles/tu/publish/tuProfilePublishHistoryView.html'"></div>
+        </div>
+    </div>
+</div>

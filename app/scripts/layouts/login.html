@@ -1,0 +1,13 @@
+<div class="middle-box text-center loginscreen animated fadeInDown {{$state.current.data.page}}" ng-controller="LoginController as LoginController">
+    <div>
+        <div class="box-middle" ng-class="{'w-300' : !showForgotPassword || !showResetPassword}">
+            <img src="/images/logo-gray.svg" alt="Logo">
+            <h3>Welcome to QS Hub</h3>
+        </div>
+        <!-- login form -->
+        <div ng-show="!showForgotPassword && !showResetPassword" ng-include="'/scripts/components/login/loginFormView.html'"></div>
+        <!-- password reminder -->
+        <div ng-show="showForgotPassword" ng-include="'/scripts/components/login/passwordForgotView.html'"></div>
+        <div ng-show="showResetPassword" ng-include="'/scripts/components/login/passwordResetView.html'"></div>
+    </div>
+</div>

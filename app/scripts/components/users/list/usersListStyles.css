@@ -1,0 +1,25 @@
+.page-qs-users-list .block-personal-details,
+.page-institutions-users-list .block-personal-details{
+    border-right: 1px solid #e7eaec;
+}
+.page-qs-users-list .block-user > div,
+.page-institutions-users-list .block-user > div{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.page-qs-users-list .block-permissions .switchery,
+.page-institutions-users-list .block-permissions .switchery{
+    margin-right: 5px;
+}
+.page-qs-users-list .block-permissions > div,
+.page-institutions-users-list .block-permissions > div{
+    margin-top: 3px;
+}
+.page-institutions-users-list .panel-body.institutions .load-bar {
+    position: absolute;
+    z-index: 999;
+    right: 21px
+}
+.block-user .ibox-tools {
+    margin-top: -13px;
+}

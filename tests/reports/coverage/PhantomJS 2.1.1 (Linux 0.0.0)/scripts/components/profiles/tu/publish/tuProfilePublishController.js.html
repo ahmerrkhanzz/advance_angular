@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tu/publish/tuProfilePublishController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tu/publish/</a> tuProfilePublishController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.77% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/57</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.7% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">8.77% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/57</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers:{}});
+&nbsp;
+    App.controllers.tuProfilePublish = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        constants,
+        PublishService,
+        InstitutionFactory,
+        TuProfileFactory,
+        TuProfileHistoryLogFactory,
+        UserFactory,
+        WebSocketsService
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this,</span>
+            alreadyInitialised = false;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+<span class="cstat-no" title="statement not covered" >        controller.subscribedTo = [];</span>
+<span class="cstat-no" title="statement not covered" >        controller.publishStatus = {</span>
+            failure: 'failure',
+            pending: 'pending',
+            progress: 'progress',
+            success: 'success'
+        };
+<span class="cstat-no" title="statement not covered" >        $scope.institutionData = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.sections = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institutionId = null;</span>
+&nbsp;
+        /**
+         * Actions to do when publishing is triggered.
+         *
+         * @param {Object} section
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handlePublish = <span class="fstat-no" title="function not covered" >function (section) {</span></span>
+<span class="cstat-no" title="statement not covered" >            section.publishDisabled = true;</span>
+<span class="cstat-no" title="statement not covered" >            section.statusMessage = '';</span>
+<span class="cstat-no" title="statement not covered" >            PublishService.publish($scope.institutionId, section.type).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                controller.publishCallback(section, response);</span>
+            });
+        };
+&nbsp;
+        /**
+         * Publishing callback.
+         *
+         * @param {Object} section
+         * @param {Object} response
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.publishCallback = <span class="fstat-no" title="function not covered" >function (section, response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!response || !angular.isDefined(response.feedId)) {</span>
+<span class="cstat-no" title="statement not covered" >                section.status = controller.publishStatus.failure;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            section.feedId = response.feedId;</span>
+<span class="cstat-no" title="statement not covered" >            section.status = controller.publishStatus.pending;</span>
+<span class="cstat-no" title="statement not covered" >            controller.getSectionPublishStatus(section);</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when publish status is requested.
+         *
+         * @param {Object} section
+         */
+<span class="cstat-no" title="statement not covered" >        controller.getSectionPublishStatus = <span class="fstat-no" title="function not covered" >function(section) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (controller.subscribedTo.indexOf(section.feedId) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.subscribedTo.push(section.feedId);</span>
+<span class="cstat-no" title="statement not covered" >                WebSocketsService.subscribe(section.feedId, 'PublishStatus' + section.feedId, <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    controller.sectionPublishStatusCallback(section, response);</span>
+                });
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.sectionPublishStatusCallback = <span class="fstat-no" title="function not covered" >function (section, response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var status = response &amp;&amp; response.status || controller.publishStatus.failure;</span>
+<span class="cstat-no" title="statement not covered" >            section.status = status;</span>
+<span class="cstat-no" title="statement not covered" >            switch (status) {</span>
+                case controller.publishStatus.failure:
+                case controller.publishStatus.success:
+<span class="cstat-no" title="statement not covered" >                    section.publishDisabled = false;</span>
+<span class="cstat-no" title="statement not covered" >                    section.statusMessage = response.statusMessage;</span>
+<span class="cstat-no" title="statement not covered" >                    TuProfileHistoryLogFactory.setReload(true);</span>
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+                default:
+<span class="cstat-no" title="statement not covered" >                    break;</span>
+            }
+        };
+&nbsp;
+        /**
+         * Handle publish statuses response.
+         *
+         * @param {Promise.Object} publishStatus
+         */
+<span class="cstat-no" title="statement not covered" >        controller.publishStatusCallback = <span class="fstat-no" title="function not covered" >function (publishStatus) {</span></span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach($scope.sections, <span class="fstat-no" title="function not covered" >function(section) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (angular.isDefined(publishStatus[section.type])) {</span>
+<span class="cstat-no" title="statement not covered" >                    section.status = publishStatus[section.type].status;</span>
+<span class="cstat-no" title="statement not covered" >                    section.statusMessage = publishStatus[section.type].message;</span>
+                }
+            });
+        };
+&nbsp;
+        /**
+         * Initialize watches.
+         */
+<span class="cstat-no" title="statement not covered" >        controller.initWatches = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // watch for active institution changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(InstitutionFactory.getData, <span class="fstat-no" title="function not covered" >function (newValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (newValue) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionData = newValue;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.institutionId = newValue.id;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.sections = PublishService.getSections(!UserFactory.isClient(), $scope.institutionData);</span>
+                    // get publishing statuses
+<span class="cstat-no" title="statement not covered" >                    PublishService.getPublishStatus($scope.institutionId).then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        controller.publishStatusCallback(response);</span>
+                    });
+                }
+            });
+        };
+&nbsp;
+        /**
+         * @constructor
+         */
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initWatches();</span>
+        };
+&nbsp;
+        // listen to publish tab visibility changes
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(TuProfileFactory.isPublishTabSelected, <span class="fstat-no" title="function not covered" >function (isActive, wasActive) {</span></span>
+            // if not already initialized and tab is active
+<span class="cstat-no" title="statement not covered" >            if (!alreadyInitialised &amp;&amp; isActive &amp;&amp; !wasActive) {</span>
+<span class="cstat-no" title="statement not covered" >                controller.init();</span>
+<span class="cstat-no" title="statement not covered" >                alreadyInitialised = true;</span>
+            }
+        });
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('TuProfilePublishController', [
+            '$scope',
+            'constants',
+            'TuProfilePublishService',
+            'InstitutionFactory',
+            'TuProfileFactory',
+            'TuProfileHistoryLogFactory',
+            'UserFactory',
+            'WebSocketsService',
+            App.controllers.tuProfilePublish
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<div class="wrapper wrapper-content animated fadeInRight page-institution-list" ng-controller="InstitutionsListController as InstitutionsController">
+
+    <p>
+        <button type="button" class="btn btn-primary"
+                ng-click="InstitutionsController.handleAddInstitutionClick()"
+                ng-class="{'modal-overlay-35': !isDatagridRendered}">
+            <i class="fa fa-building-o"></i>
+            Add Institution
+        </button>
+    </p>
+
+    <div class="row">
+        <div id="institutionsTable" ng-class="showInfoBlock ? 'col-sm-3 col-xs-4 hide-ng-table-pager' : 'col-sm-12'">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div wave-spinner class="wave-spinner" ng-show="isDatagridReloading || !isDatagridRendered"></div>
+
+                    <div ng-if="!isDatagridReloading && gridOptions">
+                        <ui-grid-info ng-if="!showInfoBlock"></ui-grid-info>
+                        <div class="grid"
+                             ui-grid="gridOptions"
+                             ui-grid-selection
+                             ui-grid-resize-columns
+                             ui-grid-auto-resize
+                             ui-grid-cellnav
+                             ui-grid-pagination></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div fixed-element-while-scrolling="#institutionsTable" ng-show="showInfoBlock" class="col-sm-9 col-xs-8">
+            <div class="ibox block-institution">
+                <div class="ibox-content">
+                    <div class="ibox-tools">
+                        <a class="close-link" ng-click="InstitutionsController.handleEditCloseClick()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="row m-b-lg" ng-show="institution.id">
+                                <div class="col-lg-12">
+                                    <h2>
+                                        {{institutionBeforeChanges.name}}
+                                    </h2>
+
+                                    <a ng-show="!institution.active" ng-click="handleActivateClick(institution)" class="btn btn-warning btn-sm pull-left m-b-xs" ng-class="{'disabled':activateInProgress}">
+                                        <i class="fa fa-undo"></i> Activate
+                                    </a>
+
+                                    <a ng-show="institution.active" ng-click="handleDeactivateClick(institution)" class="btn btn-danger btn-sm pull-left m-b-xs" ng-class="{'disabled':deactivateInProgress}">
+                                        <i class="fa fa-ban"></i> Deactivate
+                                    </a>
+
+                                    <a class="btn btn-default btn-sm pull-left m-b-xs" ng-click="handleResetClick(institution)">
+                                        <i class="fa fa-refresh"></i> Reset unsaved changes
+                                    </a>
+
+                                    <a ng-if="allowLoginAs()" class="btn btn-default btn-sm pull-left m-b-xs" ng-click="handleLoginAsClick()">
+                                        <i class="fa fa-sign-in"></i> Login as institution
+                                    </a>
+
+                                    <a class="btn btn-default btn-sm pull-left m-b-xs"
+                                       uib-popover="{{InstitutionsController.downgradeProgramTooltipText()}}"
+                                       popover-placement="bottom"
+                                       popover-enable="isProgramDowngradeDisabled"
+                                       popover-trigger="'mouseenter'"
+                                       ng-if="InstitutionsController.allowProgramDowngrade()"
+                                       ng-click="!isProgramDowngradeDisabled && InstitutionsController.handleProgramDowngradeClick($event)"
+                                       ng-disabled="isProgramDowngradeDisabled">
+                                        <i class="fa fa-arrow-circle-o-down"></i> Downgrade to Basic Program
+                                    </a>
+
+                                    <a class="btn btn-default btn-sm pull-left m-b-xs"
+                                       ng-if="InstitutionsController.isSimple"
+                                       ng-disabled="InstitutionsController.isUpgradeButtonDisabled()"
+                                       ng-click="!InstitutionsController.isUpgradeButtonDisabled() &&InstitutionsController.handleUpgradeClick()"
+
+                                       uib-popover="Mandatory fields must be entered first to upgrade."
+                                       popover-placement="bottom"
+                                       popover-enable="InstitutionsController.isUpgradeButtonDisabled()"
+                                       popover-trigger="'mouseenter'">
+                                        <i class="fa fa-arrow-circle-o-up"></i> Upgrade to Client Department
+                                    </a>
+
+                                    <a class="btn btn-default btn-sm pull-left m-b-xs"
+                                       ng-if="InstitutionsController.isClient"
+                                       ng-disabled="InstitutionsController.isClientDepartmentDowngradeDisabled()"
+                                       ng-click="!InstitutionsController.isClientDepartmentDowngradeDisabled() && InstitutionsController.handleDowngradeClick()"
+
+                                       uib-popover="Unable to downgrade due to current TU/TM subscription."
+                                       popover-placement="bottom"
+                                       popover-enable="InstitutionsController.isClientDepartmentDowngradeDisabled()"
+                                       popover-trigger="'mouseenter'">
+                                        <i class="fa fa-arrow-circle-o-down"></i> Downgrade to Simple Department
+                                    </a>
+
+
+                                    <a class="btn pull-left btn-default btn-sm m-b-xs" target="_blank"
+                                       ng-href="{{InstitutionsController.isViewTuSiteEnabled() ? InstitutionsController.urls.tu + institution.nids.master : ''}}"
+                                       ng-if="InstitutionsController.allowViewTuSite()"
+                                       ng-disabled="!InstitutionsController.isViewTuSiteEnabled()"
+
+                                       uib-popover="{{institution.nids.master ? 'Display on topuniversities.com is disabled under Subscriptions tab.' : 'Please publish TU profiles first'}}"
+                                       popover-placement="bottom"
+                                       popover-enable="!InstitutionsController.isViewTuSiteEnabled()"
+                                       popover-trigger="'mouseenter'">
+                                        <i class="fa fa-share"></i> View TU Site
+                                    </a>
+
+                                    <a class="btn pull-left btn-default btn-sm m-b-xs" target="_blank"
+                                       ng-if="InstitutionsController.allowViewTmSite()"
+                                       ng-href="{{InstitutionsController.allowViewTmSiteButtonEnabled() ? InstitutionsController.urls.tm + institution.nids.tm : ''}}"
+                                       ng-disabled="!InstitutionsController.allowViewTmSiteButtonEnabled()"
+
+                                       uib-popover="{{institution.nids.master ? 'Display on topmba.com  is disabled under Subscriptions tab.' : 'Please publish TM profile first'}}"
+                                       popover-placement="bottom"
+                                       popover-enable="!InstitutionsController.allowViewTmSiteButtonEnabled()"
+                                       popover-trigger="'mouseenter'">
+                                        <i class="fa fa-share"></i> View TM Site
+                                    </a>
+                                    
+                                    <button ng-if="InstitutionsController.isAdvancedProgram || InstitutionsController.isTopLevelInstitution(institution.typeId)"
+                                       class="btn btn-default btn-sm"
+                                       ui-sref="staff.institutions.department({coreId: institution.coreId, name: institution.name})"
+                                       ng-disabled="!InstitutionsController.isDisplayDepartmentEnabled">Display Departments
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="institution-detail">
+                                <div class="full-height-scroll">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tabs-container">
+                                                <uib-tabset active="activeTab">
+                                                    <uib-tab heading="Basic Details" disable="disabledInstitutionListTabs['basicDetails']">
+                                                        <div ng-include src="'/scripts/components/institutions/list/partial/basicDetails.html'"></div>
+                                                    </uib-tab>
+
+                                                    <uib-tab heading="Subscriptions" disable="disabledInstitutionListTabs['subscriptions']">
+                                                        <div ng-include src="'/scripts/components/institutions/list/subscriptions/institutionsListSubscriptionsView.html'"></div>
+                                                    </uib-tab>
+
+                                                    <uib-tab heading="Campuses" disable="disabledInstitutionListTabs['campuses']">
+                                                        <div ng-include src="'/scripts/components/institutions/list/partial/campuses.html'"></div>
+                                                    </uib-tab>
+
+                                                    <uib-tab heading="Group Institutions" disable="disabledInstitutionListTabs['institutionGroups']">
+                                                        <div ng-include src="'/scripts/components/institutions/list/partial/groupInstitutions.html'"></div>
+                                                    </uib-tab>
+
+                                                    <uib-tab heading="Drupal" disable="disabledInstitutionListTabs['drupal']">
+                                                        <div ng-include src="'/scripts/components/institutions/list/partial/drupal.html'"></div>
+                                                    </uib-tab>
+                                                    
+                                                    <uib-tab disable="disabledInstitutionListTabs['status']">
+                                                        <uib-tab-heading>
+                                                            <span ng-class="{'text-danger': InstitutionsController.hasMissingFields()}">Status</span>
+                                                        </uib-tab-heading>
+                                                        <div ng-include src="'/scripts/components/institutions/list/status/institutionsListStatusView.html'"></div>
+                                                    </uib-tab>
+                                                </uib-tabset>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <pre ng-show="InstitutionsController.devMode">{{institution|json}}</pre>
+</div>

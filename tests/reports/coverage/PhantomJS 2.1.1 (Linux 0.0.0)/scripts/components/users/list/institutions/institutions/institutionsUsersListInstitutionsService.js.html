@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/users/list/institutions/institutions/institutionsUsersListInstitutionsService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../../index.html">all files</a> / <a href="index.html">scripts/components/users/list/institutions/institutions/</a> institutionsUsersListInstitutionsService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/101</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.92% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/51</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.95% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/101</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {services:{}});
+&nbsp;
+    App.services.InstitutionsUsersListInstitutionsService = <span class="fstat-no" title="function not covered" >function (</span>
+        $resource,
+        $q,
+        $log,
+        constants,
+        RequestsQueueService
+    ) {
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            institutionsNames : []
+        };
+&nbsp;
+        /**
+         * Institutions full names by core id(s) endpoint.
+         *
+         * @returns {$resource.*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getInstitutionNamesByCoreIdsModel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(</span>
+                constants.api.institutions.url + '/v1/list/all/parent-name?sorting[coreId]=asc',
+                null,
+                {
+                    get: {
+                        cancellable: true
+                    }
+                }
+            );
+        };
+&nbsp;
+        /**
+         * Institutions search by full name endpoint.
+         *
+         * @returns {$resource.*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getInstitutionsSearchModel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(</span>
+                constants.api.institutions.url + '/v1/list/all/parent-name',
+                {
+                    'sorting[coreId]' : 'asc',
+                    'field[]': [
+                        'name',
+                        'coreId'
+                    ]
+                },
+                {
+                    get: {
+                        cancellable: true
+                    }
+                }
+            );
+        };
+&nbsp;
+        /**
+         * User update endpoint.
+         *
+         * @returns {$resource.*}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getUserModel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(constants.api.usersPermissions.url + '/v1/user/:id', null, {</span>
+                update: {method:'PATCH', cancellable: true}
+            });
+        };
+&nbsp;
+        /**
+         * Search for institution by full name field.
+         *
+         * @param {String} searchPhrase
+         * @param {Number} primaryInstitutionCoreId
+         * @param {Array} assignedInstitutionsCoreIds
+         * @returns {Promise.Array}
+         */
+<span class="cstat-no" title="statement not covered" >        service.searchInstitutions = <span class="fstat-no" title="function not covered" >function (searchPhrase, primaryInstitutionCoreId, assignedInstitutionsCoreIds)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer(),</span>
+                institutions = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!primaryInstitutionCoreId) {</span>
+<span class="cstat-no" title="statement not covered" >                primaryInstitutionCoreId = 0;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!searchPhrase || searchPhrase.length &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(institutions);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    var startTime = new Date().getTime(), endTime;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                var queryString = {</span>
+                    'filter[name]' : searchPhrase,
+                    'exclude[coreIdAsString][]' : [
+                        primaryInstitutionCoreId
+                    ]
+                };
+<span class="cstat-no" title="statement not covered" >                if (assignedInstitutionsCoreIds.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(assignedInstitutionsCoreIds, <span class="fstat-no" title="function not covered" >function (value) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (value.coreId) {</span>
+<span class="cstat-no" title="statement not covered" >                            queryString['exclude[coreIdAsString][]'].push(value.coreId);</span>
+                        }
+                    });
+                }
+&nbsp;
+                // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                RequestsQueueService.cancelAll('searchInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var Api = service.getInstitutionsSearchModel().get(queryString);</span>
+&nbsp;
+                // add new request to the queue
+<span class="cstat-no" title="statement not covered" >                RequestsQueueService.add(Api, 'searchInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                Api.$promise.then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        endTime = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('success, got data: ', response, 'in ' + (endTime - startTime) + ' ms');</span>
+                    }
+&nbsp;
+                    // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                    RequestsQueueService.cancelAll('searchInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(response.results);</span>
+                }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+                    //@todo log error
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('request failed' + error);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve([]);</span>
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.getObjectColumn = <span class="fstat-no" title="function not covered" >function (dataObject, column) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var filteredData = [];</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(dataObject, <span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (data[column]) {</span>
+<span class="cstat-no" title="statement not covered" >                    filteredData.push(data[column]);</span>
+                }
+&nbsp;
+            });
+<span class="cstat-no" title="statement not covered" >            return filteredData;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.hasChanges = <span class="fstat-no" title="function not covered" >function (sourceOne, sourceTwo, assigned) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var assignedIds = service.getObjectColumn(</span>
+                assigned,
+                'coreId'
+            );
+<span class="cstat-no" title="statement not covered" >            sourceOne = sourceOne.sort();</span>
+<span class="cstat-no" title="statement not covered" >            sourceTwo = sourceTwo.sort();</span>
+<span class="cstat-no" title="statement not covered" >            assignedIds = assignedIds.sort();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!angular.equals(sourceOne, sourceTwo)) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!angular.equals(sourceTwo, assignedIds)) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        };
+&nbsp;
+        /**
+         * Save user institutions.
+         *
+         * @param {Integer} userId
+         * @param {Array} institutionsData
+         * @param {object} primaryInstitutionData
+         * @returns {Promise.boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        service.saveInstitutions = <span class="fstat-no" title="function not covered" >function (userId, institutionsData, primaryInstitutionData)</span></span>
+        {
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer(),</span>
+                institutions = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (!userId || !institutionsData || !primaryInstitutionData) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(false);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    var startTime = new Date().getTime(), endTime;</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (institutionsData.length) {</span>
+<span class="cstat-no" title="statement not covered" >                    institutions = service.getObjectColumn(institutionsData, 'coreId');</span>
+                }
+&nbsp;
+                // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                RequestsQueueService.cancelAll('saveInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var Api = service.getUserModel().update({</span>
+                    id : userId
+                }, {
+                    institutions : institutions,
+                    primaryInstitutionCoreId : primaryInstitutionData.primaryInstitutionCoreId,
+                    primaryInstitutionCoreIdAsString : primaryInstitutionData.primaryInstitutionCoreIdAsString,
+                    primaryInstitutionName : primaryInstitutionData.primaryInstitutionName
+                });
+&nbsp;
+                // add new request to the queue
+<span class="cstat-no" title="statement not covered" >                RequestsQueueService.add(Api, 'saveInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                Api.$promise.then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        endTime = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('success, got data: ', response, 'in ' + (endTime - startTime) + ' ms');</span>
+                    }
+&nbsp;
+                    // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                    RequestsQueueService.cancelAll('saveInstitutions');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(response.modifiedCount === 1);</span>
+                }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+                    //@todo log error
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('request failed' + error);</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(false);</span>
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        };
+&nbsp;
+        /**
+         * Get institutions names by their core ids.
+         *
+         * @param {Array} coreIds
+         * @returns {Promise.Array}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getInstitutionNames = <span class="fstat-no" title="function not covered" >function (coreIds) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var deferred = $q.defer(),</span>
+                names = [];
+&nbsp;
+            // check if core ids are provided
+<span class="cstat-no" title="statement not covered" >            if (!coreIds || !coreIds.length) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(names);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                var cacheKey = coreIds.join(':');</span>
+                // check if in cache
+<span class="cstat-no" title="statement not covered" >                if (typeof service.institutionsNames[cacheKey] !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('serving from cache');</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(service.institutionsNames[cacheKey]);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        var startTime = new Date().getTime(), endTime;</span>
+                    }
+                    // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                    RequestsQueueService.cancelAll('getInstitutionNames');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    var Api = service.getInstitutionNamesByCoreIdsModel().get(</span>
+                        {
+                            'filter[coreId][]': coreIds,
+                            'field[]': ['coreId', 'name']
+                        }
+                    );
+&nbsp;
+                    // add new request to the queue
+<span class="cstat-no" title="statement not covered" >                    RequestsQueueService.add(Api, 'getInstitutionNames');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    Api.$promise.then(<span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                            endTime = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >                            $log.log('success, got data: ', response, 'in ' + (endTime - startTime) + ' ms');</span>
+                        }
+&nbsp;
+                        // cancel currently running requests
+<span class="cstat-no" title="statement not covered" >                        RequestsQueueService.cancelAll('getInstitutionNames');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        service.institutionsNames[cacheKey] = response.results;</span>
+<span class="cstat-no" title="statement not covered" >                        deferred.resolve(response.results);</span>
+                    }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+                        //@todo log error
+<span class="cstat-no" title="statement not covered" >                        if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                            $log.log('request failed' + error);</span>
+                        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        deferred.resolve(names);</span>
+                    });
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .service('InstitutionsUsersListInstitutionsService', [
+            '$resource',
+            '$q',
+            '$log',
+            'constants',
+            'RequestsQueueService',
+            App.services.InstitutionsUsersListInstitutionsService
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../sorter.js"></script>
+</body>
+</html>

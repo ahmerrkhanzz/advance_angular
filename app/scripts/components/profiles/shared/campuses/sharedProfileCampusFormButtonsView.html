@@ -1,0 +1,23 @@
+<div class="col-sm-12">
+    <a class="btn btn-primary pull-right btn-float-fix" ng-if="editMode" ng-class="{'disabled':campusSubmitInProgress}" ng-click="handleUpdateClick()">
+        <i class="fa fa-check-circle"></i>
+        <span>Update</span>
+    </a>
+    
+    <div class="pull-right m-lr-sm btn-float-fix" ng-show="displayDelete">
+        <a class="btn btn-danger btn-float-fix" ng-class="{'disabled':campusSubmitInProgress}" ng-click="handleDeleteClick()">
+            <i class="fa fa-trash"></i>
+            <span>Delete</span>
+        </a>
+    </div>
+
+    <a class="btn btn-primary pull-right btn-float-fix" ng-if="!editMode" ng-class="{'disabled':campusSubmitInProgress}" ng-click="handleCreateClick()">
+        <i class="fa fa-check-circle"></i>
+        <span>Save</span>
+    </a>
+
+    <a class="btn btn-default pull-right btn-float-fix" ng-class="{'disabled':campusSubmitInProgress}" ng-click="handleCancelClick()">
+        <i class="fa fa-ban"></i>
+        <span>Cancel</span>
+    </a>
+</div>

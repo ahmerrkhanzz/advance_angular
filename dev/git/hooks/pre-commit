@@ -1,0 +1,16 @@
+#!/bin/bash
+# get JS files in current commit
+FILES=$(git diff --cached --name-only --diff-filter=ACMR -- *.js **/*.js)
+# check if any JS files commited
+if [[ $FILES ]]; then
+    cd dev || exit 1
+    # run jshint
+    OUTPUT=$(grunt jshint:all)
+    # check if JS hint failed
+    if [[ $OUTPUT == *"Aborted due to warnings"* ]]; then
+        # print out jshint output
+        echo "$OUTPUT"
+        # cancel commit
+        exit 1
+    fi
+fi

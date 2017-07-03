@@ -1,0 +1,18 @@
+<div ng-controller="TmProfileMediaController as TmProfileMediaController">
+    <div upgrade-banner
+         info-block-class="TmProfileMediaController.isRightSidePanelActive() ? 'col-lg-9' : 'col-lg-10'"
+         buttons-block-class="TmProfileMediaController.isRightSidePanelActive() ? 'col-lg-3' : 'col-lg-2'"
+         basic-profile="!tmIsAdvanced ? true : false"
+         upgrade-email="{{upgradeEmailsTo}}"
+         upgrade-click="TmProfileController.toggleUpgradeForm()"></div>
+
+    <div ng-class="tmIsAdvanced ? '': 'modal-overlay-35'">
+        <div wave-spinner class="wave-spinner" ng-show="isMediaReloading"></div>
+        <div ng-if="!isMediaReloading">
+            <div ng-show="TmProfileMediaController.isImagesTabActive()" ng-include src="'/scripts/components/profiles/tm/media/subtabs/images/tmProfileMediaImagesView.html'"></div>
+            <div ng-show="TmProfileMediaController.isVideosTabActive()" ng-include src="'/scripts/components/profiles/tm/media/subtabs/videos/tmProfileMediaVideosView.html'"></div>
+            <div ng-show="TmProfileMediaController.isSocialMediaTabActive()" ng-include src="'/scripts/components/profiles/tm/media/subtabs/socialMedia/tmProfileMediaSocialMediaView.html'"></div>
+            <div ng-show="TmProfileMediaController.isBrochuresTabActive()" ng-include src="'/scripts/components/profiles/tm/media/subtabs/brochures/tmProfileMediaBrochuresView.html'"></div>
+        </div>
+    </div>
+</div>

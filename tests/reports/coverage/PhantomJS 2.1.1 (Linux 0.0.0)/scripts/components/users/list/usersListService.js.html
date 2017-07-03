@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/users/list/usersListService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">scripts/components/users/list/</a> usersListService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.13% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>41/62</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>24/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">46.15% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.13% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>41/62</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {services:{}});
+&nbsp;
+    /**
+     * Service for comun functionality between InstitutionsUsersListService and QsUsersListService
+     */
+    App.services.usersList = function () {
+        var service = {};
+&nbsp;
+        /**
+         * Get contact type name by its handle.
+         *
+         * @param handle
+         * @param contactTypesList
+         * @returns {string}
+         */
+        service.getContactTypeNameByHandle = <span class="fstat-no" title="function not covered" >function (handle, contactTypesList) {</span>
+<span class="cstat-no" title="statement not covered" >            var contactTypeName = '';</span>
+<span class="cstat-no" title="statement not covered" >            if (contactTypesList) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(contactTypesList, <span class="fstat-no" title="function not covered" >function(contactType) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (contactType.handle &amp;&amp; contactType.name &amp;&amp; contactType.handle === handle) {</span>
+<span class="cstat-no" title="statement not covered" >                        contactTypeName = contactType.name;</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return contactTypeName;</span>
+        };
+&nbsp;
+        /**
+         * Format sections list.
+         *
+         * @param {Object} sectionsList
+         * @returns {Array}
+         */
+        service.formatSections = <span class="fstat-no" title="function not covered" >function (sectionsList) {</span>
+<span class="cstat-no" title="statement not covered" >            var flatArray = [],</span>
+                firstElement;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(sectionsList, <span class="fstat-no" title="function not covered" >function (section) {</span></span>
+<span class="cstat-no" title="statement not covered" >                firstElement = true;</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(section.pages, <span class="fstat-no" title="function not covered" >function (page) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    flatArray.push({</span>
+                        'sectionName' : firstElement ? section.name : null,
+                        'pageName' : page.name,
+                        'pageHandle' : section.handle + '.' + page.handle
+                    });
+<span class="cstat-no" title="statement not covered" >                    firstElement = false;</span>
+                });
+            });
+<span class="cstat-no" title="statement not covered" >            return flatArray;</span>
+        };
+&nbsp;
+        /**
+         * Assing sections and pages based on user's roles
+         *
+         * @param {object} userData
+         * @param {object} roleList
+         * @returns {object}
+         */
+        service.updateSectionsAndPages = function (userData, roleList) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (roleList !== 'undefined') {
+                if (userData.roles &amp;&amp;
+                    userData.roles.custom !== 'undefined' &amp;&amp;
+                    !userData.roles.custom
+                ) {
+                    for (var userRole in userData.roles) {
+                        if (userData.roles[userRole]) {
+                            for (var role in roleList) {
+                                <span class="missing-if-branch" title="else path not taken" >E</span>if (roleList[role]) {
+                                    if (roleList[role].roleHandle !== userRole) {
+                                        continue;
+                                    }
+                                    for (var section in roleList[role].sections) {
+                                        <span class="missing-if-branch" title="else path not taken" >E</span>if (roleList[role].sections[section]) {
+                                            userData.accessTo[roleList[role].sections[section]] = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return userData;
+        };
+&nbsp;
+        /**
+         * Select all the role children for those users that have All selected and not all the children selected on load
+         *
+         * @param {object} userData
+         * @param {object} roleList
+         * @returns {object}
+         */
+        service.updateRolesWithAll = function (userData, roleList) {
+            var childrenRolesHandles = null,
+                groupHandle = null;
+&nbsp;
+            for (var userRole in userData.roles) {
+                if (userRole.indexOf("all") !== -1 &amp;&amp;
+                    userData.roles[userRole]
+                ) {
+                    groupHandle = userRole.replace('.all', '');
+                    childrenRolesHandles = service.getChildrenRoles(groupHandle, roleList);
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (childrenRolesHandles) {
+                        for (var childrenRoleHandle in childrenRolesHandles) {
+                            <span class="missing-if-branch" title="else path not taken" >E</span>if (childrenRoleHandle) {
+                                userData.roles[childrenRolesHandles[childrenRoleHandle]] = true;
+                            }
+                        }
+                    }
+                }
+            }
+            return userData;
+        };
+&nbsp;
+        /**
+         * Gets children roles for a given parent (all) role
+         *
+         * @param {string} groupHandle
+         * @param {object} rolesList
+         */
+        service.getChildrenRoles = function (groupHandle, rolesList) {
+            var childrenRoles = [];
+            angular.forEach(rolesList, function (role) {
+&nbsp;
+                if (role.all || role.groupHandle !== groupHandle) {
+                    return false;
+                }
+&nbsp;
+                childrenRoles.push(role.roleHandle);
+            });
+&nbsp;
+            return childrenRoles;
+        };
+&nbsp;
+        /**
+         * Gets parent role for a given child role
+         *
+         * @param {string} groupHandle
+         * @param {object} rolesList
+         */
+        service.getParentRoleHandle = <span class="fstat-no" title="function not covered" >function (groupHandle, rolesList) {</span>
+<span class="cstat-no" title="statement not covered" >            var parentRoleHandle = null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (rolesList) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(rolesList, <span class="fstat-no" title="function not covered" >function (role) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (!role.all || role.groupHandle !== groupHandle) {</span>
+<span class="cstat-no" title="statement not covered" >                        return false;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    parentRoleHandle = role.roleHandle;</span>
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return parentRoleHandle;</span>
+        };
+&nbsp;
+        return service;
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .service('UsersListService', [
+            App.services.usersList
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<script id="ng-table/templates/campus/delete-header.html" type="text/ng-template">
+    <th class="header" ng-if="$column.show(this)">
+        <button type="button" class="btn btn-danger btn-sm" ng-class="{'disabled': isDeleteButtonDisabled()}" ng-click="handleDeleteClick()">
+            <span class="glyphicon glyphicon-trash"></span> {{$column.title(this)}}
+        </button>
+    </th>
+</script>
+<div class="panel-body">
+    <div class="row" ng-controller="CampusesListController as CampusesController">
+        <div class="form-group">
+            <button type="button" class="btn btn-primary" ng-click="handleAddClick()" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                <i class="fa fa-globe"></i>
+                Add Campus
+            </button>
+        </div>
+        <div class="row">
+            <div id="campusesTable" ng-class="showCampusInfoBlock ? 'col-sm-3' : 'col-sm-12'">
+                <div class="ibox float-e-margins">
+                    <display-filtering class="pull-right" columns="hiddenColumns" active="filterActive"></display-filtering>
+
+                    <table class="table table-striped table-bordered table-hover"
+                           ng-show="institution.campus.length"
+                           ng-table-dynamic="tableParams with columns"
+                           show-filter="false">
+                        <tbody ui-sortable="sortableOptions" ng-model="institution.campus">
+
+                        <tr ng-repeat="campus in $data" ng-class="{'active': campus.id == selectedCampusId}">
+                            <td ng-click="col.field === 'delete'? '' : handleDataGridRowClickCampus(campus, false)" ng-repeat="col in $columns">
+                                <input ng-if="col.field === 'delete'" ng-model="campusesToDelete[campus.id]" i-checkbox type="checkbox">
+                                <p ng-if="col.field !== 'delete'">
+                                    {{ campus[col.field] }}
+                                </p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p ng-show="!institution.campus.length && !showCampusInfoBlock" class="text-center text-muted">
+                        List is empty
+                    </p>
+                </div>
+            </div>
+            <div ng-show="showCampusInfoBlock" class="col-sm-9 valuesTable">
+                <div class="ibox block-campus">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="client-detail">
+                                <div class="full-height-scroll scroll-floating-element" full-scroll>
+                                    <div class="row">
+                                        <form name="forms.campusDetailsForm" class="clearfix" ng-class="{submitted:submitted}" novalidate>
+                                            <div class="col-lg-6">
+
+                                                <div class="form-group">
+                                                    <label for="campusName">Campus Name *</label>
+                                                    <input id="campusName" type="text" class="form-control" ng-model="campus.name" ng-required="true" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusAddressLine1">Address Line 1 *</label>
+                                                    <input id="campusAddressLine1" type="text" class="form-control" ng-model="campus.addressLine1" ng-required="true" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusCity">Town / City *</label>
+                                                    <input id="campusCity" type="text" class="form-control" ng-model="campus.city" ng-required="true" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusPostCode">Postcode</label>
+                                                    <input id="campusPostCode" type="text" class="form-control" ng-model="campus.postcode" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusLatitude">Latitude</label>
+                                                    <input id="campusLatitude" type="text" class="form-control" ng-model="campus.latitude" ng-change="coordinatesChanged()" ng-readonly="campus.autoGenerate || InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="full-width">Auto Generate</label>
+                                                    <switch ng-model="campus.autoGenerate" class="green" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"></switch>
+                                                    <span>Use the address to auto generate latitude & longitude values.</span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="full-width">Display In Frontend</label>
+                                                    <switch ng-model="campus.displayInFrontEnd" ng-change="CampusesController.displayOnFrontEndClick()" class="green" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"></switch>
+                                                    <span>If selected, campus will be sent to profile. (Latitude and longitude is required)</span>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-lg-6">
+
+                                                <div class="form-group">
+                                                    <label>Country *</label>
+                                                    <ui-select
+                                                        name="country"
+                                                        ng-model="campus.country"
+                                                        ng-required="true"
+                                                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"
+                                                        theme="bootstrap">
+                                                        <ui-select-match placeholder="Select an Option">{{$select.selected.name}}</ui-select-match>
+                                                        <ui-select-choices 
+                                                            position='down'
+                                                            refresh-delay="1000"
+                                                            repeat="option.countryCode as option in CampusesController.countriesList | filter:$select.search">
+                                                            <div ng-bind-html="option.name | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                        <ui-select-no-choice>
+                                                            Not found
+                                                        </ui-select-no-choice>
+                                                    </ui-select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusAddressLine2">Address Line 2</label>
+                                                    <input id="campusAddressLine2" type="text" class="form-control" ng-model="campus.addressLine2" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusState">State / Province</label>
+                                                    <input id="campusState" type="text" class="form-control" ng-model="campus.state" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="campusLongitude">Longitude</label>
+                                                    <input id="campusLongitude" type="text" class="form-control" ng-model="campus.longitude" ng-change="coordinatesChanged()" ng-readonly="campus.autoGenerate || InstitutionsController.isSimpleDepartment(institution.typeId)">
+                                                </div>
+
+                                                 <div class="form-group">
+                                                    <label class="full-width">Primary Campus</label>
+                                                    <switch id="campusPrimary" ng-model="campus.primary" class="green" ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"></switch>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <a class="btn btn-primary btn-sm btn-block" ng-class="{'disabled':campusSubmitInProgress || InstitutionsController.isSimpleDepartment(institution.typeId)}" ng-click="handleCampusSubmit()">{{getMode() ? 'Update' : 'Save'}}</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <section id="map" ng-controller="CampusesListController" class="form-group">
+                                                <div id="campusMap" class="h-166"></div>
+                                            </section>
+                                            <p class="text-center">
+                                                <button type="button" class="btn btn-default btn-xs"
+                                                        ng-click="CampusesController.refreshMap()"
+                                                        ng-disabled="refreshMapInProgress">Refresh Map</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

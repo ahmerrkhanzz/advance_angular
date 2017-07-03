@@ -1,0 +1,31 @@
+<div class="ibox">
+    <div class="ibox-title m-t-xl">
+        <h5>{{TmProfileProgramFormController.isSchoolUser ? 'Request to Add a Program' : 'Add Program'}}</h5>
+        <div class="ibox-tools">
+            <a class="close-link" ng-click="TmProfileProgramFormController.closeAddProgramForm()">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">        
+        <form class="form-horizontal" name="forms.addProgramForm" novalidate autocomplete="off">
+            <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileAddProgramFormDetailsView.html'"></div>
+            <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileAddProgramFormStatisticsView.html'"></div>
+            <div ng-include src="'/scripts/components/profiles/tm/programs/tmProfileAddProgramFormCampusView.html'"></div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group" ng-class="{'locked': TmProfileProgramFormController.isProgramSubmitDisabled()}">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary pull-right"
+                       ng-click="TmProfileProgramFormController.handleProgramCreateClick()">
+                        <i class="fa fa-check-circle"></i>
+                        <span>{{TmProfileProgramFormController.isSchoolUser ? 'Send' : 'Save'}}</span>
+                    </a>
+                    <a class="btn btn-default pull-right" ng-click="TmProfileProgramFormController.closeAddProgramForm()">
+                        <i class="fa fa-ban"></i>
+                        <span>Cancel</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

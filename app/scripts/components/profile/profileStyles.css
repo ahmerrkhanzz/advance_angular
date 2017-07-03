@@ -1,0 +1,22 @@
+.page-profile .read-only {
+    border-color: transparent;
+    cursor: default;
+    background-color: transparent;
+}
+.page-profile .input-status {
+    position: absolute;
+    margin-top: -24px;
+    right: 5px;
+}
+.page-profile .dropzone .dz-preview .dz-image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.page-profile .dropzone .dz-preview.dz-image-preview {
+    background: none;
+    margin: 0;
+}
+.page-profile .password-box .label-container {
+    padding: 0;
+}

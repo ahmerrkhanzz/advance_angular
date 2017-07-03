@@ -1,0 +1,179 @@
+{
+  "id": "574866e9c02818fa8c38f10a",
+  "name": "Hult International Business School",
+  "localName": "",
+  "coreId": 2095,
+  "coreIdAsString": "2095",
+  "parentCoreId": null,
+  "parentCoreIdAsString": null,
+  "parentName": null,
+  "typeId": 2,
+  "countryCode": "US",
+  "filemakerId": "21",
+  "nids": {
+    "ug": "2144",
+    "pg": "222505",
+    "overview": "294653",
+    "tm": "8266"
+  },
+  "enabled": {
+    "ug": null,
+    "pg": true,
+    "tm": true
+  },
+  "createdAt": null,
+  "createdBy": null,
+  "modifiedAt": 1464790724000,
+  "modifiedBy": "1",
+  "deleted": false,
+  "active": true,
+  "businessSchool": true,
+  "intermediateProfile": false,
+  "hasNoDepartments": false,
+  "drupalTmRegionId": 536,
+  "drupalTuRegionId": 3,
+  "campus": [
+    {
+      "id": "5745877187e4c303915c203b",
+      "name": "Boston",
+      "addressLine1": "Hult International Business School",
+      "addressLine2": "1 Education Street",
+      "addressLine3": null,
+      "city": "Cambridge",
+      "country": "US",
+      "postcode": "02141",
+      "state": null,
+      "latitude": "42.3611",
+      "longitude": "-71.092",
+      "primary": true,
+      "deleted": false
+    },
+    {
+      "id": "5745877187e4c303915c203c",
+      "name": "London",
+      "addressLine1": "46-47 Russell Square",
+      "addressLine2": "Bloomsbury",
+      "addressLine3": null,
+      "city": "London",
+      "country": "GB",
+      "postcode": "WC1B 4JP",
+      "state": null,
+      "latitude": "51.519205",
+      "longitude": "-0.124262",
+      "primary": null,
+      "deleted": false
+    },
+    {
+      "id": "5745877187e4c303915c203d",
+      "name": "Dubai",
+      "addressLine1": "Dubai Internet City ",
+      "addressLine2": "PO Box 502988",
+      "addressLine3": null,
+      "city": "Dubai",
+      "country": "AE",
+      "postcode": null,
+      "state": null,
+      "latitude": "25.0976119",
+      "longitude": "55.163109",
+      "primary": null,
+      "deleted": false
+    },
+    {
+      "id": "5745877187e4c303915c203e",
+      "name": "Shanghai",
+      "addressLine1": "4F, 666 Fuzhou Road",
+      "addressLine2": "Jinling Haixin Building",
+      "addressLine3": null,
+      "city": "Shanghai",
+      "country": "CN",
+      "postcode": "20001",
+      "state": null,
+      "latitude": null,
+      "longitude": null,
+      "primary": null,
+      "deleted": false
+    },
+    {
+      "id": "5745877187e4c303915c203f",
+      "name": "London",
+      "addressLine1": "37-38 John Street",
+      "addressLine2": null,
+      "addressLine3": null,
+      "city": "London",
+      "country": "GB",
+      "postcode": "WC1N 2AT",
+      "state": null,
+      "latitude": "51.5212329",
+      "longitude": "-0.1152008",
+      "primary": null,
+      "deleted": false
+    },
+    {
+      "id": "5745877187e4c303915c2040",
+      "name": "San Francisco",
+      "addressLine1": "1355 Sansome Street, San Francisco",
+      "addressLine2": null,
+      "addressLine3": null,
+      "city": "San Francisco",
+      "country": "US",
+      "postcode": "94133",
+      "state": null,
+      "latitude": "37.8027159",
+      "longitude": "-122.403427",
+      "primary": null,
+      "deleted": false
+    }
+  ],
+  "subscriptions": {
+    "pg": {
+      "subscribed": true,
+      "advanced": null,
+      "startDate": null,
+      "endDate": null
+    },
+    "tm": {
+      "subscribed": true,
+      "advanced": true,
+      "startDate": "1464303600000",
+      "endDate": "1495925999999"
+    },
+    "all": {
+      "subscribed": true
+    },
+    "stars": {
+      "subscribed": null
+    },
+    "aw": {
+      "subscribed": null
+    },
+    "brics": {
+      "subscribed": null
+    },
+    "aur": {
+      "subscribed": null
+    },
+    "eeca": {
+      "subscribed": null
+    }
+  },
+  "groupMembers": null,
+  "isActive": "Yes",
+  "nidUg": "2144",
+  "nidPg": "222505",
+  "nidOverview": "294653",
+  "nidTm": "8266",
+  "enabledUg": "Yes",
+  "enabledPg": "Yes",
+  "enabledTm": "Yes",
+  "typeName": "Top Level Institution",
+  "subscriptionsAsArray": [
+    "Undergraduate (advanced)",
+    "Postgraduate (advanced)",
+    "MBA (advanced)",
+    "All",
+    "QS Graduate Employability Rankings",
+    "Latin American University Rankings"
+  ],
+  "subscriptionsAsString": "Undergraduate (advanced), Postgraduate (advanced), MBA (advanced), All, QS Graduate Employability Rankings, Latin American University Rankings",
+  "$$hashKey": "object:2181"
+}

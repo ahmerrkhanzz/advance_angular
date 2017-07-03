@@ -1,0 +1,29 @@
+<div class="wrapper wrapper-content animated fadeInDown" ng-controller="SharedProfileController as SharedProfileController">
+    <div class="row">
+        <div ng-class="isRightSidePanelActive() ? 'col-sm-8' : 'col-sm-12'">
+            <div class="tabs-container" ng-class="{'modal-overlay': loadInProgress}">
+                <uib-tabset active="activeTab">
+                    <uib-tab heading="General">
+                        <div class="panel-body">
+                            <div ng-include="'/scripts/components/profiles/shared/general/sharedProfileGeneralView.html'"></div>
+                        </div>
+                    </uib-tab>
+
+                    <uib-tab heading="Campuses">
+                        <div class="panel-body">
+                            <div ng-include="'/scripts/components/profiles/shared/campuses/sharedProfileCampusesView.html'"></div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+
+        <div ng-show="isGeneralTabActive() && showGeneralHistoryBlock" class="col-sm-4">
+            <div ng-include="'/scripts/components/profiles/shared/general/sharedProfileGeneralHistoryView.html'"></div>
+        </div>
+
+        <div ng-show="isCampusesTabActive() && showCampusForm" class="col-sm-4" fixed-element-while-scrolling="#campusesTable">
+            <div ng-include="'/scripts/components/profiles/shared/campuses/sharedProfileCampusFormView.html'"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+/* PUBLISH TAB CSS STYLE */
+.publish .tab-body {
+  padding-top: 20px;
+}
+
+.publish .tab-body .row {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+.publish .meter .meter {
+  flex: 0 0 auto;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  width: 33.3334%;
+}
+
+.publish .meter .panel-heading {
+  background: #F5F5F5;
+}
+
+.publish .meter .panel-heading h5 {
+  line-height: 20px;
+  margin: 0;
+}
+
+.publish .meter .panel-heading h5 span {
+  vertical-align: middle;
+}
+
+.publish .meter .panel-body {
+  background: #F5F5F5;
+  border: none;
+}
+
+.publish .meter .btn-default {
+  background: #FFFFFF;
+  color: #888888;
+}
+
+.publish .meter .btn-block {
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.publish .meter .response {
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 10px;
+  padding: 0 0 10px;
+  color: #eb5c5e;
+}
+
+.publish .meter .response p {
+  margin: 0;
+}
+
+.publish-logs .panel-heading {
+  color: #666666;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
+.publish-logs .panel-body {
+  padding: 5px 10px;
+}
+
+.publish-logs .list-unstyled {
+  margin: 0 -10px;
+}
+
+.publish-logs .list-unstyled li {
+  border-bottom: 1px solid #dddddd;
+  color: #888888;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 5px 65px 5px 5px;
+  position: relative;
+}
+
+.publish-logs .list-unstyled li:last-child {
+  border: none;
+}
+
+.publish-logs .list-unstyled .status {
+  display: inline-block;
+  text-align: center;
+  width: 20px;
+}
+
+.publish-logs .list-unstyled .status .fa-spin {
+  width: 20px;
+}
+
+.publish-logs .list-unstyled .program {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.publish-logs .list-unstyled .program .icon {
+  margin-left: 2px;
+}
+
+.publish-logs .list-unstyled .program .icon-star {
+  height: 15px;
+  width: 15px;
+}
+
+.publish-logs .list-unstyled .program .icon-star > i {
+  height: 15px;
+  width: 15px;
+}
+
+.publish-logs .list-unstyled .program .icon-star > i:after {
+  background-size: 20px auto;
+  left: -3px;
+  top: 1px;
+}
+
+.publish-logs .list-unstyled .time {
+  color: #959595;
+  font-size: 10px;
+}
+
+.publish-logs .list-unstyled .text-success {
+  color: #1DC5A3;
+}
+
+.publish-logs .list-unstyled .text-info {
+  color: #1C84C6;
+}
+
+.resubscribe .m-t-xl {
+  margin-bottom: -15px;
+}
+
+.subscribe {
+  position: relative;
+}
+
+.subscribe p {
+  margin-bottom: 0;
+}

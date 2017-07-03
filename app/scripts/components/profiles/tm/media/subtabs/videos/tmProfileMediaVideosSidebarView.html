@@ -1,0 +1,61 @@
+<div class="ibox" ng-class="getSelected() === 2 ? 'selected' : 'collapsed'" ng-controller="TmMediaVideosSidebarController as TmMediaVideosSidebarController">
+    <div class="ibox-title clickable" ng-click="setSelected(2)">
+        <h5>Videos ({{getVideoItems().length}})</h5>
+        <div class="ibox-tools">
+            <a>
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="addForm">
+            <form class="form-horizontal" name="forms.formVideo" id="form-video" novalidate>
+                <div class="alert alert-info">
+                    <p>
+                        <i class="fa fa-info-circle"></i>
+                        <span>Please add a YouTube link. Shortened video links with .be extension are not allowed.</span><br />
+                        <span>Video title & description will be retrieved from YouTube.</span><br />
+                        <span>Drag and drop videos from left to right to change the order.</span>
+                    </p>
+                </div>
+                <div>
+                    <div class="form-group" ng-class="{'has-errors': getHasErrors()}">
+                        <label class="control-label col-sm-3 col-md-2" for="url">
+                            <span>URL *</span>
+                        </label>
+                        <div class="col-sm-9 col-md-10">
+                            <input name="url" id="url" class="form-control"
+                                   ng-required="required"
+                                   focus-if="isHighlighted"
+                                   focus-delay="250"
+                                   type="url"
+                                   placeholder="http://"
+                                   ng-model="selectedVideo.url"
+                                   ng-pattern="youtubeUrlPattern"
+                                   ng-keyup="TmMediaVideosSidebarController.onKeyUp($event)"
+
+                                   custom-popover
+                                   popover-html="Add a valid YouTube link"
+                                   popover-placement="left"
+                                   popover-trigger="manual"
+                                   popover-visibility="{{getHasErrors() ? true : false}}"
+                                   ng-focus="setHasErrors(false)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary pull-right" ng-click="saveVideoForm(selectedVideo)">
+                                <i class="fa fa-check-circle"></i>
+                                <span>{{isEditMode() ? 'Update' : 'Save'}}</span>
+                            </button>
+                            <button class="btn btn-default pull-right" ng-click="clearVideoForm(selectedVideo)">
+                                <i class="fa fa-ban"></i>
+                                <span>Clear</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

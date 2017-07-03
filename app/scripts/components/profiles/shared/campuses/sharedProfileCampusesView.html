@@ -1,0 +1,53 @@
+<script id="ng-table/templates/campus/delete-header.html" type="text/ng-template">
+    <th class="header" ng-if="$column.show(this)">
+        <button type="button" class="btn btn-danger btn-sm" ng-class="{'disabled': isDeleteButtonDisabled()}" ng-click="handleDeleteClick()">
+            <span class="glyphicon glyphicon-trash"></span> {{$column.title(this)}}
+        </button>
+    </th>
+</script>
+<div ng-controller="SharedProfileCampusesController as ProfileCampusesController">
+    <!-- START CAMPUS TAB SECTION -->
+    <div class="campus-tab">
+        <div class="tab-header">
+            <div class="btn-toggle" ng-show="isQsUser">
+                <switch class="green"
+                    ng-disabled="campusesInEventsInclusionDisbaled"
+                    ng-model="sharedProfile.campusesOnEvents"
+                    ng-change="!campusesInEventsInclusionDisbaled ? handleIncludeInEventsClick() : null">
+                </switch>
+                <span class="switch-text">Include all campuses in events page</span>
+            </div>
+            <button class="btn btn-primary pull-right" type="button" ng-click="handleAddClick()">
+                <i class="fa fa-plus"></i>
+                <span>Add Campus</span>
+            </button>
+        </div>
+        <div class="tab-body">
+            <div id="campusesTable">
+                <div class="ibox float-e-margins scroll-horizontal hide-vertical-overflow">
+                    <table ng-table-dynamic="tableParams with columns" show-filter="false" class="table table-striped table-bordered table-hover pointer">
+                        <tbody ui-sortable="sortableOptions" ng-model="$data">
+                            <tr ng-repeat="campus in $data track by $index" ng-class="{'active': campus.id == selectedCampusId}">
+                                <td ng-click="col.field === 'delete'? '' : handleDatagridRowClick(campus)" ng-repeat="col in $columns">
+                                    <input ng-if="col.field === 'delete'" ng-model="campusesToDelete[campus.id]" i-checkbox type="checkbox">
+                                    <p ng-if="col.field !== 'delete'">
+                                        {{ col.field === 'createdAt' && campus[col.field] ? (campus[col.field] | date:'medium') : campus[col.field] }}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    showing {{ tableParams.total() }} entries out of {{  tableParams.totalEntries }}
+                </div>
+                <div id="mapContainer" class="visibility" ng-class="displayMapBlock ? 'visibility-visible' : 'visibility-hidden'">
+                    <h1>Locations</h1>
+                    <div id="map">
+                        <div id="campusMap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div><!-- END CAMPUS TAB SECTION -->
+</div>
+

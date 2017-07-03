@@ -1,0 +1,78 @@
+<div class="panel-body">
+    <div class="row">
+        <div class="col-lg-6 block-permissions">
+            <p>
+                <strong>Departments / Roles</strong>
+            </p>
+            <div ng-repeat="(groupName, roles) in UsersList.rolesList | groupBy: 'groupName'">
+                <label>{{groupName}}</label>
+                <div ng-repeat="role in roles" class="permission-row">
+                    <switch ng-model="user.roles[role.roleHandle]"
+                            ng-disabled="role.roleHandle !== 'custom' && user.roles.custom"
+                            name="{{role.roleHandle}}"
+                            class="{{role.roleHandle=='custom' ? 'red': 'green'}}"
+                            ng-change="handleRoleClick(role)"
+                    ></switch>{{role.roleName}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div>
+                <p>
+                    <strong>Assign Pages</strong>
+                </p>
+
+                <div class="table-responsive panel">
+                    <div class="clickable panel-heading panel-primary-light" ng-click="toggleClientSections()">
+                        Clients <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showClientSections, 'glyphicon-chevron-right': !showClientSections}"></i>
+                    </div>
+                    <table ng-show="showClientSections" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Page</th>
+                            <th>Assign</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(key, page) in UsersList.clientSectionsList">
+                            <td>{{page.sectionName}}</td>
+                            <td>{{page.pageName}}</td>
+                            <td>
+                                <input i-checkbox type="checkbox" name="{{page.pageHandle}}" ng-model="user.accessTo[page.pageHandle]" ng-change="activateCustomRole()" />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="clickable panel-heading panel-primary-light" ng-click="toggleQsSections()">
+                        QS Staff <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': showQsSections, 'glyphicon-chevron-right': !showQsSections}"></i>
+                    </div>
+                    <table ng-show="showQsSections" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Section</th>
+                            <th>Page</th>
+                            <th>Assign</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="(key, page) in UsersList.qsSectionsList">
+                            <td>{{page.sectionName}}</td>
+                            <td>{{page.pageName}}</td>
+                            <td>
+                                <input i-checkbox type="checkbox" name="{{page.pageHandle}}"
+                                       ng-model="user.accessTo[page.pageHandle]"
+                                       ng-change="activateCustomRole()"
+                                       ng-disabled="{{page.disabled}}"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a class="btn btn-primary btn-sm btn-block" ng-class="{'disabled':permissionsSubmitInProgress}" ng-click="handlePermissionsSubmit()">Update</a>
+            </div>
+        </div>
+    </div>
+</div>

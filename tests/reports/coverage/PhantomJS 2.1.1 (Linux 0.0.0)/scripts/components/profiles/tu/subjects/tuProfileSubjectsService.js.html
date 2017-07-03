@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tu/subjects/tuProfileSubjectsService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tu/subjects/</a> tuProfileSubjectsService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.1% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/82</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.35% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/46</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/82</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {services:{}});
+&nbsp;
+    App.services.TuProfileSubjectsService = <span class="fstat-no" title="function not covered" >function ($resource, $q, $log, constants) {</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            overviewData : null,
+            institutionData: null,
+            subjects : null,
+            deferred : {
+                getOverviewData: null,
+                getInstitutionData: null,
+                getSubjects: null
+            }
+        };
+&nbsp;
+        /**
+         * Get subjects update API endpoint.
+         *
+         * @returns {$resource}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getTuSubjectsModel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(constants.api.institutions.url + '/v1/tu-profile/:id', null, {</span>
+                update: { method:'PATCH' }
+            });
+        };
+&nbsp;
+        /**
+         * Call subjects API
+         */
+<span class="cstat-no" title="statement not covered" >        service.getSubjectsModel = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $resource(constants.api.institutions.url + '/v1/list/subjects?sorting[groupName]=asc');</span>
+        };
+&nbsp;
+        /**
+         * Fill one object keys with other object values.
+         *
+         * @param {Object} filters
+         * @param {Object} object
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.filterObject = <span class="fstat-no" title="function not covered" >function (filters, object) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var filteredObject = angular.copy(filters);</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(filters, <span class="fstat-no" title="function not covered" >function (value, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (value &amp;&amp; typeof value === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >                    angular.forEach(value, <span class="fstat-no" title="function not covered" >function (subValue, subKey) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (subValue === null &amp;&amp; object[key][subKey]) {</span>
+<span class="cstat-no" title="statement not covered" >                            filteredObject[key][subKey] = object[key][subKey];</span>
+                        }
+                    });
+                } else <span class="cstat-no" title="statement not covered" >if (value === null &amp;&amp; object[key]) {</span>
+<span class="cstat-no" title="statement not covered" >                    filteredObject[key] = object[key];</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return filteredObject;</span>
+        };
+&nbsp;
+        /**
+         * Get subjects list.
+         *
+         * @returns {Promise}
+         */
+<span class="cstat-no" title="statement not covered" >        service.getSubjects = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // process already running
+<span class="cstat-no" title="statement not covered" >            if (!service.deferred.getSubjects) {</span>
+<span class="cstat-no" title="statement not covered" >                service.deferred.getSubjects = $q.defer();</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                return service.deferred.getSubjects.promise;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var deferred = service.deferred.getSubjects;</span>
+&nbsp;
+            // check if data exists in cache
+<span class="cstat-no" title="statement not covered" >            if (service.roles) {</span>
+<span class="cstat-no" title="statement not covered" >                deferred.resolve(service.roles);</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                var SubjectsModel = service.getSubjectsModel();</span>
+<span class="cstat-no" title="statement not covered" >                SubjectsModel.get(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var groupedSubjects = {};</span>
+<span class="cstat-no" title="statement not covered" >                    if (data &amp;&amp; data.results) {</span>
+                        // convert to groups
+<span class="cstat-no" title="statement not covered" >                        angular.forEach(data.results, <span class="fstat-no" title="function not covered" >function (subject) {</span></span>
+<span class="cstat-no" title="statement not covered" >                            if (!groupedSubjects[subject.groupName]) {</span>
+<span class="cstat-no" title="statement not covered" >                                groupedSubjects[subject.groupName] = [];</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            groupedSubjects[subject.groupName].push(subject);</span>
+                        });
+                    }
+<span class="cstat-no" title="statement not covered" >                    service.subjects = groupedSubjects;</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(service.subjects);</span>
+<span class="cstat-no" title="statement not covered" >                    deferred = null;</span>
+                }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+                    //@todo log error
+<span class="cstat-no" title="statement not covered" >                    if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                        $log.log('request failed' + error);</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    service.subjects = [];</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.resolve(service.subjects);</span>
+<span class="cstat-no" title="statement not covered" >                    deferred = null;</span>
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return deferred.promise;</span>
+        };
+&nbsp;
+        /**
+         * Format subjects to &lt;handleName&gt;:&lt;bool&gt; key value pairs.
+         *
+         * @param {Object} subjects
+         * @returns {Object}
+         */
+<span class="cstat-no" title="statement not covered" >        service.formatSubjects = <span class="fstat-no" title="function not covered" >function (subjects, justHandles) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var formattedSubjects = {};</span>
+<span class="cstat-no" title="statement not covered" >            justHandles = justHandles || false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (justHandles) {</span>
+<span class="cstat-no" title="statement not covered" >                angular.forEach(subjects, <span class="fstat-no" title="function not covered" >function (assigned, subjectHandle) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (assigned) {</span>
+<span class="cstat-no" title="statement not covered" >                        formattedSubjects[subjectHandle] = subjectHandle;</span>
+                    }
+                });
+&nbsp;
+            } else {
+<span class="cstat-no" title="statement not covered" >                var subjectKey;</span>
+<span class="cstat-no" title="statement not covered" >                for (subjectKey in subjects) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (isNaN(subjectKey)) {</span>
+<span class="cstat-no" title="statement not covered" >                        return subjects;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        formattedSubjects[subjects[subjectKey]] = true;</span>
+                    }
+                }
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return formattedSubjects;</span>
+        };
+&nbsp;
+        /**
+         * Submit subjects tab data.
+         *
+         * @param {Object} profileData
+         * @returns {Promise}
+         */
+<span class="cstat-no" title="statement not covered" >        service.saveSubjectsTab = <span class="fstat-no" title="function not covered" >function (profileData) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var TuSubjectsModel = service.getTuSubjectsModel(),</span>
+                dataToUpdate = {
+                    ugSubjects : profileData.ugSubjects,
+                    pgSubjects : profileData.pgSubjects,
+                    hasPhdSubjects : profileData.hasPhdSubjects
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (dataToUpdate.ugSubjects) {</span>
+<span class="cstat-no" title="statement not covered" >                dataToUpdate.ugSubjects = service.formatSubjects(dataToUpdate.ugSubjects, true);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (dataToUpdate.pgSubjects) {</span>
+<span class="cstat-no" title="statement not covered" >                dataToUpdate.pgSubjects = service.formatSubjects(dataToUpdate.pgSubjects, true);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return TuSubjectsModel.update(</span>
+                {id: profileData.id},
+                dataToUpdate
+            ).$promise.then(<span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    $log.log('success, got data: ', data);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }, <span class="fstat-no" title="function not covered" >function (error) {</span>
+                //@todo log error
+<span class="cstat-no" title="statement not covered" >                if (constants.dev) {</span>
+<span class="cstat-no" title="statement not covered" >                    $log.log('request failed' + error);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        service.splitObject = <span class="fstat-no" title="function not covered" >function (inputObject, size) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var index = 0,</span>
+                chunks = {},
+                inChunks = [];
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            angular.forEach(inputObject, <span class="fstat-no" title="function not covered" >function (value, key) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (index === size) {</span>
+<span class="cstat-no" title="statement not covered" >                    index = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    chunks = {};</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (index === size - 1) {</span>
+<span class="cstat-no" title="statement not covered" >                    inChunks.push(chunks);</span>
+                }
+<span class="cstat-no" title="statement not covered" >                chunks[key] = value;</span>
+<span class="cstat-no" title="statement not covered" >                index++;</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return inChunks;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .service('TuProfileSubjectsService', [
+            '$resource',
+            '$q',
+            '$log',
+            'constants',
+            App.services.TuProfileSubjectsService
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

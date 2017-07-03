@@ -1,0 +1,68 @@
+<div  class="wrapper wrapper-content animated fadeInRight page-institution" ng-controller="DepartmentOverviewController as DepartmentOverviewController">
+    <div class="row">
+        <div id="departmentOverview" ng-class="DepartmentOverviewController.isRightSidePanelActive() ? 'col-sm-8' : 'col-sm-12'">
+            <!-- SECTION -->
+            <div class="section">
+              <!-- SECTION HEADER -->
+              <div class="section-header">
+                <!-- Institution switch for QS users -->
+                <div class="search-dropdown pull-left">
+                    <ui-select
+                        ng-model="DepartmentOverviewController.institution.selected"
+                        theme="bootstrap"
+                        ng-change="DepartmentOverviewController.handleSearchInstitutionClick(DepartmentOverviewController.institution.selected)">
+                        <ui-select-match placeholder="Institution search...">
+                            <i class="fa fa-building"></i>
+                            <span>{{$select.selected.name}}</span>
+                        </ui-select-match>
+                        <ui-select-choices
+                          refresh-delay="500"
+                          refresh="DepartmentOverviewController.searchInstitution($select.search)"
+                          position="down"
+                          repeat="option in DepartmentOverviewController.institutionsList | filter: $select.search">
+                          <div class="test" ng-bind-html="option.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                    <div class="spinner" ng-show="DepartmentOverviewController.searchInProgress" wave-spinner></div>
+                </div>
+
+                <button class="btn btn-primary pull-right"
+                        ng-disabled="DepartmentOverviewController.isAddButtonDisabled()"
+                        ng-click="handleAddDepartmentClick()">
+                    <i class="fa fa-plus"></i>
+                    <span>Add Department</span>
+                </button>
+              </div><!-- /SECTION HEADER -->
+
+              <!-- SECTION BODY -->
+              <div class="section-body">
+                <div id="departmentsTable" ng-class="{'locked': !DepartmentOverviewController.isInstitutionSelected()}">
+                    <div wave-spinner class="wave-spinner" ng-show="DepartmentOverviewController.isDatagridReloading || !isDatagridRendered"></div>
+
+                    <div ng-if="!DepartmentOverviewController.isDatagridReloading && gridOptions">
+                        <ui-grid-info ng-if="!DepartmentOverviewController.isRightSidePanelActive()"></ui-grid-info>
+                        <div class="grid"
+                           ui-grid="gridOptions"
+                           ui-grid-draggable-rows
+                           ui-grid-selection
+                           ui-grid-resize-columns
+                           ui-grid-auto-resize>
+                        </div>
+                    </div>
+                </div>
+              </div><!-- /SECTION BODY -->
+            </div><!-- /SECTION -->
+        </div>
+
+        <div id="departmentOverviewForm">
+          <div ng-show="showDepartmentEditForm || showDepartmentAddForm"
+            id="departmentBlockPanel"
+            fixed-element-while-scrolling="#departmentsTable"
+            class="col-sm-4"
+            ng-controller="DepartmentOverviewFormController as DepartmentFormController">
+            <div class="department-form" ng-show="showDepartmentEditForm" ng-include src="'/scripts/components/profiles/tu/departments/tuProfileEditDepartmentFormView.html'"></div>
+            <div class="department-form" ng-show="showDepartmentAddForm" ng-include src="'/scripts/components/profiles/tu/departments/tuProfileAddDepartmentFormView.html'"></div>
+          </div>
+        </div>
+    </div>
+</div>

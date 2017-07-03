@@ -1,0 +1,52 @@
+<div class="subject-tab" ng-controller="TuProfileSubjectsController as SubjectsController">
+    <form name="forms.subjectsForm">
+        <div class="tab-header">
+            <div class="btn-toggle">
+                <switch class="green" ng-model="tuProfile.hasPhdSubjects"></switch>
+                <span>Do you do PhD for any of the subjects selected below?</span>
+            </div>
+            <a class="btn btn-primary pull-right" ng-class="{'disabled': subjectsTabSubmitInProgress}" ng-click="handleSubjectTabSubmit()">
+                <i class="fa fa-check-circle"></i>
+                <span>Update</span>
+            </a>
+        </div>
+        <div class="tab-body">
+            <div wave-spinner class="wave-spinner" ng-show="isDatagridReloading"></div>
+            <div class="col-wrap">
+                <div class="col" ng-repeat="(index, subjectsChunk) in SubjectsController.subjects">
+                    <div ng-repeat="(groupName, groupSubjects) in subjectsChunk">
+                        <h4 class="title">
+                            <div class="name">
+                                <span>{{groupName}}</span>
+                            </div>
+                            <div class="program">
+                                <span>
+                                    UG
+                                    <span>/</span>
+                                    PG
+                                </span>
+                            </div>
+                        </h4>
+
+                        <div class="subject" ng-repeat="subject in groupSubjects | orderBy:'name'">
+                            <div class="name">
+                                <span>{{subject.name}}</span>
+                            </div>
+                            <div class="program">
+                                <input i-checkbox type="checkbox" ng-model="tuProfile.ugSubjects[subject.handle]" />
+                                <input i-checkbox type="checkbox" ng-model="tuProfile.pgSubjects[subject.handle]" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-footer">
+                <a class="btn btn-primary pull-right" ng-class="{'disabled': subjectsTabSubmitInProgress}" ng-click="handleSubjectTabSubmit()">
+                    <i class="fa fa-check-circle"></i>
+                    <span>Update</span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

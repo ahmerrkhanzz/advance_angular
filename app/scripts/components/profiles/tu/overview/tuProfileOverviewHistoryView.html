@@ -1,0 +1,93 @@
+<div class="ibox">
+    <div class="ibox-title m-t-xl">
+        <h5>History Log <small>showing last {{historyLog.totalReturned}} records of {{historyLog.total}}</small></h5>
+        <div class="ibox-tools">
+            <a class="close-link" ng-click="toggleHistory(false)">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="ibox-content">
+        <div wave-spinner="" ng-show="fetchingHistoryLog()"></div>
+
+        <p class="text-muted text-center" ng-show="!fetchingHistoryLog() && !historyLog.total">
+            History log is empty
+        </p>
+
+        <div ng-show="!fetchingHistoryLog()" ng-repeat="log in historyLog.log">
+            <ul class="list-unstyled list-history break-word">
+                <li ng-if="log.modifiedAt">
+                    <span class="bold">Modified on:</span>
+                    <spna>{{log.modifiedAt| date:'medium'}}</spna>
+                </li>
+                <li ng-if="log.modifiedByFullName">
+                    <span class="bold">Submitted by:</span>
+                    <spna>{{log.modifiedByFullName}}</spna>
+                </li>
+                <li ng-show="!log.advanced">
+                    <span class="bold">Basic Description:</span>
+                    <spna>
+                        {{log.basicMasterOverview | htmlToPlaintext}}
+                        {{log.basicUgOverview | htmlToPlaintext}}
+                        {{log.basicPgOverview | htmlToPlaintext}}
+                    </spna>
+                </li>
+                <li ng-show="log.advanced">
+                    <span class="bold">Advanced Description:</span>
+                    <spna>
+                        {{log.advancedMasterOverview | htmlToPlaintext}}
+                        {{log.advancedUgOverview | htmlToPlaintext}}
+                        {{log.advancedPgOverview | htmlToPlaintext}}
+                    </spna>
+                </li>
+                <li ng-show="log.advanced">
+                    <span class="bold">University Website:</span>
+                    <spna>
+                        <a ng-show="log.masterWebsiteUrl" href="{{log.masterWebsiteUrl}}" target="_blank">{{log.masterWebsiteUrl}}</a>
+                        <a ng-show="log.ugWebsiteUrl" href="{{log.ugWebsiteUrl}}" target="_blank">{{log.ugWebsiteUrl}}</a>
+                        <a ng-show="log.pgWebsiteUrl" href="{{log.pgWebsiteUrl}}" target="_blank">{{log.pgWebsiteUrl}}</a>
+                    </spna>
+                </li>
+                <li ng-show="log.advanced">
+                    <div ng-show="!TopUniversitiesController.isRequestInfoTypeUrl(log)">
+                        <span class="bold">Request info - Email:</span>
+                        <span>
+                            {{log.masterRequestInfoEmail}}
+                            {{log.ugRequestInfoEmail}}
+                            {{log.pgRequestInfoEmail}}
+                        </span>
+                    </div>
+                    <div ng-show="TopUniversitiesController.isRequestInfoTypeUrl(log)">
+                        <span class="bold">Request info - Title:</span>
+                        <span>
+                            {{log.masterRequestInfoUrlTitle}}
+                            {{log.ugRequestInfoUrlTitle}}
+                            {{log.pgRequestInfoUrlTitle}}
+                        </span>
+                        
+                        <br>
+                        
+                        <span class="bold">Request info - URL:</span>
+                        <a ng-show="log.masterRequestInfoUrl" href="{{log.masterRequestInfoUrl}}" target="_blank">{{log.masterRequestInfoUrl}}</a>
+                        <a ng-show="log.ugRequestInfoUrl" href="{{log.ugRequestInfoUrl}}" target="_blank">{{log.ugRequestInfoUrl}}</a>
+                        <a ng-show="log.pgRequestInfoUrl" href="{{log.pgRequestInfoUrl}}" target="_blank">{{log.pgRequestInfoUrl}}</a>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="separator dashed"></div>
+
+        </div>
+
+        <div class="row" ng-show="handleHistoryLogVisibility()">
+            <div wave-spinner="" ng-show="fetchingMoreHistoryLog()"></div>
+            <div class=" col-lg-8 col-lg-offset-2">
+                <a class="btn btn-primary btn-block" ng-click="handleLoadMoreHistoryLog()" ng-disabled="fetchingMoreHistoryLog()">
+                    Load more
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

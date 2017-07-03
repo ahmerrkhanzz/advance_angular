@@ -1,0 +1,24 @@
+<div ng-controller="TmMediaSocialMediasController">
+    <h3 class="heading">Social Media</h3>
+
+    <div class="tab-body">
+        <div class="gallery">
+            <div class="grid-view" ng-repeat="(key, item) in socialMediaItems" ng-class="type === key ? 'selected' : 'unselected'" ng-click="selectSocialMedia(key)">
+                <div class="add-link" ng-class="item.master ? 'hidden' : 'visible'">
+                    <i class="fa fa-plus"></i>
+                </div>
+
+                <div class="preview" ng-class="item.master ? '' : 'overlay'">
+                    <img ng-src="/images/media/{{key}}-thumbnail.jpg"/>
+                </div>
+
+                <div class="info">
+                    <div class="title text-capitalize">{{key}}</div>
+                    <div class="types">
+                        <i class="fa fa-book" ng-show="item.master"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

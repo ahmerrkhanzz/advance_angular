@@ -1,0 +1,11 @@
+#!/bin/bash
+ASPELL=$(which aspell)
+if [ $? -ne 0 ]; then
+    echo "Aspell not installed - unable to check spelling"
+    exit 0
+else
+    WORDS=$($ASPELL list < "$1")
+    if [ -n "$WORDS" ]; then
+        echo "Possible spelling errors found in commit message. Use git commit --amend to change the message."
+    fi
+fi

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html ng-app="qsHub">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MDCMW2T');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Open Sans -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font awesome -->
+    <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="bower_components/angular-ui-switch/angular-ui-switch.min.css" rel="stylesheet">
+    <!-- Toaster (notifications) -->
+    <link href="bower_components/angularjs-toaster/toaster.min.css" rel="stylesheet">
+    <!-- Bootstrap Datepicker (fancy date selector) -->
+    <link href="bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <!-- Bootstrap TouchSpin (input spinner) -->
+    <link href="bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
+
+    <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />
+    <link href="bower_components/angular-ui-grid/ui-grid.min.css" rel="stylesheet" />
+
+
+    <!-- Drag & drop file uploader -->
+    <link href="bower_components/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
+    <!-- Rich text editor -->
+    <link href="bower_components/summernote/dist/summernote.css" rel="stylesheet" />
+    <!-- bootstrapLightbox -->
+    <link href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css" rel="stylesheet" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,app}) styles/style.css -->
+    <!-- Main Inspinia CSS files -->
+    <link href="styles/animate.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/custom.css" rel="stylesheet">
+    <link href="scripts/components/users/list/usersListStyles.css" rel="stylesheet">
+    <link href="scripts/components/dashboard/dashboardStyles.css" rel="stylesheet">
+    <link href="scripts/shared/disabledInstitution/disabledInstitutionStyles.css" rel="stylesheet">
+    <link href="scripts/shared/noAccess/noAccess.css" rel="stylesheet">
+    <link href="scripts/components/profiles/profilesStyles.css" rel="stylesheet">
+    <link href="scripts/components/profiles/shared/general/profilesSharedGeneralStyles.css" rel="stylesheet">
+    <link href="scripts/components/profiles/tu/subjects/profilesTuSubjectsStyles.css" rel="stylesheet">
+    <link href="scripts/components/profiles/tu/publish/profileTuPublishStyles.css" rel="stylesheet">
+    <link href="scripts/components/institutions/list/institutionsListStyles.css" rel="stylesheet">
+    <link href="scripts/components/profile/profileStyles.css" rel="stylesheet">
+    <link href="scripts/shared/topNavigationBar/topNavigationBarStyles.css" rel="stylesheet">
+    <link href="scripts/shared/modal/modalStyles.css" rel="stylesheet">
+    <link href="scripts/shared/appUpdateMessage/appUpdateMessageStyles.css" rel="stylesheet">
+    <link href="scripts/shared/ui-grid/uiGridInfo/uiGridInfoStyles.css" rel="stylesheet">
+    <link href="scripts/shared/ui-grid/uiGridStyles.css" rel="stylesheet">
+    <link href="styles/plugins/iCheck/green.css" rel="stylesheet">
+    <link href="styles/plugins/progressCircle/progress-circle.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller with serveral data used in Inspinia theme on diferent view -->
+<body ng-class="{'gray-bg': $state.current.data.login}">
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDCMW2T" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- App update  -->
+<app-update></app-update>
+<!-- Main view  -->
+<div ui-view></div>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+
+<!-- jQuery and Bootstrap -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- MetsiMenu -->
+<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="bower_components/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- Peace JS -->
+<script src="bower_components/PACE/pace.min.js"></script>
+
+<!-- Fancy checkboxes iCheck -->
+<script src="bower_components/iCheck/icheck.min.js"></script>
+
+<!-- jQuery Sparkline Plugin -->
+<script src="bower_components/jquery.sparkline/index.js"></script>
+
+<!-- Bootstarp Datepicker Plugin -->
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Bootstarp TouchSpin Plugin -->
+<script src="bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+
+<script src="bower_components/dropzone/dist/min/dropzone.min.js"></script>
+
+<!-- Angular scripts-->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+<script src="bower_components/angular-daterangepicker/js/angular-daterangepicker.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-ui-select/dist/select.js"></script>
+
+<!-- Animate angularJS -->
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<!-- Toaster angularJS (notifications) -->
+<script src="bower_components/angularjs-toaster/toaster.min.js"></script>
+<!-- Event -->
+<script src="bower_components/angular-ui-event/dist/event.min.js"></script>
+<!-- UI-Map -->
+<script src="bower_components/angular-ui-map/ui-map.min.js"></script>
+<!-- AirbrakeJS -->
+<script src="bower_components/airbrake-js-client/dist/client.min.js"></script>
+
+
+<!-- Angular Dependiences -->
+<!-- ngStorage angularJS Directive -->
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
+<!-- ngTable angularJS Directive -->
+<script src="bower_components/ng-table/dist/ng-table.min.js"></script>
+<!-- ngTable angularJS Directive -->
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<!-- Gravatar Directive -->
+<script src="bower_components/angular-gravatar/build/angular-gravatar.min.js"></script>
+<!-- xdLocalStorage -->
+<script src="bower_components/xdLocalStorage/app/scripts/services/xd-utils.js"></script>
+<script src="bower_components/xdLocalStorage/app/scripts/xdLocalStorage.js"></script>
+<script src="bower_components/xdLocalStorage/app/scripts/ng-xdLocalStorage.js"></script>
+<!-- File upload Directive -->
+<script src="bower_components/angular-dropzone/lib/angular-dropzone.js"></script>
+<!-- SummerNote (text editor) -->
+<script src="bower_components/summernote/dist/summernote.js"></script>
+<script src="bower_components/angular-summernote/dist/angular-summernote.min.js"></script>
+<!-- ui.sortable -->
+<script src="bower_components/angular-ui-sortable/sortable.min.js"></script>
+<!-- focus-if -->
+<script src="bower_components/ng-focus-if/focusIf.min.js"></script>
+<!-- bootstrapLightbox -->
+<script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
+<!-- websockets -->
+<script src="bower_components/socket.io-client/socket.io.js"></script>
+<!-- ui.grid -->
+<script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+<script src="bower_components/ui-grid-draggable-rows/js/draggable-rows.js"></script>
+<!-- Angular-touch -->
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- Custom and plugin javascript -->
+<script src="scripts/inspinia.js"></script>
+
+<!-- Anglar App Script -->
+<script src="scripts/app.js"></script>
+<script src="scripts/constants.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/directives.js"></script>
+<script src="scripts/filters.js"></script>
+<script src="scripts/factories.js"></script>
+<script src="scripts/services.js"></script>
+<script src="scripts/version.js"></script>
+<script src="scripts/cross-domain.config.js"></script>
+<script src="scripts/templates.js"></script>
+<script src="scripts/shared/authentication/authenticationService.js"></script>
+<script src="scripts/shared/ui-grid/uiGridDecorator.js"></script>
+<script src="scripts/shared/ui-grid/uiGridFilters.js"></script>
+<script src="scripts/shared/ui-grid/uiGridInfo/uiGridInfoComponent.js"></script>
+<script src="scripts/shared/ui-grid/uiGridService.js"></script>
+<script src="scripts/shared/ui-select/uiSelectService.js"></script>
+
+<script src="scripts/shared/animatedHighlight/animatedHighlight.js"></script>
+<script src="scripts/shared/sidebar/sidebarDirective.js"></script>
+<script src="scripts/shared/mouseScrollHorizontal/mouseScrollHorizontalDirective.js"></script>
+<script src="scripts/shared/displayFiltering/displayFilteringDirective.js"></script>
+<script src="scripts/shared/topNavigationBar/topNavigationBarService.js"></script>
+<script src="scripts/shared/login/loginService.js"></script>
+<script src="scripts/shared/url/urlService.js"></script>
+<script src="scripts/shared/text/textService.js"></script>
+<script src="scripts/shared/object/objectService.js"></script>
+<script src="scripts/shared/time/timeService.js"></script>
+<script src="scripts/shared/time/timeFilters.js"></script>
+<script src="scripts/shared/institution/institutionService.js"></script>
+<script src="scripts/controllers.js"></script>
+<script src="scripts/components/login/loginController.js"></script>
+<script src="scripts/shared/sidebar/sidebarController.js"></script>
+<script src="scripts/components/users/list/usersListService.js"></script>
+<script src="scripts/components/users/shared/userTypes/userTypesService.js"></script>
+<script src="scripts/components/users/shared/password/passwordController.js"></script>
+<script src="scripts/components/users/shared/password/passwordComponent.js"></script>
+<!-- User profile -->
+<script src="scripts/components/profile/profileController.js"></script>
+<script src="scripts/components/profile/password/profilePasswordController.js"></script>
+<script src="scripts/components/profile/password/profilePasswordService.js"></script>
+<script src="scripts/components/profile/personalDetails/profilePersonalDetailsController.js"></script>
+<script src="scripts/components/profile/personalDetails/profilePersonalDetailsService.js"></script>
+<script src="scripts/components/profile/logo/profileLogoController.js"></script>
+<script src="scripts/components/profile/logo/profileLogoService.js"></script>
+
+<script src="scripts/shared/appUpdateMessage/appUpdateMessageComponent.js"></script>
+<script src="scripts/shared/appUpdateMessage/appUpdateMessageController.js"></script>
+<script src="scripts/shared/appUpdateMessage/appUpdateMessageFactory.js"></script>
+
+<script src="scripts/components/users/list/qs/qsUsersListController.js"></script>
+<script src="scripts/components/users/list/qs/qsUsersListService.js"></script>
+
+<script src="scripts/components/dashboard/admin/dashboardAdminController.js"></script>
+<script src="scripts/components/dashboard/admin/dashboardAdminService.js"></script>
+<!-- Institutions Users -->
+<script src="scripts/components/users/list/institutions/institutionsUsersController.js"></script>
+<script src="scripts/components/users/list/institutions/institutionsUsersFactory.js"></script>
+<script src="scripts/components/users/list/institutions/institutionsUsersListController.js"></script>
+<script src="scripts/components/users/list/institutions/institutionsUsersListService.js"></script>
+<script src="scripts/components/users/list/institutions/institutionsUsersListFactory.js"></script>
+<script src="scripts/components/users/list/institutions/institutions/institutionsUsersListInstitutionsController.js"></script>
+<script src="scripts/components/users/list/institutions/institutions/institutionsUsersListInstitutionsService.js"></script>
+<script src="scripts/components/institutions/department/departmentOverviewController.js"></script>
+<script src="scripts/components/institutions/department/departmentOverviewFormController.js"></script>
+<script src="scripts/components/institutions/tu-programs/institutionsTuProgramsController.js"></script>
+<script src="scripts/components/institutions/tu-programs/institutionsTuProgramsFormController.js"></script>
+<script src="scripts/components/institutions/list/institutionsListController.js"></script>
+<script src="scripts/components/institutions/list/institutionsListFactory.js"></script>
+<script src="scripts/components/institutions/list/campusesListController.js"></script>
+<script src="scripts/components/institutions/list/institutionsListService.js"></script>
+<script src="scripts/components/institutions/list/subscriptions/institutionsListSubscriptionsController.js"></script>
+<script src="scripts/components/institutions/list/subscriptions/institutionsListSubscriptionsService.js"></script>
+<script src="scripts/components/institutions/list/subscriptions/institutionsListSubscriptionsFactory.js"></script>
+
+<script src="scripts/components/institutions/list/status/institutionsListStatusController.js"></script>
+
+<script src="scripts/shared/exceptionHandler/ExceptionHandlerFactory.js"></script>
+<script src="scripts/shared/modal/modalService.js"></script>
+<script src="scripts/shared/watch/watchService.js"></script>
+
+<!-- Circular progress -->
+<script src="scripts/shared/progressCircle/progressCircleDirective.js"></script>
+
+<!-- Shared profiles -->
+<script src="scripts/components/profiles/shared/sharedProfileController.js"></script>
+<script src="scripts/components/profiles/shared/sharedProfileService.js"></script>
+<!-- Shared profiles General -->
+<script src="scripts/components/profiles/shared/general/sharedProfileGeneralController.js"></script>
+<!-- Shared profiles Campuses-->
+<script src="scripts/components/profiles/shared/campuses/sharedProfileCampusesController.js"></script>
+<script src="scripts/components/profiles/shared/campuses/sharedProfileCampusFormController.js"></script>
+<script src="scripts/components/profiles/shared/campuses/sharedProfileCampusesService.js"></script>
+
+<!-- TU profiles -->
+<script src="scripts/components/profiles/tu/tuProfileController.js"></script>
+<script src="scripts/components/profiles/tu/tuProfileService.js"></script>
+
+<!-- TU profiles Overview -->
+<script src="scripts/components/profiles/tu/overview/tuProfileOverviewController.js"></script>
+<script src="scripts/components/profiles/tu/overview/tuProfileOverviewService.js"></script>
+
+<!-- TM profiles Overview -->
+<script src="scripts/components/profiles/tm/overview/tmProfileOverviewController.js"></script>
+<script src="scripts/components/profiles/tm/overview/faq/tmProfileOverviewFaqController.js"></script>
+<script src="scripts/components/profiles/tm/overview/tmProfileOverviewService.js"></script>
+<script src="scripts/components/profiles/tm/overview/tmProfileOverviewFactory.js"></script>
+<script src="scripts/components/profiles/tm/overview/tmProfileOverviewHistoryLogFactory.js"></script>
+
+<!-- TU profiles Departments -->
+<script src="scripts/components/profiles/tu/departments/tuProfileDepartmentsController.js"></script>
+<script src="scripts/components/profiles/tu/departments/tuProfileDepartmentFormController.js"></script>
+<script src="scripts/components/profiles/tu/departments/tuProfileDepartmentsService.js"></script>
+<!-- TU profiles Subjects -->
+<script src="scripts/components/profiles/tu/subjects/tuProfileSubjectsController.js"></script>
+<script src="scripts/components/profiles/tu/subjects/tuProfileSubjectsService.js"></script>
+<!-- TU profiles Programs -->
+<script src="scripts/components/profiles/tu/programs/tuProfileProgramsController.js"></script>
+<script src="scripts/components/profiles/tu/programs/tuProfileProgramFormController.js"></script>
+<script src="scripts/components/profiles/tu/programs/tuProfileProgramsService.js"></script>
+<!-- TU profiles Media -->
+<script src="scripts/components/profiles/tu/media/tuProfileMediaService.js"></script>
+<script src="scripts/components/profiles/tu/media/tuProfileMediaController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/tuProfileMediaCommonSidebarController.js"></script>
+<script src="scripts/components/profiles/tu/media/tuProfileMediaDirective.js"></script>
+
+<!-- TU profiles Media - Videos -->
+<script src="scripts/components/profiles/tu/media/subtabs/videos/tuProfileMediaVideosController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/videos/tuProfileMediaVideosSidebarController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/videos/tuProfileMediaVideosService.js"></script>
+
+<!-- TM profiles Media - Videos -->
+<script src="scripts/components/profiles/tm/media/subtabs/videos/tmProfileMediaVideosService.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/videos/tmProfileMediaVideosController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/videos/tmProfileMediaVideosSidebarController.js"></script>
+
+
+
+<!-- TU profiles Media - Brochures -->
+<script src="scripts/components/profiles/tu/media/subtabs/brochures/tuProfileMediaBrochuresController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/brochures/tuProfileMediaBrochuresSidebarController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/brochures/tuProfileMediaBrochuresService.js"></script>
+<!-- TU profiles Media - Social Media -->
+<script src="scripts/components/profiles/tu/media/subtabs/socialMedia/tuProfileMediaSocialMediasController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/socialMedia/tuProfileMediaSocialMediasSidebarController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/socialMedia/tuProfileMediaSocialMediasService.js"></script>
+<!-- TU profiles Media - Images -->
+<script src="scripts/components/profiles/tu/media/subtabs/images/tuProfileMediaImagesController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/images/tuProfileMediaImagesSidebarController.js"></script>
+<script src="scripts/components/profiles/tu/media/subtabs/images/tuProfileMediaImagesService.js"></script>
+
+<!-- TM Profile Media -->
+<script src="scripts/components/profiles/tm/media/tmProfileMediaService.js"></script>
+<script src="scripts/components/profiles/tm/media/tmProfileMediaController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/tmProfileMediaCommonSidebarController.js"></script>
+<!-- TM Profile Media Images Service -->
+<script src="scripts/components/profiles/tm/media/subtabs/images/tmProfileMediaImagesController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/images/tmProfileMediaImagesSidebarController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/images/tmProfileMediaImagesService.js"></script>
+<!-- TM profiles Media - Social Media -->
+<script src="scripts/components/profiles/tm/media/subtabs/socialMedia/tmProfileMediaSocialMediasController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/socialMedia/tmProfileMediaSocialMediasSidebarController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/socialMedia/tmProfileMediaSocialMediasService.js"></script>
+<!-- TM profiles Media - Brochures -->
+<script src="scripts/components/profiles/tm/media/subtabs/brochures/tmProfileMediaBrochuresController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/brochures/tmProfileMediaBrochuresSidebarController.js"></script>
+<script src="scripts/components/profiles/tm/media/subtabs/brochures/tmProfileMediaBrochuresService.js"></script>
+
+
+<!-- TU profiles Publish -->
+<script src="scripts/components/profiles/tu/publish/tuProfilePublishController.js"></script>
+<script src="scripts/components/profiles/tu/publish/tuProfilePublishLogsController.js"></script>
+<script src="scripts/components/profiles/tu/publish/tuProfileResubscribeController.js"></script>
+<script src="scripts/components/profiles/tu/publish/tuProfileResubscribeService.js"></script>
+<script src="scripts/components/profiles/tu/publish/tuProfilePublishService.js"></script>
+
+<!-- TM profiles -->
+<script src="scripts/components/profiles/tm/tmProfileController.js"></script>
+<script src="scripts/components/profiles/tm/tmProfileService.js"></script>
+<script src="scripts/components/profiles/tm/tmProfileFactory.js"></script>
+<script src="scripts/components/profiles/tm/tmProfileHistoryLogFactory.js"></script>
+<script src="scripts/components/profiles/tm/publish/tmProfileResubscribeController.js"></script>
+<script src="scripts/components/profiles/tm/publish/tmProfileResubscribeService.js"></script>
+<!-- TM profiles Programs -->
+<script src="scripts/components/profiles/tm/programs/tmProfileProgramsController.js"></script>
+<script src="scripts/components/profiles/tm/programs/tmProfileProgramsService.js"></script>
+<script src="scripts/components/profiles/tm/programs/tmProfileProgramFormController.js"></script>
+<script src="scripts/components/profiles/tm/programs/tmProfileProgramValidationService.js"></script>
+<!-- TM profiles Publish -->
+<script src="scripts/components/profiles/tm/publish/tmProfilePublishController.js"></script>
+<script src="scripts/components/profiles/tm/publish/tmProfilePublishLogsController.js"></script>
+<script src="scripts/components/profiles/tm/publish/tmProfilePublishService.js"></script>
+<!-- TM profiles Program Statistics -->
+<script src="scripts/components/profiles/tm/program-stats/tmProfileProgramStatsController.js"></script>
+<script src="scripts/components/profiles/tm/program-stats/tmProfileProgramsStatsService.js"></script>
+<!-- TM Directory -->
+<script src="scripts/components/tmDirectory/tmDirectoryController.js"></script>
+<script src="scripts/components/tmDirectory/tmDirectoryService.js"></script>
+<script src="scripts/components/tmDirectory/tmDirectoryFactory.js"></script>
+
+<!-- Contacts list -->
+<script src="scripts/components/contacts/contactsController.js"></script>
+<script src="scripts/components/contacts/contactsService.js"></script>
+<script src="scripts/components/contacts/institutionsUsersListCloneController.js"></script>
+<!-- Login - Password reset -->
+<script src="scripts/components/login/passwordService.js"></script>
+<!-- WebSockets -->
+<script src="scripts/shared/websockets/websocketsService.js"></script>
+<!-- Master Password -->
+<script src="scripts/components/master-password/masterPasswordController.js"></script>
+<script src="scripts/components/master-password/masterPasswordService.js"></script>
+<script src="scripts/components/master-password/masterPassowrdDirective.js"></script>
+<!-- endbuild -->
+
+<toaster-container></toaster-container>
+</body>
+</html>

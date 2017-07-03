@@ -1,0 +1,222 @@
+<div class="panel-body" ng-controller="InstitutionsSubscriptionsController as InstitutionsSubscriptionsController">
+    <div class="row">
+        <form name="forms.subscriptionForm">
+            <div class="col-lg-6">
+                <div wave-spinner class="wave-spinner" ng-show="InstitutionsSubscriptionsController.isProfilesLoading()"></div>
+                <div class="ibox float-e-margins" ng-show="!InstitutionsSubscriptionsController.isProfilesLoading()">
+                    <div class="ibox-title">
+                        <h5>Profiles</h5>
+                        <div class="ibox-tools">
+                            <a ng-click="showHide()" class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="subscription-tu" ng-if="InstitutionsSubscriptionsController.allowTu()">
+                            <label class="m-t-none m-b">QS Hub</label>
+
+                            <div class="form-group subscriptions">
+                                <switch
+                                    class="green"
+                                    ng-model="institution.subscriptions.tu.subscribed"
+                                    ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId) || !InstitutionsSubscriptionsController.isDowngradeAllowedTu(institution.subscriptions.tu.subscribed)"
+                                    uib-popover="Disabled due to associated child institutions. Child institutions must be switched off first."
+                                    popover-placement="bottom"
+                                    popover-enable="!InstitutionsSubscriptionsController.isDowngradeAllowedTu(institution.subscriptions.tu.subscribed)"
+                                    popover-trigger="'mouseenter'">
+                                </switch> Enable UG / PG
+                                <a class="btn btn-default btn-xs"
+                                   ng-click="InstitutionsSubscriptionsController.handleHistoryLogClick('tu')">
+                                    <i class="fa fa-clock-o"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-inline" ng-class="{'modal-overlay-35': !institution.subscriptions.tu.subscribed}">
+                                <div class="form-group col-md-offset-1">
+                                    <switch
+                                        class="green"
+                                        ng-model="institution.subscriptions.tu.advanced"
+                                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"></switch> Advanced
+                                    <span ng-if="institution.subscriptions.tu.startDate > InstitutionsSubscriptionsController.getCurrentDate() && !institution.subscriptions.tu.advanced">
+                                        <small class="badge badge-info">
+                                            {{institution.subscriptions.tu.startDate | mDate}} - {{institution.subscriptions.tu.endDate| mDate}}
+                                        </small>
+                                        <small>
+                                            <p>Profile will become advanced 1 week prior to the subscription date for editing and publishing purposes.</p>
+                                        </small>
+                                    </span>
+                                    <span ng-if="!InstitutionsController.isSimpleDepartment(institution.typeId)"
+                                          class="date-picker form-control btn" type="text"
+                                          date-range-picker
+                                          options="datePickerTu.options"
+                                          ng-model="datePickerTu.date"
+                                          ng-style="{'display': institution.subscriptions.tu.advanced ? 'block' : 'none'}">
+                                        {{institution.subscriptions.tu.startDate| mDate}} - {{institution.subscriptions.tu.endDate| mDate}}
+                                    </span>
+                                    <span ng-if="InstitutionsController.isSimpleDepartment(institution.typeId)" class="form-control" disabled="disabled">
+                                        {{institution.subscriptions.tu.startDate| mDate}} - {{institution.subscriptions.tu.endDate| mDate}}
+                                    </span>
+                                    <p>
+                                        <i class="text-red" ng-show="InstitutionsController.isTuSubscriptionDatesInvalid()">
+                                            Add the date before you save
+                                        </i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-show="InstitutionsSubscriptionsController.isHistoryLogVisible('tu')">
+                                <div wave-spinner class="wave-spinner" ng-show="InstitutionsSubscriptionsController.isSubscriptionsLogLoading('tu')"></div>
+                                <div class="history-log tu col-md-offset-1 text-muted">
+                                    <div class="history-log-content" ng-show="!InstitutionsSubscriptionsController.isSubscriptionsLogLoading('tu')">
+                                        <label class="m-t-none m-b">Subscription History</label>
+                                        <div class="history-items"
+                                             ng-show="InstitutionsSubscriptionsController.getSubscriptionsLog('tu').length"
+                                             ng-repeat="item in InstitutionsSubscriptionsController.getSubscriptionsLog('tu')">
+                                            <i class="fa fa-bell" aria-hidden="true" ng-if="item.future"></i> {{item.startDate | mDate}} - {{item.endDate | mDate}} <span class="subscription-log-submitted-by" ng-if="item.createdByFullName">Submitted by: {{item.createdByFullName}}</span>
+                                        </div>
+                                        <div class="history-items-empty" ng-show="!InstitutionsSubscriptionsController.getSubscriptionsLog('tu').length">
+                                            Log is empty
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <label class="m-t-none m-b">Display on topuniversities.com</label>
+
+                            <div class="form-group">
+                                <switch ng-model="institution.enabled.ug" ng-disabled="!institution.subscriptions.tu.subscribed || InstitutionsController.isSimpleDepartment(institution.typeId)" class="green"></switch> Undergraduate
+                            </div>
+
+                            <div class="form-group">
+                                <switch ng-model="institution.enabled.pg" ng-disabled="!institution.subscriptions.tu.subscribed || InstitutionsController.isSimpleDepartment(institution.typeId)" class="green"></switch> Postgraduate
+                            </div>
+
+                            <div class="alert alert-warning" ng-show="InstitutionsController.hasTuWarning()">
+                                {{InstitutionsController.getTuWarningMessage()}}
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="subscription-tm">
+                            <label class="m-t-none m-b">QS Hub</label>
+
+                            <div class="form-group subscriptions">
+                                <switch class="green"
+                                        ng-model="institution.subscriptions.tm.subscribed"
+                                        ng-change="InstitutionsController.handleTmSubscribed()"
+                                        ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId) || !InstitutionsSubscriptionsController.isDowngradeAllowedTm(institution.subscriptions.tm.subscribed)"
+                                        uib-popover="Disabled due to associated child institutions. Child institutions must be switched off first."
+                                        popover-placement="bottom"
+                                        popover-enable="!InstitutionsSubscriptionsController.isDowngradeAllowedTm(institution.subscriptions.tm.subscribed)"
+                                        popover-trigger="'mouseenter'">
+                                </switch> Enable MBA
+                                <a class="btn btn-default btn-xs"
+                                   ng-click="InstitutionsSubscriptionsController.handleHistoryLogClick('tm')">
+                                    <i class="fa fa-clock-o"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-inline">
+                                <div class="form-group col-md-offset-1" ng-class="{'modal-overlay-35': !institution.subscriptions.tm.subscribed}">
+                                    <switch class="green"
+                                            ng-model="institution.subscriptions.tm.advanced"
+                                            ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId)"></switch> Advanced
+                                    <span ng-if="institution.subscriptions.tm.startDate > InstitutionsSubscriptionsController.getCurrentDate() && !institution.subscriptions.tm.advanced">
+                                        <small class="badge badge-info">
+                                            {{institution.subscriptions.tm.startDate | mDate}} - {{institution.subscriptions.tm.endDate| mDate}}
+                                        </small>
+                                        <small>
+                                            <p>Profile will become advanced 1 week prior to the subscription date for editing and publishing purposes.</p>
+                                        </small>
+                                    </span>
+                                    <span class="date-picker form-control btn" type="text"
+                                          ng-if="!InstitutionsController.isSimpleDepartment(institution.typeId)"
+                                          date-range-picker
+                                          options="datePickerTm.options"
+                                          ng-model="datePickerTm.date"
+                                          ng-style="{'display': institution.subscriptions.tm.advanced  ? 'block' : 'none'}">
+                                        {{institution.subscriptions.tm.startDate| mDate}} - {{institution.subscriptions.tm.endDate| mDate}}
+                                    </span>
+                                    <span ng-if="InstitutionsController.isSimpleDepartment(institution.typeId)" class="form-control" disabled="disabled">
+                                        {{institution.subscriptions.tm.startDate| mDate}} - {{institution.subscriptions.tm.endDate| mDate}}
+                                    </span>
+                                    <p>
+                                        <i class="text-red" ng-show="InstitutionsController.isTmSubscriptionDatesInvalid()">
+                                            Add the date before you save
+                                        </i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group" ng-show="InstitutionsSubscriptionsController.isHistoryLogVisible('tm')">
+                                <div wave-spinner class="wave-spinner" ng-show="InstitutionsSubscriptionsController.isSubscriptionsLogLoading('tm')"></div>
+                                <div class="history-log tm col-md-offset-1 text-muted">
+                                    <div class="history-log-content" ng-show="!InstitutionsSubscriptionsController.isSubscriptionsLogLoading('tm')">
+                                        <label class="m-t-none m-b">Subscription History</label>
+                                        <div class="history-items"
+                                             ng-show="InstitutionsSubscriptionsController.getSubscriptionsLog('tm').length"
+                                             ng-repeat="item in InstitutionsSubscriptionsController.getSubscriptionsLog('tm')">
+                                            <i class="fa fa-bell" aria-hidden="true" ng-if="item.future"></i> {{item.startDate | mDate}} - {{item.endDate | mDate}} <span class="subscription-log-submitted-by" ng-if="item.createdByFullName">Submitted by: {{item.createdByFullName}}</span>
+                                        </div>
+                                        <div class="history-items-empty" ng-show="!InstitutionsSubscriptionsController.getSubscriptionsLog('tm').length">
+                                            Log is empty
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-show="InstitutionsController.isTopLevelInstitution(institution.typeId) || InstitutionsController.isClientDepartment(institution.typeId)">
+                                <div class="form-group">
+                                    <switch class="green"
+                                            ng-model="institution.linkedWithAdvancedPrograms"
+                                            ng-disabled="!institution.subscriptions.tm.subscribed"></switch>
+                                    Link with advanced programs subscriptions
+                                </div>
+                            </div>
+
+                            <label class="m-t-none m-b">Display on topmba.com</label>
+
+                            <div class="form-group">
+                                <switch ng-model="institution.enabled.tm" ng-disabled="!institution.subscriptions.tm.subscribed || InstitutionsController.isSimpleDepartment(institution.typeId)" class="green"></switch> MBA
+                            </div>
+
+                            <div class="alert alert-warning" ng-show="InstitutionsController.hasTmWarning()">
+                                {{InstitutionsController.getTmWarningMessage()}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Statistics</h5>
+                        <div class="ibox-tools">
+                            <a ng-click="showHide()">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div ng-repeat="(key, value) in InstitutionsController.subscriptionsList">
+                            <div class="form-group">
+                                <switch
+                                    ng-model="institution.subscriptions[value.handle].subscribed"
+                                    class="green"
+                                    ng-disabled="InstitutionsController.isSimpleDepartment(institution.typeId) ||
+                                    InstitutionsController.isAllStatistic(value.handle)">
+                                </switch> {{value.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary btn-sm btn-block"
+                           ng-class="{'disabled': disabledSubmit() || InstitutionsController.isSimpleDepartment(institution.typeId)}"
+                           ng-click="handleSubscriptionSubmit()">Update</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

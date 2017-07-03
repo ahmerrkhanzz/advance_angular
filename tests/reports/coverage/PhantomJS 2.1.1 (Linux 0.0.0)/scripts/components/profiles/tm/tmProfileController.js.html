@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/profiles/tm/tmProfileController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">scripts/components/profiles/tm/</a> tmProfileController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.75% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.65% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.26% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/87</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, { controllers: {} });
+&nbsp;
+    App.controllers.tmProfile = <span class="fstat-no" title="function not covered" >function(</span>
+        $scope,
+        $rootScope,
+        $resource,
+        $location,
+        constants,
+        TmProfileService,
+        NotifierFactory,
+        TmProfileFactory,
+        InstitutionFactory,
+        UserFactory,
+        TuProfileFactory,
+        TuProfileService
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        controller.devMode = constants.dev;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.tmIsAdvanced = false;</span>
+<span class="cstat-no" title="statement not covered" >        controller.subjects = {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.upgradeEmailsTo = constants.emails.upgradeTu;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.institutionDataLoaded = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.profileDataLoaded = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.tmProfile = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.upgradeRequest = {</span>
+            name: UserFactory.getFullName(),
+            email: UserFactory.getUserName()
+        };
+<span class="cstat-no" title="statement not covered" >        $scope.tmProfileBeforeChanges = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.forms = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showUpgradeForm = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showHistory = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.activeTab = TmProfileFactory.getOverviewTabId();</span>
+<span class="cstat-no" title="statement not covered" >        $scope.upgradeInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.historyLog = {</span>
+            log: {},
+            totalReturned: 0,
+            total: 0
+        };
+&nbsp;
+        /**
+         * Is all data loaded?
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        controller.loadInProgress = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return $scope.institutionDataLoaded &amp;&amp; $scope.profileDataLoaded ? false : true;</span>
+        };
+&nbsp;
+        // load TU profile data
+<span class="cstat-no" title="statement not covered" >        controller.loadTmProfileData = <span class="fstat-no" title="function not covered" >function(coreId) {</span></span>
+<span class="cstat-no" title="statement not covered" >            TmProfileService.getTmProfileData(coreId).then(<span class="fstat-no" title="function not covered" >function(data) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.profileDataLoaded = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.tmProfile = data;</span>
+<span class="cstat-no" title="statement not covered" >                TmProfileFactory.setData(data);</span>
+<span class="cstat-no" title="statement not covered" >                $scope.tmProfileBeforeChanges = angular.copy(data);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $scope.$broadcast(constants.events.institutionTmProfileChanges);</span>
+            });
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.isRightSidePanelActive = <span class="fstat-no" title="function not covered" >function() {</span></span>
+            // publish tab is active
+<span class="cstat-no" title="statement not covered" >            if (TmProfileFactory.isPublishTabSelected()) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // upgrade form is visible
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.showUpgradeForm &amp;&amp;
+                (
+                    TmProfileFactory.isOverviewTabSelected() ||
+                    TmProfileFactory.isProgramsTabSelected() ||
+                    TmProfileFactory.isMediaTabSelected()
+                )
+            ) {
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // overview tab and history block is active
+<span class="cstat-no" title="statement not covered" >            if (TmProfileFactory.isOverviewTabSelected() &amp;&amp; $scope.showHistory) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // programs tab is active and edit or add form is active
+<span class="cstat-no" title="statement not covered" >            if (TmProfileFactory.isProgramsTabSelected() &amp;&amp; ($scope.showProgramEditForm || $scope.showProgramAddForm)) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+            // media tab is active
+<span class="cstat-no" title="statement not covered" >            if (TmProfileFactory.isMediaTabSelected()) {</span>
+<span class="cstat-no" title="statement not covered" >                return true;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return false;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isMediaTabActive = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TmProfileFactory.isMediaTabSelected();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.isPublishTabActive = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuProfileFactory.isPublishTabSelected();</span>
+        };
+&nbsp;
+        /**
+         * Toggle upgrade form.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.toggleUpgradeForm = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            TuProfileFactory.setUpgradeFormVisibility();</span>
+        };
+&nbsp;
+        /**
+         * Actions to do on upgrade form submit.
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleUpgradeClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                !$scope.forms.upgradeProfile ||
+                !$scope.forms.upgradeProfile.$valid ||
+                !$scope.tmProfile.id ||
+                !$scope.upgradeRequest
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.upgradeInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            var comments = $scope.upgradeRequest.comments || null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            TmProfileService.sendUpgradeRequest($scope.tmProfile.id, comments).then(<span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.upgradeInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    success ? 'success' : 'error',
+                    success ? 'Inquiry sent successfully!' : 'Processing inquiry failed!',
+                    'Upgrade To Advanced'
+                );
+<span class="cstat-no" title="statement not covered" >                if (success) {</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.upgradeRequest.comments = null;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.toggleUpgradeForm();</span>
+                }
+            });
+        };
+&nbsp;
+        // watch for upgrade form visibility changes
+<span class="cstat-no" title="statement not covered" >        $scope.$watch(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            return TuProfileFactory.isUpgradeFormVisible($scope.activeTab);</span>
+        }, <span class="fstat-no" title="function not covered" >function(newValue, oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >            if (newValue !== oldValue) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.upgradeRequest.comments = null;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.showUpgradeForm = newValue;</span>
+            }
+        });
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.initWatches = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(InstitutionFactory.isTmAdvanced, <span class="fstat-no" title="function not covered" >function(newValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.tmIsAdvanced = newValue;</span>
+            });
+            // listen to active profile tab changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch('activeTab', <span class="fstat-no" title="function not covered" >function(newValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >                TmProfileFactory.setSelectedTabId(newValue);</span>
+                //TmProfileFactory.closeSidebars();
+                //TuProfileHistoryLogFactory.resetTriggeredBy();
+            });
+&nbsp;
+            // watch active institution changes
+<span class="cstat-no" title="statement not covered" >            $scope.$watch(InstitutionFactory.getData, <span class="fstat-no" title="function not covered" >function(institutionData) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (InstitutionFactory.isEmpty()) {</span>
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                $scope.institutionDataLoaded = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionId = InstitutionFactory.getId();</span>
+<span class="cstat-no" title="statement not covered" >                $scope.institutionData = institutionData;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.tmIsAdvanced = InstitutionFactory.isTmAdvanced();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                controller.loadTmProfileData(InstitutionFactory.getCoreId());</span>
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $rootScope.$on(constants.events.logout, controller.destruct);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.destruct = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            TmProfileFactory.reset();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showDepartmentEditForm = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showDepartmentAddForm = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showProgramEditForm = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showDProgramAddForm = false;</span>
+        };
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >            controller.initWatches();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init();</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('TmProfileController', [
+            '$scope',
+            '$rootScope',
+            '$resource',
+            '$location',
+            'constants',
+            'TmProfileService',
+            'NotifierFactory',
+            'TmProfileFactory',
+            'InstitutionFactory',
+            'UserFactory',
+            'TuProfileFactory',
+            'TuProfileService',
+            App.controllers.tmProfile
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

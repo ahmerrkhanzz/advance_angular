@@ -1,0 +1,13 @@
+<div class="nested-ibox" ng-hide="showUpgradeForm" ng-controller="TuMediaCommonSidebarController">
+    <div class="ibox-title m-t-xl">
+        <h4>Media Manager ({{getGeneralCounter()}})</h4>
+    </div>
+    <div class="ibox">
+        <div class="ibox-content">
+            <div include-replace ng-include src="'/scripts/components/profiles/tu/media/subtabs/images/tuProfileMediaImagesSidebarView.html'"></div>
+            <div include-replace ng-include src="'/scripts/components/profiles/tu/media/subtabs/videos/tuProfileMediaVideosSidebarView.html'"></div>
+            <div include-replace ng-include src="'/scripts/components/profiles/tu/media/subtabs/socialMedia/tuProfileMediaSocialMediaSidebarView.html'"></div>
+            <div include-replace ng-include src="'/scripts/components/profiles/tu/media/subtabs/brochures/tuProfileMediaBrochuresSidebarView.html'"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="resubscribe" ng-controller="TmProfileResubscribeController as TmResubscribeController">
+    <div class="ibox m-t-xl" ng-show="TmResubscribeController.isAdvanced">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="subscribe">
+                    <div class="pull-left">
+                        <p>Your subscription expires:</p>
+                        <span class="bold">{{TmResubscribeController.expiresDate | date:'dd MMMM yyyy'}}</span>
+                    </div>
+                    <button class="btn btn-warning btn-lg pull-right"
+                            ng-click="TmResubscribeController.resubscribeClick()"
+                            ng-show="TmResubscribeController.showResubscribeButton()">
+                        <i class="fa fa-envelope-o"></i>
+                        <span>Resubscribe</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="ibox m-t-xl" ng-show="TmResubscribeController.displayResubscribeForm">
+        <div class="ibox-title">
+            <h5>Resubscribe to Advance Profile</h5>
+        </div>
+        <div class="ibox-content">
+            <form class="form-horizontal preview" name="forms.resubscribeForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label col-sm-5 col-md-4">To:</label>
+                    <div class="col-sm-7 col-md-8">
+                        <span class="text-label">{{TmResubscribeController.formData.to}}</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-sm-5 col-md-4">Subject:</label>
+                    <div class="col-sm-7 col-md-8">
+                        <span class="text-label">{{TmResubscribeController.formData.subject}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-5 col-md-4">Name:</label>
+                    <div class="col-sm-7 col-md-8">
+                        <span class="text-label">{{TmResubscribeController.formData.name}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-5 col-md-4">Email:</label>
+                    <div class="col-sm-7 col-md-8">
+                        <span class="text-label">{{TmResubscribeController.formData.email}}</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-5 col-md-4">Comments:</label>
+                    <div class="col-sm-7 col-md-8">
+                        <div class="textarea"><textarea class="form-control full-width" ng-model="TmResubscribeController.formData.comments" name="comments" ng-trim="true" rows="5"></textarea></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <a class="btn btn-primary pull-right" ng-class="{'disabled': TmResubscribeController.inProgress}" ng-click="TmResubscribeController.submitClick()">
+                           <i class="fa fa-check-circle"></i>
+                           <span>Submit</span>
+                        </a>
+                        <a class="btn btn-default pull-right" ng-click="TmResubscribeController.cancelClick()">
+                            <i class="fa fa-ban"></i>
+                            <span>Cancel</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>

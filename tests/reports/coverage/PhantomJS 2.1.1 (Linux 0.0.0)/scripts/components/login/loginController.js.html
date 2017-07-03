@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for scripts/components/login/loginController.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">scripts/components/login/</a> loginController.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.4% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>5/147</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">2.63% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/76</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">5.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.4% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>5/147</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(angular) {
+    "use strict";
+&nbsp;
+    var App = App || {};
+    App = angular.extend({}, App, {controllers:{}});
+&nbsp;
+    App.controllers.LoginController = <span class="fstat-no" title="function not covered" >function (</span>
+        $scope,
+        $location,
+        $localStorage,
+        $state,
+        constants,
+        AuthenticationService,
+        PasswordService,
+        UserFactory,
+        InstitutionFactory,
+        NotifierFactory,
+        authInterceptor
+    ) {
+<span class="cstat-no" title="statement not covered" >        var controller = this;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.forms = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.credentials = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.forgottenPassword = {};</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showForgotPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showResetPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.showAfterResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.loginInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >        $scope.animate = false;</span>
+<span class="cstat-no" title="statement not covered" >        controller.getPasswordValidator = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            return [</span>
+                {name: 'Minimum 8 characters', status: false}, // 0
+                {name: 'Maximum 32 characters', status: false}, // 1
+                {name: 'Lowercase letter (a-z)', status: false}, // 2
+                {name: 'Uppercase letter (A-Z)', status: false}, // 3
+                {name: 'Number (0-9)', status: false}, // 4
+                {name: 'Special characters', status: false}, // 5
+                {name: 'Both passwords match', status: false} // 6
+            ];
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.isPasswordValid = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            var result = true;</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach($scope.validationItems, <span class="fstat-no" title="function not covered" >function (item) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (result &amp;&amp; !item.status) {</span>
+<span class="cstat-no" title="statement not covered" >                    result = false;</span>
+                }
+            });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return result;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.errors = {</span>
+            missingRequired: 'Username and password are required',
+            invalidUsername: 'Please enter a valid username',
+            incorrectCredentials: 'Username or password is incorrect'
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if ($state.current.data.page === 'forgot-password') {</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showForgotPassword = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showAfterResetPasswordConfirmation = false;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if ($state.current.data.page === 'reset-password') {</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPassword = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showForgotPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showAfterResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.validationItems = controller.getPasswordValidator();</span>
+<span class="cstat-no" title="statement not covered" >            $scope.password = null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.repeatPassword = null;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.validatePassword = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.showResetPassword) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.validationItems = controller.getPasswordValidator();</span>
+<span class="cstat-no" title="statement not covered" >                var pattern = null;</span>
+                // 0
+<span class="cstat-no" title="statement not covered" >                if ($scope.forms.resetPasswordForm.password.$viewValue !== null &amp;&amp;</span>
+                    $scope.forms.resetPasswordForm.password.$viewValue.length &gt; 7
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[0].status = true;</span>
+                }
+                // 1
+<span class="cstat-no" title="statement not covered" >                if ($scope.forms.resetPasswordForm.password.$viewValue !== null &amp;&amp;</span>
+                    $scope.forms.resetPasswordForm.password.$viewValue.length &lt; 33 &amp;&amp;
+                    $scope.forms.resetPasswordForm.password.$viewValue.length &gt; 0
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[1].status = true;</span>
+                }
+                // 2
+<span class="cstat-no" title="statement not covered" >                pattern = new RegExp(/(?=.*?[a-z])/);</span>
+<span class="cstat-no" title="statement not covered" >                if (pattern.test($scope.forms.resetPasswordForm.password.$viewValue)</span>
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[2].status = true;</span>
+                }
+                // 3
+<span class="cstat-no" title="statement not covered" >                pattern = new RegExp(/(?=.*?[A-Z])/);</span>
+<span class="cstat-no" title="statement not covered" >                if (pattern.test($scope.forms.resetPasswordForm.password.$viewValue)</span>
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[3].status = true;</span>
+                }
+                // 4
+<span class="cstat-no" title="statement not covered" >                pattern = new RegExp(/(?=.*?[0-9])/);</span>
+<span class="cstat-no" title="statement not covered" >                if (pattern.test($scope.forms.resetPasswordForm.password.$viewValue)</span>
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[4].status = true;</span>
+                }
+                // 5
+<span class="cstat-no" title="statement not covered" >                pattern = new RegExp(/(?=.*?[\s\!\"\#\$\%\&amp;\'\(\)\*\+\,\-\.\/\:\;&lt;\=\&gt;\?\@\[\\\]\^\_\`\{\|\}\~\£\¬\€])/);</span>
+<span class="cstat-no" title="statement not covered" >                if (pattern.test($scope.forms.resetPasswordForm.password.$viewValue)</span>
+                ) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[5].status = true;</span>
+                }
+                // 6
+<span class="cstat-no" title="statement not covered" >                if (angular.equals(</span>
+                        $scope.forms.resetPasswordForm.password.$viewValue,
+                        $scope.forms.resetPasswordForm.repeatPassword.$viewValue
+                    )) {
+<span class="cstat-no" title="statement not covered" >                    $scope.validationItems[6].status = true;</span>
+                }
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleForgotPasswordClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.resetSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.email = null;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showForgotPassword = !$scope.showForgotPassword;</span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.showResetPassword) {</span>
+<span class="cstat-no" title="statement not covered" >                $scope.showForgotPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.showResetPassword = false;</span>
+<span class="cstat-no" title="statement not covered" >                $state.go('logout');</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.showForgotPassword = !$scope.showForgotPassword;</span>
+<span class="cstat-no" title="statement not covered" >                if ($scope.showForgotPassword) {</span>
+<span class="cstat-no" title="statement not covered" >                    $state.go('forgot-password');</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    $state.go('logout');</span>
+                }
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.showError = <span class="fstat-no" title="function not covered" >function (errorMessage) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.animate = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.error = errorMessage;</span>
+<span class="cstat-no" title="statement not covered" >            setTimeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.animate = false;</span>
+            }, 1000);
+        };
+&nbsp;
+        /**
+         * Reset errors.
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.resetErrors = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.error = false;</span>
+        };
+&nbsp;
+        /**
+         * Actions to do when login button is clicked.
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleLogin = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.forms.loginForm.$setSubmitted();</span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.loginInProgress ||
+                !$scope.forms.loginForm ||
+                !$scope.forms.loginForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                var error = $scope.forms.loginForm.$error.email ?</span>
+                    controller.errors.invalidUsername : controller.errors.missingRequired;
+<span class="cstat-no" title="statement not covered" >                controller.showError(error);</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.loginInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.animate = false;</span>
+<span class="cstat-no" title="statement not covered" >            AuthenticationService.login(</span>
+                $scope.credentials.username,
+                $scope.credentials.password
+            ).then(controller.loginCallback);
+        };
+&nbsp;
+        /**
+         * Actions to do on login callback.
+         *
+         * @param {boolean} success
+         */
+<span class="cstat-no" title="statement not covered" >        controller.loginCallback = <span class="fstat-no" title="function not covered" >function (success) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (success) {</span>
+<span class="cstat-no" title="statement not covered" >                var redirectUrl = $location.search().url,</span>
+                    coreId = null;
+<span class="cstat-no" title="statement not covered" >                if (redirectUrl) {</span>
+<span class="cstat-no" title="statement not covered" >                    $location.url(redirectUrl);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    if (UserFactory.isClient()) {</span>
+<span class="cstat-no" title="statement not covered" >                        coreId = UserFactory.getPrimaryInstitutionCoreId();</span>
+<span class="cstat-no" title="statement not covered" >                        redirectUrl = '/profiles/institution-details';</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        if ($localStorage.currentInstitutionId) {</span>
+<span class="cstat-no" title="statement not covered" >                            coreId = $localStorage.currentInstitutionId;</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            coreId = InstitutionFactory.getDefaultCoreId();</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        redirectUrl = '/admin/dashboard';</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    redirectUrl = redirectUrl ? redirectUrl : constants.defaultClientPage;</span>
+<span class="cstat-no" title="statement not covered" >                    if (authInterceptor.getOrganisationId()) {</span>
+<span class="cstat-no" title="statement not covered" >                        coreId = authInterceptor.getOrganisationId();</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    $location.path(redirectUrl).search({coreId: coreId});</span>
+                }
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.animate = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.error = 'Username or password is incorrect';</span>
+<span class="cstat-no" title="statement not covered" >                $scope.loginInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >                controller.showError(controller.errors.incorrectCredentials);</span>
+            }
+        };
+&nbsp;
+        /**
+         * Actions to do when send password button is clicked.
+         *
+         * @returns {boolean}
+         */
+<span class="cstat-no" title="statement not covered" >        $scope.handleResetPasswordSubmitClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.forgottenPasswordError = false;</span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+                $scope.resetSubmitInProgress ||
+                !$scope.forms.forgotPasswordForm ||
+                !$scope.forms.forgotPasswordForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.resetSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.animate = false;</span>
+<span class="cstat-no" title="statement not covered" >            PasswordService.create($scope.forgottenPassword.email).then(controller.resetPasswordCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.resetPasswordCallback = <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var responseObject = {</span>
+                'status' : false,
+                'message' : 'Request failed, please try again'
+            };
+<span class="cstat-no" title="statement not covered" >            if (response &amp;&amp; response.hasOwnProperty('status')) {</span>
+<span class="cstat-no" title="statement not covered" >                responseObject.status = response.status;</span>
+<span class="cstat-no" title="statement not covered" >                if (!response.status) {</span>
+<span class="cstat-no" title="statement not covered" >                    responseObject.message = response.message;</span>
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            $scope.resetSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >            if (response.status) {</span>
+                // display confirmation
+<span class="cstat-no" title="statement not covered" >                $scope.showResetPasswordConfirmation = true;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                $scope.animate = true;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.forgottenPasswordError = responseObject.message;</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.updateResetCallback = <span class="fstat-no" title="function not covered" >function (response) {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.resetSubmitInProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >            if (response) {</span>
+                // login user with controller.loginPassword
+                // response will contain the email and the status
+<span class="cstat-no" title="statement not covered" >                NotifierFactory.show(</span>
+                    'success',
+                    'New Password Saved',
+                    'Password Reset'
+                );
+<span class="cstat-no" title="statement not covered" >                AuthenticationService.login(response.email, controller.loginPassword).then(controller.loginCallback);</span>
+            }
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.handleResetSubmitPasswordSubmitClick = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            if ($scope.resetSubmitInProgress ||</span>
+                !$scope.forms.resetPasswordForm ||
+                !$scope.forms.resetPasswordForm.$valid
+            ) {
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (!controller.isPasswordValid()) {</span>
+<span class="cstat-no" title="statement not covered" >                return false;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            $scope.resetSubmitInProgress = true;</span>
+<span class="cstat-no" title="statement not covered" >            controller.loginPassword = $scope.forms.resetPasswordForm.password.$modelValue;</span>
+<span class="cstat-no" title="statement not covered" >            PasswordService.update($scope.requestId, controller.loginPassword).then(controller.updateResetCallback);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        $scope.toggleForgottenPasswordForm = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            $scope.forgottenPassword.email = '';</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showResetPasswordConfirmation = false;</span>
+<span class="cstat-no" title="statement not covered" >            $scope.showForgotPassword = !$scope.showForgotPassword;</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init = <span class="fstat-no" title="function not covered" >function () {</span></span>
+            // reset login status
+<span class="cstat-no" title="statement not covered" >            AuthenticationService.logout();</span>
+<span class="cstat-no" title="statement not covered" >            InstitutionFactory.setData(null);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        controller.init();</span>
+    };
+&nbsp;
+    angular
+        .module('qsHub')
+        .controller('LoginController', [
+            '$scope',
+            '$location',
+            '$localStorage',
+            '$state',
+            'constants',
+            'AuthenticationService',
+            'PasswordService',
+            'UserFactory',
+            'InstitutionFactory',
+            'NotifierFactory',
+            'authInterceptor',
+            App.controllers.LoginController
+        ]);
+&nbsp;
+}(window.angular));
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 10 2017 16:22:39 GMT+0500 (PKT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

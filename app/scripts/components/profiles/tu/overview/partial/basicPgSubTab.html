@@ -1,0 +1,121 @@
+<form name="forms.overviewBasicPgForm" enctype="multipart/form-data">
+    <div class="tab-header">
+      <h3 class="heading">Basic Description *</h3>
+      <a class="btn btn-warning btn-history"
+        ng-class="{'disabled': historyDisabled}"
+        ng-click="handleTuOverviewHistoryLogClick('pg')">
+        <i class="fa fa-clock-o"></i>
+      </a>
+    </div>
+
+    <div class="tab-body">
+        <div class="summernote-container" ng-class="{'has-errors': isBasicPgOverviewEmpty}">
+            <summernote
+                config="TuProfileOverviewController.textEditorBasicOptions"
+                ng-model="tuProfile.basicPgOverview"
+                on-focus="TuProfileOverviewController.setOverviewInvalid('basicPgOverview')"
+                on-change="TuProfileOverviewController.basicPgOverviewWords = countWords(contents)"
+                on-init="TuProfileOverviewController.basicPgOverviewWords = countWords(tuProfile.basicPgOverview)"
+                count-word="TuProfileOverviewController.basicPgOverviewWords">
+            </summernote>
+        </div>
+
+      <div class="editor-note form-group">
+        <span ng-class="{'text-red': TuProfileOverviewController.isBasicOverviewInvalid(TuProfileOverviewController.basicPgOverviewWords)}">
+          <span class="bold">{{TuProfileOverviewController.basicPgOverviewWords}}</span>
+          <span>words inserted</span>
+        </span>
+        <span class="pull-right">Maximum {{TuProfileOverviewController.basicDescriptionWordLimit}} words</span>
+      
+        <div
+            focus-delay="250"
+            custom-popover
+            popover-html="Add a general description about the Postgraduate Courses you offer"
+            popover-placement="left"
+            popover-trigger="manual"
+            popover-visibility="{{isBasicPgOverviewEmpty ? true : false}}">
+        </div>
+      </div>
+
+      <div class="tab-footer">
+        <a class="btn btn-primary pull-right"
+          ng-class="{'disabled': overviewTabOverviewSubTabSubmitInProgress}"
+          ng-click="handleOverviewBasicPgDataSubmit()">
+          <i class="fa fa-check-circle"></i>
+          <span>Update</span>
+        </a>
+      </div>
+    </div>
+</form>
+
+<div upgrade-banner
+     info-block-class="isRightSidePanelActive() ? 'col-lg-9' : 'col-lg-10'"
+     buttons-block-class="isRightSidePanelActive() ? 'col-lg-3' : 'col-lg-2'"
+     basic-profile="true"
+     upgrade-email="{{upgradeEmailsTo}}"
+     upgrade-click="toggleUpgradeForm()"></div>
+
+<div class="separator"></div>
+
+<div class="locked">
+    <div  class="row">
+        <div class="col-lg-6 form-group">
+            <div>
+                <h3>University Website</h3>
+            </div>
+            <input type="text"
+                   disabled
+                   placeholder="http://"
+                   ng-model="tuProfile.pgWebsiteUrl"
+                   class="form-control" />
+        </div>
+        <div class="col-lg-6 form-group">
+            <div class="display-inline-request-info margin-right-30">
+                <h3 class="inline">Request info</h3>
+                <span class="small dfn text-left text-nowrap"> (please select one) </span>
+            </div>
+            <div class="display-inline-request-info request-info-title">
+                <div class="display-inline-request-info">
+                    <input i-checkbox
+                       disabled
+                       type="radio"
+                       value="email"
+                       ng-model="tuProfile.requestInfoTypePg"> Email
+                </div>
+                <span class="or-checkboxes-request-info">OR</span>
+                <div class="display-inline-request-info">
+                    <input i-checkbox
+                       disabled
+                       type="radio"
+                       value="url"
+                       ng-model="tuProfile.requestInfoTypePg"> URL
+                </div>
+            </div>
+            <div ng-show="tuProfile.requestInfoTypePg === 'url'" class="url-option">
+                <div class="form-group">
+                    <input type="text"
+                           disabled
+                           placeholder="Title"
+                           ng-model="tuProfile.pgRequestInfoUrlTitle"
+                           class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="url"
+                           disabled
+                           placeholder="URL"
+                           ng-model="tuProfile.pgRequestInfoUrl"
+                           class="form-control">
+                </div>
+            </div>
+            <div ng-show="tuProfile.requestInfoTypePg === 'email'" class="email-option">
+                <div class="form-group">
+                    <input type="email"
+                           disabled
+                           placeholder="Email"
+                           ng-model="tuProfile.pgRequestInfoEmail"
+                           class="form-control">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
